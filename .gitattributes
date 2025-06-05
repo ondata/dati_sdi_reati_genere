@@ -1,0 +1,31 @@
+w# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Python files
+*.py text diff=python eol=lf
+*.ipynb text eol=lf
+
+# Markdown files
+*.md text diff=markdown eol=lf
+
+# Data files
+*.csv text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+
+# Documentation
+*.txt text eol=lf
+*.rst text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.pkl binary
+*.xlsx binary
+*.db binary
+*.sqlite binary
