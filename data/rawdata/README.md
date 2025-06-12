@@ -67,5 +67,5 @@ I dati sono disaggregati fino al livello comunale (luogo del fatto) e comprendon
 ## Limitazioni
 
 - I dati 2024 non sono consolidati e potrebbero essere soggetti a variazioni.
-- I dati a livello comunale non sono stati forniti per i reati in senso stretto (file `_6.xlsx`), ma solo per le comunicazioni con relazione vittima/autore (file `_5.xlsx`), per motivi legati alla normativa sulla privacy (Delibera Garante n. 515 del 19/12/2018).
+- I dati a livello comunale non sono stati forniti per i reati in senso stretto (file `_5.xlsx`), ma solo per le comunicazioni con relazione vittima/autore (file `_6.xlsx`), per motivi legati alla normativa sulla privacy (Delibera Garante n. 515 del 19/12/2018).
 - Non è presente una classificazione specifica dei "femminicidi", in quanto non previsti dal codice penale come fattispecie autonoma.
