@@ -15,7 +15,7 @@ Il file `MI-123-U-A-SD-2025-90_5.xlsx`, invece, raccoglie **comunicazioni SDI** 
 
 ## File presenti
 
-### 1. `MI-123-U-A-SD-2025-90_6.xlsx`
+### 1. `MI-123-U-A-SD-2025-90_5.xlsx`
 
 Contiene i dati relativi alle seguenti tipologie di reato:
 
@@ -45,7 +45,7 @@ Nel caso degli omicidi, è presente una tabella specifica con ulteriori disaggre
 - In ambito familiare/affettivo
 - Compiuti da partner o ex partner
 
-### 2. `MI-123-U-A-SD-2025-90_5.xlsx`
+### 2. `MI-123-U-A-SD-2025-90_6.xlsx`
 
 Contiene le comunicazioni registrate nel sistema SDI riconducibili a episodi di violenza di genere, dove è indicata una relazione vittima-autore.
 
@@ -54,6 +54,15 @@ I dati sono disaggregati fino al livello comunale (luogo del fatto) e comprendon
 - Tipo di relazione tra vittima e autore
 - Luogo del fatto (Comune)
 - Numero di comunicazioni per anno (2019-2024)
+- descrizione del reato
+- data inizio e fine del fatto
+- data della denuncia
+- età e genere e nazionalità della vittima
+- età e genere e nazionalità denunciato
+- Reato Tentato o Consumato
+- Stato in cui è avvenuto il reato (suppongo Null == Italia)
+- Luogo in cui è avvenuto il fatto
+
 
 ## Limitazioni
 
