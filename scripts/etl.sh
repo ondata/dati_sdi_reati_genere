@@ -280,4 +280,6 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
   duckdb --csv -c "FROM read_csv('${csv_file}',normalize_names=true)" >"${folder}"/tmp/tmp.csv
 
   mv "${folder}"/tmp/tmp.csv "${csv_file}"
+
+  sed -i 's/,_value/,value/g' "${csv_file}"  # Escapes quotes in CSV files
 done
