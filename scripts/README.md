@@ -28,6 +28,7 @@ Il file sorgente è `MI-123-U-A-SD-2025-90_5.xlsx` che contiene 10 fogli Excel c
 - Normalizza la struttura dei dati convertendo le colonne degli anni in righe
 - Gestisce in modo specifico i dati per genere (FEMMINILE/MASCHILE) trasformandoli in formato standard
 - Standardizza i nomi delle colonne per renderli compatibili con strumenti di analisi
+- Aggiunge i codici Istat di province e regioni e inserisce e corregge i nomi delle province
 
 **File generati:**
 
