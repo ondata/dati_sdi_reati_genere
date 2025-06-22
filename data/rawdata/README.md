@@ -9,7 +9,7 @@ Questa cartella contiene i dati rilasciati a seguito dell'accesso civico general
 
 ## Differenza tra i due file principali
 
-Il file `MI-123-U-A-SD-2025-90_6.xlsx` contiene **statistiche ufficiali sui reati** commessi (omicidi, violenze, minacce, ecc.) **registrati dalle forze dell'ordine** e disaggregati **per provincia**. Si tratta di dati strutturati e contabilizzati secondo le categorie di reato previste dal codice penale.
+Il file `MI-123-U-A-SD-2025-90_6.xlsx` contiene **statistiche ufficiali sui reati** commessi (omicidi, violenze, minacce, ecc.) **registrati dalle forze dell'ordine** e disaggregati **per provincia**. Si tratta di dati strutturati e conteggiati secondo le categorie di reato previste dal codice penale.
 
 Il file `MI-123-U-A-SD-2025-90_5.xlsx`, invece, raccoglie **comunicazioni SDI** in cui è presente una **relazione vittima-autore** e sono **disaggregate fino al livello comunale**. Questi dati rappresentano segnalazioni/annotazioni di episodi riconducibili a violenza di genere, anche se non sempre formalmente qualificati come reati.
 
