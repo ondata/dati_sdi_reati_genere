@@ -205,6 +205,9 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
     mlr -I --csv -N filter -x 'is_null($2)' "${folder}"/../data/processing/"${file}"/"${file_name}"
     mlr -I --csv label categoria "${folder}"/../data/processing/"${file}"/"${file_name}"
 
+    # rimuovi la prima riga di "${folder}"/../data/processing/"${file}"/"${file_name}" con sed
+    sed -i '1d' "${folder}"/../data/processing/"${file}"/"${file_name}"
+
   # Elaborazione file: reati_spia_commessi.csv
   # Applica trasformazioni standard per file con colonne anno
   elif [[ "$(basename "${csv_file}")" == "reati_spia_commessi.csv" ]]; then
