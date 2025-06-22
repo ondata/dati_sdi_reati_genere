@@ -16,7 +16,7 @@ mkdir -p "${folder}/../data/processing"
 mkdir -p "${folder}/tmp"
 
 # Verifica che tutti i comandi necessari siano installati
-for cmd in jq qsv mlr duckdb; do
+for cmd in jq qsv mlr duckdb csvmatch; do
   if ! command -v "${cmd}" >/dev/null 2>&1; then
     echo "Errore: il comando '${cmd}' non è installato. Installalo prima di eseguire lo script." >&2
     exit 1
