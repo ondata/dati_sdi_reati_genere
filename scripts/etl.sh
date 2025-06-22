@@ -272,7 +272,7 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
 
 done
 
-# ===== FASE 3: NORMALIZZAZIONE FINALE DEI NOMI COLONNE =====
+# ===== FASE 3: NORMALIZZAZIONE =====
 # Applica normalizzazione dei nomi delle colonne a tutti i file CSV generati
 find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read -r csv_file; do
 
@@ -281,5 +281,11 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
 
   mv "${folder}"/tmp/tmp.csv "${csv_file}"
 
-  sed -i 's/,_value/,value/g' "${csv_file}"  # Escapes quotes in CSV files
+  # Rinomina le colonne s _value a value)
+  sed -i 's/,_value/,valore/g' "${csv_file}"  # Escapes quotes in CSV files
+
+  # applica il sorting
+  mlr -I --csv sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
 done
+
+
