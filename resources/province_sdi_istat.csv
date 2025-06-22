@@ -1,536 +1,108 @@
 provincia,provinciauts_corretto,codice_regione,codice_provincia_storico,codice_provinciauts,ripartizione_geografica,regione,provinciauts_2,flag_tipo_uts,sigla_automobilistica
 AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
-AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
-AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
-AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
-AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
-ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
-ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
-ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
-ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
 ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
 ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
-AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
-AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
-AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
 AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
 AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
-AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
-AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
-AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
-AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
-ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
-ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
-ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
-ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
 ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
 ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
-ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
-ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
-ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
-ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
-AVELLINO,AVELLINO,15,064,064,Sud,Campania,Avellino,1,AV
-AVELLINO,AVELLINO,15,064,064,Sud,Campania,Avellino,1,AV
-AVELLINO,AVELLINO,15,064,064,Sud,Campania,Avellino,1,AV
-AVELLINO,AVELLINO,15,064,064,Sud,Campania,Avellino,1,AV
 AVELLINO,AVELLINO,15,064,064,Sud,Campania,Avellino,1,AV
 BARI,BARI,16,072,272,Sud,Puglia,Bari,3,BA
-BARI,BARI,16,072,272,Sud,Puglia,Bari,3,BA
-BARI,BARI,16,072,272,Sud,Puglia,Bari,3,BA
-BARI,BARI,16,072,272,Sud,Puglia,Bari,3,BA
-BARI,BARI,16,072,272,Sud,Puglia,Bari,3,BA
-BARLETTA-ANDRIA-TRANI,BARLETTA-ANDRIA-TRANI,16,110,110,Sud,Puglia,Barletta-Andria-Trani,1,BT
-BARLETTA-ANDRIA-TRANI,BARLETTA-ANDRIA-TRANI,16,110,110,Sud,Puglia,Barletta-Andria-Trani,1,BT
-BARLETTA-ANDRIA-TRANI,BARLETTA-ANDRIA-TRANI,16,110,110,Sud,Puglia,Barletta-Andria-Trani,1,BT
-BARLETTA-ANDRIA-TRANI,BARLETTA-ANDRIA-TRANI,16,110,110,Sud,Puglia,Barletta-Andria-Trani,1,BT
 BARLETTA-ANDRIA-TRANI,BARLETTA-ANDRIA-TRANI,16,110,110,Sud,Puglia,Barletta-Andria-Trani,1,BT
 BELLUNO,BELLUNO,05,025,025,Nord-est,Veneto,Belluno,1,BL
-BELLUNO,BELLUNO,05,025,025,Nord-est,Veneto,Belluno,1,BL
-BELLUNO,BELLUNO,05,025,025,Nord-est,Veneto,Belluno,1,BL
-BELLUNO,BELLUNO,05,025,025,Nord-est,Veneto,Belluno,1,BL
-BELLUNO,BELLUNO,05,025,025,Nord-est,Veneto,Belluno,1,BL
-BENEVENTO,BENEVENTO,15,062,062,Sud,Campania,Benevento,1,BN
-BENEVENTO,BENEVENTO,15,062,062,Sud,Campania,Benevento,1,BN
-BENEVENTO,BENEVENTO,15,062,062,Sud,Campania,Benevento,1,BN
-BENEVENTO,BENEVENTO,15,062,062,Sud,Campania,Benevento,1,BN
 BENEVENTO,BENEVENTO,15,062,062,Sud,Campania,Benevento,1,BN
 BERGAMO,BERGAMO,03,016,016,Nord-ovest,Lombardia,Bergamo,1,BG
-BERGAMO,BERGAMO,03,016,016,Nord-ovest,Lombardia,Bergamo,1,BG
-BERGAMO,BERGAMO,03,016,016,Nord-ovest,Lombardia,Bergamo,1,BG
-BERGAMO,BERGAMO,03,016,016,Nord-ovest,Lombardia,Bergamo,1,BG
-BERGAMO,BERGAMO,03,016,016,Nord-ovest,Lombardia,Bergamo,1,BG
-BIELLA,BIELLA,01,096,096,Nord-ovest,Piemonte,Biella,1,BI
-BIELLA,BIELLA,01,096,096,Nord-ovest,Piemonte,Biella,1,BI
-BIELLA,BIELLA,01,096,096,Nord-ovest,Piemonte,Biella,1,BI
-BIELLA,BIELLA,01,096,096,Nord-ovest,Piemonte,Biella,1,BI
 BIELLA,BIELLA,01,096,096,Nord-ovest,Piemonte,Biella,1,BI
 BOLOGNA,BOLOGNA,08,037,237,Nord-est,Emilia-Romagna,Bologna,3,BO
-BOLOGNA,BOLOGNA,08,037,237,Nord-est,Emilia-Romagna,Bologna,3,BO
-BOLOGNA,BOLOGNA,08,037,237,Nord-est,Emilia-Romagna,Bologna,3,BO
-BOLOGNA,BOLOGNA,08,037,237,Nord-est,Emilia-Romagna,Bologna,3,BO
-BOLOGNA,BOLOGNA,08,037,237,Nord-est,Emilia-Romagna,Bologna,3,BO
-BOLZANO,BOLZANO/BOZEN,04,021,021,Nord-est,Trentino-Alto Adige/Südtirol,Bolzano/Bozen,2,BZ
-BOLZANO,BOLZANO/BOZEN,04,021,021,Nord-est,Trentino-Alto Adige/Südtirol,Bolzano/Bozen,2,BZ
-BOLZANO,BOLZANO/BOZEN,04,021,021,Nord-est,Trentino-Alto Adige/Südtirol,Bolzano/Bozen,2,BZ
-BOLZANO,BOLZANO/BOZEN,04,021,021,Nord-est,Trentino-Alto Adige/Südtirol,Bolzano/Bozen,2,BZ
 BOLZANO,BOLZANO/BOZEN,04,021,021,Nord-est,Trentino-Alto Adige/Südtirol,Bolzano/Bozen,2,BZ
 BRESCIA,BRESCIA,03,017,017,Nord-ovest,Lombardia,Brescia,1,BS
-BRESCIA,BRESCIA,03,017,017,Nord-ovest,Lombardia,Brescia,1,BS
-BRESCIA,BRESCIA,03,017,017,Nord-ovest,Lombardia,Brescia,1,BS
-BRESCIA,BRESCIA,03,017,017,Nord-ovest,Lombardia,Brescia,1,BS
-BRESCIA,BRESCIA,03,017,017,Nord-ovest,Lombardia,Brescia,1,BS
-BRINDISI,BRINDISI,16,074,074,Sud,Puglia,Brindisi,1,BR
-BRINDISI,BRINDISI,16,074,074,Sud,Puglia,Brindisi,1,BR
-BRINDISI,BRINDISI,16,074,074,Sud,Puglia,Brindisi,1,BR
-BRINDISI,BRINDISI,16,074,074,Sud,Puglia,Brindisi,1,BR
 BRINDISI,BRINDISI,16,074,074,Sud,Puglia,Brindisi,1,BR
 CAGLIARI,CAGLIARI,20,092,292,Isole,Sardegna,Cagliari,3,CA
-CAGLIARI,CAGLIARI,20,092,292,Isole,Sardegna,Cagliari,3,CA
-CAGLIARI,CAGLIARI,20,092,292,Isole,Sardegna,Cagliari,3,CA
-CAGLIARI,CAGLIARI,20,092,292,Isole,Sardegna,Cagliari,3,CA
-CAGLIARI,CAGLIARI,20,092,292,Isole,Sardegna,Cagliari,3,CA
-CALTANISSETTA,CALTANISSETTA,19,085,085,Isole,Sicilia,Caltanissetta,4,CL
-CALTANISSETTA,CALTANISSETTA,19,085,085,Isole,Sicilia,Caltanissetta,4,CL
-CALTANISSETTA,CALTANISSETTA,19,085,085,Isole,Sicilia,Caltanissetta,4,CL
-CALTANISSETTA,CALTANISSETTA,19,085,085,Isole,Sicilia,Caltanissetta,4,CL
 CALTANISSETTA,CALTANISSETTA,19,085,085,Isole,Sicilia,Caltanissetta,4,CL
 CAMPOBASSO,CAMPOBASSO,14,070,070,Sud,Molise,Campobasso,1,CB
-CAMPOBASSO,CAMPOBASSO,14,070,070,Sud,Molise,Campobasso,1,CB
-CAMPOBASSO,CAMPOBASSO,14,070,070,Sud,Molise,Campobasso,1,CB
-CAMPOBASSO,CAMPOBASSO,14,070,070,Sud,Molise,Campobasso,1,CB
-CAMPOBASSO,CAMPOBASSO,14,070,070,Sud,Molise,Campobasso,1,CB
-CASERTA,CASERTA,15,061,061,Sud,Campania,Caserta,1,CE
-CASERTA,CASERTA,15,061,061,Sud,Campania,Caserta,1,CE
-CASERTA,CASERTA,15,061,061,Sud,Campania,Caserta,1,CE
-CASERTA,CASERTA,15,061,061,Sud,Campania,Caserta,1,CE
 CASERTA,CASERTA,15,061,061,Sud,Campania,Caserta,1,CE
 CATANIA,CATANIA,19,087,287,Isole,Sicilia,Catania,3,CT
-CATANIA,CATANIA,19,087,287,Isole,Sicilia,Catania,3,CT
-CATANIA,CATANIA,19,087,287,Isole,Sicilia,Catania,3,CT
-CATANIA,CATANIA,19,087,287,Isole,Sicilia,Catania,3,CT
-CATANIA,CATANIA,19,087,287,Isole,Sicilia,Catania,3,CT
-CATANZARO,CATANZARO,18,079,079,Sud,Calabria,Catanzaro,1,CZ
-CATANZARO,CATANZARO,18,079,079,Sud,Calabria,Catanzaro,1,CZ
-CATANZARO,CATANZARO,18,079,079,Sud,Calabria,Catanzaro,1,CZ
-CATANZARO,CATANZARO,18,079,079,Sud,Calabria,Catanzaro,1,CZ
 CATANZARO,CATANZARO,18,079,079,Sud,Calabria,Catanzaro,1,CZ
 CHIETI,CHIETI,13,069,069,Sud,Abruzzo,Chieti,1,CH
-CHIETI,CHIETI,13,069,069,Sud,Abruzzo,Chieti,1,CH
-CHIETI,CHIETI,13,069,069,Sud,Abruzzo,Chieti,1,CH
-CHIETI,CHIETI,13,069,069,Sud,Abruzzo,Chieti,1,CH
-CHIETI,CHIETI,13,069,069,Sud,Abruzzo,Chieti,1,CH
-COMO,COMO,03,013,013,Nord-ovest,Lombardia,Como,1,CO
-COMO,COMO,03,013,013,Nord-ovest,Lombardia,Como,1,CO
-COMO,COMO,03,013,013,Nord-ovest,Lombardia,Como,1,CO
-COMO,COMO,03,013,013,Nord-ovest,Lombardia,Como,1,CO
 COMO,COMO,03,013,013,Nord-ovest,Lombardia,Como,1,CO
 COSENZA,COSENZA,18,078,078,Sud,Calabria,Cosenza,1,CS
-COSENZA,COSENZA,18,078,078,Sud,Calabria,Cosenza,1,CS
-COSENZA,COSENZA,18,078,078,Sud,Calabria,Cosenza,1,CS
-COSENZA,COSENZA,18,078,078,Sud,Calabria,Cosenza,1,CS
-COSENZA,COSENZA,18,078,078,Sud,Calabria,Cosenza,1,CS
-CREMONA,CREMONA,03,019,019,Nord-ovest,Lombardia,Cremona,1,CR
-CREMONA,CREMONA,03,019,019,Nord-ovest,Lombardia,Cremona,1,CR
-CREMONA,CREMONA,03,019,019,Nord-ovest,Lombardia,Cremona,1,CR
-CREMONA,CREMONA,03,019,019,Nord-ovest,Lombardia,Cremona,1,CR
 CREMONA,CREMONA,03,019,019,Nord-ovest,Lombardia,Cremona,1,CR
 CROTONE,CROTONE,18,101,101,Sud,Calabria,Crotone,1,KR
-CROTONE,CROTONE,18,101,101,Sud,Calabria,Crotone,1,KR
-CROTONE,CROTONE,18,101,101,Sud,Calabria,Crotone,1,KR
-CROTONE,CROTONE,18,101,101,Sud,Calabria,Crotone,1,KR
-CROTONE,CROTONE,18,101,101,Sud,Calabria,Crotone,1,KR
-CUNEO,CUNEO,01,004,004,Nord-ovest,Piemonte,Cuneo,1,CN
-CUNEO,CUNEO,01,004,004,Nord-ovest,Piemonte,Cuneo,1,CN
-CUNEO,CUNEO,01,004,004,Nord-ovest,Piemonte,Cuneo,1,CN
-CUNEO,CUNEO,01,004,004,Nord-ovest,Piemonte,Cuneo,1,CN
 CUNEO,CUNEO,01,004,004,Nord-ovest,Piemonte,Cuneo,1,CN
 ENNA,ENNA,19,086,086,Isole,Sicilia,Enna,4,EN
-ENNA,ENNA,19,086,086,Isole,Sicilia,Enna,4,EN
-ENNA,ENNA,19,086,086,Isole,Sicilia,Enna,4,EN
-ENNA,ENNA,19,086,086,Isole,Sicilia,Enna,4,EN
-ENNA,ENNA,19,086,086,Isole,Sicilia,Enna,4,EN
-FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
-FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
-FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
-FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
 FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
 FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
-FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
-FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
-FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
-FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
-FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
-FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
-FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
-FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
 FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
 FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
-FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
-FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
-FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
 FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
 FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
-FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
-FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
-FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
-FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
-GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
-GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
-GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
-GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
 GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
 GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
-GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
-GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
-GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
-GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
-GROSSETO,GROSSETO,09,053,053,Centro,Toscana,Grosseto,1,GR
-GROSSETO,GROSSETO,09,053,053,Centro,Toscana,Grosseto,1,GR
-GROSSETO,GROSSETO,09,053,053,Centro,Toscana,Grosseto,1,GR
-GROSSETO,GROSSETO,09,053,053,Centro,Toscana,Grosseto,1,GR
 GROSSETO,GROSSETO,09,053,053,Centro,Toscana,Grosseto,1,GR
 IMPERIA,IMPERIA,07,008,008,Nord-ovest,Liguria,Imperia,1,IM
-IMPERIA,IMPERIA,07,008,008,Nord-ovest,Liguria,Imperia,1,IM
-IMPERIA,IMPERIA,07,008,008,Nord-ovest,Liguria,Imperia,1,IM
-IMPERIA,IMPERIA,07,008,008,Nord-ovest,Liguria,Imperia,1,IM
-IMPERIA,IMPERIA,07,008,008,Nord-ovest,Liguria,Imperia,1,IM
-ISERNIA,ISERNIA,14,094,094,Sud,Molise,Isernia,1,IS
-ISERNIA,ISERNIA,14,094,094,Sud,Molise,Isernia,1,IS
-ISERNIA,ISERNIA,14,094,094,Sud,Molise,Isernia,1,IS
-ISERNIA,ISERNIA,14,094,094,Sud,Molise,Isernia,1,IS
 ISERNIA,ISERNIA,14,094,094,Sud,Molise,Isernia,1,IS
 L'AQUILA,L'AQUILA,13,066,066,Sud,Abruzzo,L'Aquila,1,AQ
-L'AQUILA,L'AQUILA,13,066,066,Sud,Abruzzo,L'Aquila,1,AQ
-L'AQUILA,L'AQUILA,13,066,066,Sud,Abruzzo,L'Aquila,1,AQ
-L'AQUILA,L'AQUILA,13,066,066,Sud,Abruzzo,L'Aquila,1,AQ
-L'AQUILA,L'AQUILA,13,066,066,Sud,Abruzzo,L'Aquila,1,AQ
-LA SPEZIA,LA SPEZIA,07,011,011,Nord-ovest,Liguria,La Spezia,1,SP
-LA SPEZIA,LA SPEZIA,07,011,011,Nord-ovest,Liguria,La Spezia,1,SP
-LA SPEZIA,LA SPEZIA,07,011,011,Nord-ovest,Liguria,La Spezia,1,SP
-LA SPEZIA,LA SPEZIA,07,011,011,Nord-ovest,Liguria,La Spezia,1,SP
 LA SPEZIA,LA SPEZIA,07,011,011,Nord-ovest,Liguria,La Spezia,1,SP
 LATINA,LATINA,12,059,059,Centro,Lazio,Latina,1,LT
-LATINA,LATINA,12,059,059,Centro,Lazio,Latina,1,LT
-LATINA,LATINA,12,059,059,Centro,Lazio,Latina,1,LT
-LATINA,LATINA,12,059,059,Centro,Lazio,Latina,1,LT
-LATINA,LATINA,12,059,059,Centro,Lazio,Latina,1,LT
-LECCE,LECCE,16,075,075,Sud,Puglia,Lecce,1,LE
-LECCE,LECCE,16,075,075,Sud,Puglia,Lecce,1,LE
-LECCE,LECCE,16,075,075,Sud,Puglia,Lecce,1,LE
-LECCE,LECCE,16,075,075,Sud,Puglia,Lecce,1,LE
 LECCE,LECCE,16,075,075,Sud,Puglia,Lecce,1,LE
 LECCO,LECCO,03,097,097,Nord-ovest,Lombardia,Lecco,1,LC
-LECCO,LECCO,03,097,097,Nord-ovest,Lombardia,Lecco,1,LC
-LECCO,LECCO,03,097,097,Nord-ovest,Lombardia,Lecco,1,LC
-LECCO,LECCO,03,097,097,Nord-ovest,Lombardia,Lecco,1,LC
-LECCO,LECCO,03,097,097,Nord-ovest,Lombardia,Lecco,1,LC
-LIVORNO,LIVORNO,09,049,049,Centro,Toscana,Livorno,1,LI
-LIVORNO,LIVORNO,09,049,049,Centro,Toscana,Livorno,1,LI
-LIVORNO,LIVORNO,09,049,049,Centro,Toscana,Livorno,1,LI
-LIVORNO,LIVORNO,09,049,049,Centro,Toscana,Livorno,1,LI
 LIVORNO,LIVORNO,09,049,049,Centro,Toscana,Livorno,1,LI
 LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
-LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
-LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
-LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
-LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
-LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
-LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
-LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
-LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
 LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
 MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
-MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
-MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
-MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
-MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
-MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
-MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
-MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
-MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
 MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
 MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
-MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
-MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
-MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
-MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
-MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
-MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
-MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
-MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
 MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
 MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
-MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
-MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
-MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
-MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
-MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
-MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
-MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
-MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
 MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
 MODENA,MODENA,08,036,036,Nord-est,Emilia-Romagna,Modena,1,MO
-MODENA,MODENA,08,036,036,Nord-est,Emilia-Romagna,Modena,1,MO
-MODENA,MODENA,08,036,036,Nord-est,Emilia-Romagna,Modena,1,MO
-MODENA,MODENA,08,036,036,Nord-est,Emilia-Romagna,Modena,1,MO
-MODENA,MODENA,08,036,036,Nord-est,Emilia-Romagna,Modena,1,MO
-MONZA E DELLA BRIANZA,MONZA E DELLA BRIANZA,03,108,108,Nord-ovest,Lombardia,Monza e della Brianza,1,MB
-MONZA E DELLA BRIANZA,MONZA E DELLA BRIANZA,03,108,108,Nord-ovest,Lombardia,Monza e della Brianza,1,MB
-MONZA E DELLA BRIANZA,MONZA E DELLA BRIANZA,03,108,108,Nord-ovest,Lombardia,Monza e della Brianza,1,MB
-MONZA E DELLA BRIANZA,MONZA E DELLA BRIANZA,03,108,108,Nord-ovest,Lombardia,Monza e della Brianza,1,MB
 MONZA E DELLA BRIANZA,MONZA E DELLA BRIANZA,03,108,108,Nord-ovest,Lombardia,Monza e della Brianza,1,MB
 NAPOLI,NAPOLI,15,063,263,Sud,Campania,Napoli,3,NA
-NAPOLI,NAPOLI,15,063,263,Sud,Campania,Napoli,3,NA
-NAPOLI,NAPOLI,15,063,263,Sud,Campania,Napoli,3,NA
-NAPOLI,NAPOLI,15,063,263,Sud,Campania,Napoli,3,NA
-NAPOLI,NAPOLI,15,063,263,Sud,Campania,Napoli,3,NA
-NOVARA,NOVARA,01,003,003,Nord-ovest,Piemonte,Novara,1,NO
-NOVARA,NOVARA,01,003,003,Nord-ovest,Piemonte,Novara,1,NO
-NOVARA,NOVARA,01,003,003,Nord-ovest,Piemonte,Novara,1,NO
-NOVARA,NOVARA,01,003,003,Nord-ovest,Piemonte,Novara,1,NO
 NOVARA,NOVARA,01,003,003,Nord-ovest,Piemonte,Novara,1,NO
 NUORO,NUORO,20,091,091,Isole,Sardegna,Nuoro,1,NU
-NUORO,NUORO,20,091,091,Isole,Sardegna,Nuoro,1,NU
-NUORO,NUORO,20,091,091,Isole,Sardegna,Nuoro,1,NU
-NUORO,NUORO,20,091,091,Isole,Sardegna,Nuoro,1,NU
-NUORO,NUORO,20,091,091,Isole,Sardegna,Nuoro,1,NU
-ORISTANO,ORISTANO,20,095,095,Isole,Sardegna,Oristano,1,OR
-ORISTANO,ORISTANO,20,095,095,Isole,Sardegna,Oristano,1,OR
-ORISTANO,ORISTANO,20,095,095,Isole,Sardegna,Oristano,1,OR
-ORISTANO,ORISTANO,20,095,095,Isole,Sardegna,Oristano,1,OR
 ORISTANO,ORISTANO,20,095,095,Isole,Sardegna,Oristano,1,OR
 PADOVA,PADOVA,05,028,028,Nord-est,Veneto,Padova,1,PD
-PADOVA,PADOVA,05,028,028,Nord-est,Veneto,Padova,1,PD
-PADOVA,PADOVA,05,028,028,Nord-est,Veneto,Padova,1,PD
-PADOVA,PADOVA,05,028,028,Nord-est,Veneto,Padova,1,PD
-PADOVA,PADOVA,05,028,028,Nord-est,Veneto,Padova,1,PD
-PALERMO,PALERMO,19,082,282,Isole,Sicilia,Palermo,3,PA
-PALERMO,PALERMO,19,082,282,Isole,Sicilia,Palermo,3,PA
-PALERMO,PALERMO,19,082,282,Isole,Sicilia,Palermo,3,PA
-PALERMO,PALERMO,19,082,282,Isole,Sicilia,Palermo,3,PA
 PALERMO,PALERMO,19,082,282,Isole,Sicilia,Palermo,3,PA
 PARMA,PARMA,08,034,034,Nord-est,Emilia-Romagna,Parma,1,PR
-PARMA,PARMA,08,034,034,Nord-est,Emilia-Romagna,Parma,1,PR
-PARMA,PARMA,08,034,034,Nord-est,Emilia-Romagna,Parma,1,PR
-PARMA,PARMA,08,034,034,Nord-est,Emilia-Romagna,Parma,1,PR
-PARMA,PARMA,08,034,034,Nord-est,Emilia-Romagna,Parma,1,PR
-PAVIA,PAVIA,03,018,018,Nord-ovest,Lombardia,Pavia,1,PV
-PAVIA,PAVIA,03,018,018,Nord-ovest,Lombardia,Pavia,1,PV
-PAVIA,PAVIA,03,018,018,Nord-ovest,Lombardia,Pavia,1,PV
-PAVIA,PAVIA,03,018,018,Nord-ovest,Lombardia,Pavia,1,PV
 PAVIA,PAVIA,03,018,018,Nord-ovest,Lombardia,Pavia,1,PV
 PERUGIA,PERUGIA,10,054,054,Centro,Umbria,Perugia,1,PG
-PERUGIA,PERUGIA,10,054,054,Centro,Umbria,Perugia,1,PG
-PERUGIA,PERUGIA,10,054,054,Centro,Umbria,Perugia,1,PG
-PERUGIA,PERUGIA,10,054,054,Centro,Umbria,Perugia,1,PG
-PERUGIA,PERUGIA,10,054,054,Centro,Umbria,Perugia,1,PG
-PESARO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
 PESARO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
 PESARO E URBINO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO E URBINO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO E URBINO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO E URBINO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESARO E URBINO,PESARO E URBINO,11,041,041,Centro,Marche,Pesaro e Urbino,1,PU
-PESCARA,PESCARA,13,068,068,Sud,Abruzzo,Pescara,1,PE
-PESCARA,PESCARA,13,068,068,Sud,Abruzzo,Pescara,1,PE
-PESCARA,PESCARA,13,068,068,Sud,Abruzzo,Pescara,1,PE
-PESCARA,PESCARA,13,068,068,Sud,Abruzzo,Pescara,1,PE
 PESCARA,PESCARA,13,068,068,Sud,Abruzzo,Pescara,1,PE
 PIACENZA,PIACENZA,08,033,033,Nord-est,Emilia-Romagna,Piacenza,1,PC
-PIACENZA,PIACENZA,08,033,033,Nord-est,Emilia-Romagna,Piacenza,1,PC
-PIACENZA,PIACENZA,08,033,033,Nord-est,Emilia-Romagna,Piacenza,1,PC
-PIACENZA,PIACENZA,08,033,033,Nord-est,Emilia-Romagna,Piacenza,1,PC
-PIACENZA,PIACENZA,08,033,033,Nord-est,Emilia-Romagna,Piacenza,1,PC
-PISA,PISA,09,050,050,Centro,Toscana,Pisa,1,PI
-PISA,PISA,09,050,050,Centro,Toscana,Pisa,1,PI
-PISA,PISA,09,050,050,Centro,Toscana,Pisa,1,PI
-PISA,PISA,09,050,050,Centro,Toscana,Pisa,1,PI
 PISA,PISA,09,050,050,Centro,Toscana,Pisa,1,PI
 PISTOIA,PISTOIA,09,047,047,Centro,Toscana,Pistoia,1,PT
-PISTOIA,PISTOIA,09,047,047,Centro,Toscana,Pistoia,1,PT
-PISTOIA,PISTOIA,09,047,047,Centro,Toscana,Pistoia,1,PT
-PISTOIA,PISTOIA,09,047,047,Centro,Toscana,Pistoia,1,PT
-PISTOIA,PISTOIA,09,047,047,Centro,Toscana,Pistoia,1,PT
-PORDENONE,PORDENONE,06,093,093,Nord-est,Friuli-Venezia Giulia,Pordenone,5,PN
-PORDENONE,PORDENONE,06,093,093,Nord-est,Friuli-Venezia Giulia,Pordenone,5,PN
-PORDENONE,PORDENONE,06,093,093,Nord-est,Friuli-Venezia Giulia,Pordenone,5,PN
-PORDENONE,PORDENONE,06,093,093,Nord-est,Friuli-Venezia Giulia,Pordenone,5,PN
 PORDENONE,PORDENONE,06,093,093,Nord-est,Friuli-Venezia Giulia,Pordenone,5,PN
 POTENZA,POTENZA,17,076,076,Sud,Basilicata,Potenza,1,PZ
-POTENZA,POTENZA,17,076,076,Sud,Basilicata,Potenza,1,PZ
-POTENZA,POTENZA,17,076,076,Sud,Basilicata,Potenza,1,PZ
-POTENZA,POTENZA,17,076,076,Sud,Basilicata,Potenza,1,PZ
-POTENZA,POTENZA,17,076,076,Sud,Basilicata,Potenza,1,PZ
-PRATO,PRATO,09,100,100,Centro,Toscana,Prato,1,PO
-PRATO,PRATO,09,100,100,Centro,Toscana,Prato,1,PO
-PRATO,PRATO,09,100,100,Centro,Toscana,Prato,1,PO
-PRATO,PRATO,09,100,100,Centro,Toscana,Prato,1,PO
 PRATO,PRATO,09,100,100,Centro,Toscana,Prato,1,PO
 RAGUSA,RAGUSA,19,088,088,Isole,Sicilia,Ragusa,4,RG
-RAGUSA,RAGUSA,19,088,088,Isole,Sicilia,Ragusa,4,RG
-RAGUSA,RAGUSA,19,088,088,Isole,Sicilia,Ragusa,4,RG
-RAGUSA,RAGUSA,19,088,088,Isole,Sicilia,Ragusa,4,RG
-RAGUSA,RAGUSA,19,088,088,Isole,Sicilia,Ragusa,4,RG
-RAVENNA,RAVENNA,08,039,039,Nord-est,Emilia-Romagna,Ravenna,1,RA
-RAVENNA,RAVENNA,08,039,039,Nord-est,Emilia-Romagna,Ravenna,1,RA
-RAVENNA,RAVENNA,08,039,039,Nord-est,Emilia-Romagna,Ravenna,1,RA
-RAVENNA,RAVENNA,08,039,039,Nord-est,Emilia-Romagna,Ravenna,1,RA
 RAVENNA,RAVENNA,08,039,039,Nord-est,Emilia-Romagna,Ravenna,1,RA
 REGGIO CALABRIA,REGGIO CALABRIA,18,080,280,Sud,Calabria,Reggio Calabria,3,RC
-REGGIO CALABRIA,REGGIO CALABRIA,18,080,280,Sud,Calabria,Reggio Calabria,3,RC
-REGGIO CALABRIA,REGGIO CALABRIA,18,080,280,Sud,Calabria,Reggio Calabria,3,RC
-REGGIO CALABRIA,REGGIO CALABRIA,18,080,280,Sud,Calabria,Reggio Calabria,3,RC
-REGGIO CALABRIA,REGGIO CALABRIA,18,080,280,Sud,Calabria,Reggio Calabria,3,RC
-REGGIO EMILIA,REGGIO NELL'EMILIA,08,035,035,Nord-est,Emilia-Romagna,Reggio nell'Emilia,1,RE
-REGGIO EMILIA,REGGIO NELL'EMILIA,08,035,035,Nord-est,Emilia-Romagna,Reggio nell'Emilia,1,RE
-REGGIO EMILIA,REGGIO NELL'EMILIA,08,035,035,Nord-est,Emilia-Romagna,Reggio nell'Emilia,1,RE
-REGGIO EMILIA,REGGIO NELL'EMILIA,08,035,035,Nord-est,Emilia-Romagna,Reggio nell'Emilia,1,RE
 REGGIO EMILIA,REGGIO NELL'EMILIA,08,035,035,Nord-est,Emilia-Romagna,Reggio nell'Emilia,1,RE
 RIETI,RIETI,12,057,057,Centro,Lazio,Rieti,1,RI
-RIETI,RIETI,12,057,057,Centro,Lazio,Rieti,1,RI
-RIETI,RIETI,12,057,057,Centro,Lazio,Rieti,1,RI
-RIETI,RIETI,12,057,057,Centro,Lazio,Rieti,1,RI
-RIETI,RIETI,12,057,057,Centro,Lazio,Rieti,1,RI
-RIMINI,RIMINI,08,099,099,Nord-est,Emilia-Romagna,Rimini,1,RN
-RIMINI,RIMINI,08,099,099,Nord-est,Emilia-Romagna,Rimini,1,RN
-RIMINI,RIMINI,08,099,099,Nord-est,Emilia-Romagna,Rimini,1,RN
-RIMINI,RIMINI,08,099,099,Nord-est,Emilia-Romagna,Rimini,1,RN
 RIMINI,RIMINI,08,099,099,Nord-est,Emilia-Romagna,Rimini,1,RN
 ROMA,ROMA,12,058,258,Centro,Lazio,Roma,3,RM
-ROMA,ROMA,12,058,258,Centro,Lazio,Roma,3,RM
-ROMA,ROMA,12,058,258,Centro,Lazio,Roma,3,RM
-ROMA,ROMA,12,058,258,Centro,Lazio,Roma,3,RM
-ROMA,ROMA,12,058,258,Centro,Lazio,Roma,3,RM
-ROVIGO,ROVIGO,05,029,029,Nord-est,Veneto,Rovigo,1,RO
-ROVIGO,ROVIGO,05,029,029,Nord-est,Veneto,Rovigo,1,RO
-ROVIGO,ROVIGO,05,029,029,Nord-est,Veneto,Rovigo,1,RO
-ROVIGO,ROVIGO,05,029,029,Nord-est,Veneto,Rovigo,1,RO
 ROVIGO,ROVIGO,05,029,029,Nord-est,Veneto,Rovigo,1,RO
 SALERNO,SALERNO,15,065,065,Sud,Campania,Salerno,1,SA
-SALERNO,SALERNO,15,065,065,Sud,Campania,Salerno,1,SA
-SALERNO,SALERNO,15,065,065,Sud,Campania,Salerno,1,SA
-SALERNO,SALERNO,15,065,065,Sud,Campania,Salerno,1,SA
-SALERNO,SALERNO,15,065,065,Sud,Campania,Salerno,1,SA
-SASSARI,SASSARI,20,090,090,Isole,Sardegna,Sassari,1,SS
-SASSARI,SASSARI,20,090,090,Isole,Sardegna,Sassari,1,SS
-SASSARI,SASSARI,20,090,090,Isole,Sardegna,Sassari,1,SS
-SASSARI,SASSARI,20,090,090,Isole,Sardegna,Sassari,1,SS
 SASSARI,SASSARI,20,090,090,Isole,Sardegna,Sassari,1,SS
 SAVONA,SAVONA,07,009,009,Nord-ovest,Liguria,Savona,1,SV
-SAVONA,SAVONA,07,009,009,Nord-ovest,Liguria,Savona,1,SV
-SAVONA,SAVONA,07,009,009,Nord-ovest,Liguria,Savona,1,SV
-SAVONA,SAVONA,07,009,009,Nord-ovest,Liguria,Savona,1,SV
-SAVONA,SAVONA,07,009,009,Nord-ovest,Liguria,Savona,1,SV
-SIENA,SIENA,09,052,052,Centro,Toscana,Siena,1,SI
-SIENA,SIENA,09,052,052,Centro,Toscana,Siena,1,SI
-SIENA,SIENA,09,052,052,Centro,Toscana,Siena,1,SI
-SIENA,SIENA,09,052,052,Centro,Toscana,Siena,1,SI
 SIENA,SIENA,09,052,052,Centro,Toscana,Siena,1,SI
 SIRACUSA,SIRACUSA,19,089,089,Isole,Sicilia,Siracusa,4,SR
-SIRACUSA,SIRACUSA,19,089,089,Isole,Sicilia,Siracusa,4,SR
-SIRACUSA,SIRACUSA,19,089,089,Isole,Sicilia,Siracusa,4,SR
-SIRACUSA,SIRACUSA,19,089,089,Isole,Sicilia,Siracusa,4,SR
-SIRACUSA,SIRACUSA,19,089,089,Isole,Sicilia,Siracusa,4,SR
-SONDRIO,SONDRIO,03,014,014,Nord-ovest,Lombardia,Sondrio,1,SO
-SONDRIO,SONDRIO,03,014,014,Nord-ovest,Lombardia,Sondrio,1,SO
-SONDRIO,SONDRIO,03,014,014,Nord-ovest,Lombardia,Sondrio,1,SO
-SONDRIO,SONDRIO,03,014,014,Nord-ovest,Lombardia,Sondrio,1,SO
 SONDRIO,SONDRIO,03,014,014,Nord-ovest,Lombardia,Sondrio,1,SO
 TARANTO,TARANTO,16,073,073,Sud,Puglia,Taranto,1,TA
-TARANTO,TARANTO,16,073,073,Sud,Puglia,Taranto,1,TA
-TARANTO,TARANTO,16,073,073,Sud,Puglia,Taranto,1,TA
-TARANTO,TARANTO,16,073,073,Sud,Puglia,Taranto,1,TA
-TARANTO,TARANTO,16,073,073,Sud,Puglia,Taranto,1,TA
-TERAMO,TERAMO,13,067,067,Sud,Abruzzo,Teramo,1,TE
-TERAMO,TERAMO,13,067,067,Sud,Abruzzo,Teramo,1,TE
-TERAMO,TERAMO,13,067,067,Sud,Abruzzo,Teramo,1,TE
-TERAMO,TERAMO,13,067,067,Sud,Abruzzo,Teramo,1,TE
 TERAMO,TERAMO,13,067,067,Sud,Abruzzo,Teramo,1,TE
 TERNI,TERNI,10,055,055,Centro,Umbria,Terni,1,TR
-TERNI,TERNI,10,055,055,Centro,Umbria,Terni,1,TR
-TERNI,TERNI,10,055,055,Centro,Umbria,Terni,1,TR
-TERNI,TERNI,10,055,055,Centro,Umbria,Terni,1,TR
-TERNI,TERNI,10,055,055,Centro,Umbria,Terni,1,TR
-TORINO,TORINO,01,001,201,Nord-ovest,Piemonte,Torino,3,TO
-TORINO,TORINO,01,001,201,Nord-ovest,Piemonte,Torino,3,TO
-TORINO,TORINO,01,001,201,Nord-ovest,Piemonte,Torino,3,TO
-TORINO,TORINO,01,001,201,Nord-ovest,Piemonte,Torino,3,TO
 TORINO,TORINO,01,001,201,Nord-ovest,Piemonte,Torino,3,TO
 TRAPANI,TRAPANI,19,081,081,Isole,Sicilia,Trapani,4,TP
-TRAPANI,TRAPANI,19,081,081,Isole,Sicilia,Trapani,4,TP
-TRAPANI,TRAPANI,19,081,081,Isole,Sicilia,Trapani,4,TP
-TRAPANI,TRAPANI,19,081,081,Isole,Sicilia,Trapani,4,TP
-TRAPANI,TRAPANI,19,081,081,Isole,Sicilia,Trapani,4,TP
-TRENTO,TRENTO,04,022,022,Nord-est,Trentino-Alto Adige/Südtirol,Trento,2,TN
-TRENTO,TRENTO,04,022,022,Nord-est,Trentino-Alto Adige/Südtirol,Trento,2,TN
-TRENTO,TRENTO,04,022,022,Nord-est,Trentino-Alto Adige/Südtirol,Trento,2,TN
-TRENTO,TRENTO,04,022,022,Nord-est,Trentino-Alto Adige/Südtirol,Trento,2,TN
 TRENTO,TRENTO,04,022,022,Nord-est,Trentino-Alto Adige/Südtirol,Trento,2,TN
 TREVISO,TREVISO,05,026,026,Nord-est,Veneto,Treviso,1,TV
-TREVISO,TREVISO,05,026,026,Nord-est,Veneto,Treviso,1,TV
-TREVISO,TREVISO,05,026,026,Nord-est,Veneto,Treviso,1,TV
-TREVISO,TREVISO,05,026,026,Nord-est,Veneto,Treviso,1,TV
-TREVISO,TREVISO,05,026,026,Nord-est,Veneto,Treviso,1,TV
-TRIESTE,TRIESTE,06,032,032,Nord-est,Friuli-Venezia Giulia,Trieste,5,TS
-TRIESTE,TRIESTE,06,032,032,Nord-est,Friuli-Venezia Giulia,Trieste,5,TS
-TRIESTE,TRIESTE,06,032,032,Nord-est,Friuli-Venezia Giulia,Trieste,5,TS
-TRIESTE,TRIESTE,06,032,032,Nord-est,Friuli-Venezia Giulia,Trieste,5,TS
 TRIESTE,TRIESTE,06,032,032,Nord-est,Friuli-Venezia Giulia,Trieste,5,TS
 UDINE,UDINE,06,030,030,Nord-est,Friuli-Venezia Giulia,Udine,5,UD
-UDINE,UDINE,06,030,030,Nord-est,Friuli-Venezia Giulia,Udine,5,UD
-UDINE,UDINE,06,030,030,Nord-est,Friuli-Venezia Giulia,Udine,5,UD
-UDINE,UDINE,06,030,030,Nord-est,Friuli-Venezia Giulia,Udine,5,UD
-UDINE,UDINE,06,030,030,Nord-est,Friuli-Venezia Giulia,Udine,5,UD
-VARESE,VARESE,03,012,012,Nord-ovest,Lombardia,Varese,1,VA
-VARESE,VARESE,03,012,012,Nord-ovest,Lombardia,Varese,1,VA
-VARESE,VARESE,03,012,012,Nord-ovest,Lombardia,Varese,1,VA
-VARESE,VARESE,03,012,012,Nord-ovest,Lombardia,Varese,1,VA
 VARESE,VARESE,03,012,012,Nord-ovest,Lombardia,Varese,1,VA
 VENEZIA,VENEZIA,05,027,227,Nord-est,Veneto,Venezia,3,VE
-VENEZIA,VENEZIA,05,027,227,Nord-est,Veneto,Venezia,3,VE
-VENEZIA,VENEZIA,05,027,227,Nord-est,Veneto,Venezia,3,VE
-VENEZIA,VENEZIA,05,027,227,Nord-est,Veneto,Venezia,3,VE
-VENEZIA,VENEZIA,05,027,227,Nord-est,Veneto,Venezia,3,VE
-VERBANIA,VERBANO-CUSIO-OSSOLA,01,103,103,Nord-ovest,Piemonte,Verbano-Cusio-Ossola,1,VB
-VERBANIA,VERBANO-CUSIO-OSSOLA,01,103,103,Nord-ovest,Piemonte,Verbano-Cusio-Ossola,1,VB
-VERBANIA,VERBANO-CUSIO-OSSOLA,01,103,103,Nord-ovest,Piemonte,Verbano-Cusio-Ossola,1,VB
-VERBANIA,VERBANO-CUSIO-OSSOLA,01,103,103,Nord-ovest,Piemonte,Verbano-Cusio-Ossola,1,VB
 VERBANIA,VERBANO-CUSIO-OSSOLA,01,103,103,Nord-ovest,Piemonte,Verbano-Cusio-Ossola,1,VB
 VERCELLI,VERCELLI,01,002,002,Nord-ovest,Piemonte,Vercelli,1,VC
-VERCELLI,VERCELLI,01,002,002,Nord-ovest,Piemonte,Vercelli,1,VC
-VERCELLI,VERCELLI,01,002,002,Nord-ovest,Piemonte,Vercelli,1,VC
-VERCELLI,VERCELLI,01,002,002,Nord-ovest,Piemonte,Vercelli,1,VC
-VERCELLI,VERCELLI,01,002,002,Nord-ovest,Piemonte,Vercelli,1,VC
-VERONA,VERONA,05,023,023,Nord-est,Veneto,Verona,1,VR
-VERONA,VERONA,05,023,023,Nord-est,Veneto,Verona,1,VR
-VERONA,VERONA,05,023,023,Nord-est,Veneto,Verona,1,VR
-VERONA,VERONA,05,023,023,Nord-est,Veneto,Verona,1,VR
 VERONA,VERONA,05,023,023,Nord-est,Veneto,Verona,1,VR
 VIBO VALENTIA,VIBO VALENTIA,18,102,102,Sud,Calabria,Vibo Valentia,1,VV
-VIBO VALENTIA,VIBO VALENTIA,18,102,102,Sud,Calabria,Vibo Valentia,1,VV
-VIBO VALENTIA,VIBO VALENTIA,18,102,102,Sud,Calabria,Vibo Valentia,1,VV
-VIBO VALENTIA,VIBO VALENTIA,18,102,102,Sud,Calabria,Vibo Valentia,1,VV
-VIBO VALENTIA,VIBO VALENTIA,18,102,102,Sud,Calabria,Vibo Valentia,1,VV
 VICENZA,VICENZA,05,024,024,Nord-est,Veneto,Vicenza,1,VI
-VICENZA,VICENZA,05,024,024,Nord-est,Veneto,Vicenza,1,VI
-VICENZA,VICENZA,05,024,024,Nord-est,Veneto,Vicenza,1,VI
-VICENZA,VICENZA,05,024,024,Nord-est,Veneto,Vicenza,1,VI
-VICENZA,VICENZA,05,024,024,Nord-est,Veneto,Vicenza,1,VI
-VITERBO,VITERBO,12,056,056,Centro,Lazio,Viterbo,1,VT
-VITERBO,VITERBO,12,056,056,Centro,Lazio,Viterbo,1,VT
-VITERBO,VITERBO,12,056,056,Centro,Lazio,Viterbo,1,VT
-VITERBO,VITERBO,12,056,056,Centro,Lazio,Viterbo,1,VT
 VITERBO,VITERBO,12,056,056,Centro,Lazio,Viterbo,1,VT
