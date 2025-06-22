@@ -3,7 +3,7 @@
 # Script ETL per l'elaborazione dei dati SDI sui reati di genere
 # Estrae e trasforma i dati da file Excel in formato CSV normalizzato
 
-#set -x
+set -x
 set -e
 set -u
 set -o pipefail
@@ -46,7 +46,7 @@ while IFS= read -r line; do
   # Estrae il foglio specifico in formato CSV
   qsv excel -Q --sheet "${index}" "${folder}"/../data/rawdata/MI-123-U-A-SD-2025-90_5.xlsx >"${folder}"/../data/processing/"${file}"/"${nome}".csv
 
-done < "${folder}/../data/processing/comunicazioni_sdi.jsonl"
+done <"${folder}/../data/processing/comunicazioni_sdi.jsonl"
 
 # Lista dei file CSV generati dall'estrazione:
 # codice_rosso_commessi.csv
@@ -282,12 +282,40 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
   mv "${folder}"/tmp/tmp.csv "${csv_file}"
 
   # Rinomina le colonne s _value a value)
-  sed -i 's/,_value/,valore/g' "${csv_file}"  # Escapes quotes in CSV files
+  sed -i 's/,_value/,valore/g' "${csv_file}" # Escapes quotes in CSV files
 
   # applica il sorting
   mlr -I --csv sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
 
   mlr -I --csv reorder -f anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
+
+  mlr --c2n cut -f provincia then uniq -a "${csv_file}" >>"${folder}"/tmp/province.txt
+
 done
 
+## codici provincia
+
+mlr --inidx --ocsv --ifs tab uniq -a then skip-trivial-records then label provinciauts "${folder}"/tmp/province.txt | grep -viP "non localizzata" >"${folder}"/tmp.txt
+
+mv "${folder}"/tmp.txt "${folder}"/tmp/province_sdi.csv
+
+mlr -I --csv put '$provinciauts_corretto=$provinciauts' "${folder}"/tmp/province_sdi.csv
+
+while IFS= read -r line; do
+  nome=$(jq -r '.nome' <<<"${line}")
+  nome_corretto=$(jq -r '.nome_corretto' <<<"${line}")
+
+  mlr -I --csv sub -f provinciauts_corretto "^${nome}$" "${nome_corretto}" "${folder}"/tmp/province_sdi.csv
+done <"${folder}"/../resources/problemi_nomi_province.jsonl
+
+mlr --csv cut -f codice_provinciauts,provinciauts,flag_tipo_uts,codice_provincia_storico,codice_regione,ripartizione_geografica,regione,sigla_automobilistica then uniq -a "${folder}"/../resources/unita_territoriali_istat.csv >>"${folder}"/tmp/province_istat.csv
+
+csvmatch "${folder}"/tmp/province_sdi.csv "${folder}"/tmp/province_istat.csv --fields1 provinciauts_corretto --fields2 provinciauts --fuzzy levenshtein -r 0.9 -i -a -n --join left-outer --output '1*' '2*' >"${folder}"/../resources/province_sdi_istat.csv
+
+mlr -I --csv rename provinciauts,provincia "${folder}"/../resources/province_sdi_istat.csv
+
+find "${folder}/../data/processing/${file}" -type f -name "*.csv" ! -name "omicidi_dcpc.csv" | while read -r csv_file; do
+  mlr --csv join --ul -j provincia -f "${csv_file}" then unsparsify then sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima then reorder -f anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${folder}"/../resources/province_sdi_istat.csv >"${folder}"/tmp/tmp.csv
+  mv "${folder}"/tmp/tmp.csv "${csv_file}"
+done
 
