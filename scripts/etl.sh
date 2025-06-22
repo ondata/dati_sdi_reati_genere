@@ -286,6 +286,8 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
 
   # applica il sorting
   mlr -I --csv sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
+
+  mlr -I --csv reorder -f anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
 done
 
 
