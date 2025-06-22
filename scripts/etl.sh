@@ -333,7 +333,7 @@ mlr --csv cut -f codice_provinciauts,provinciauts,flag_tipo_uts,codice_provincia
 csvmatch "${folder}"/tmp/province_sdi.csv "${folder}"/tmp/province_istat.csv --fields1 provinciauts_corretto --fields2 provinciauts --fuzzy levenshtein -r 0.9 -i -a -n --join left-outer --output '1*' '2*' >"${folder}"/../resources/province_sdi_istat.csv
 
 # Rinomina il campo 'provinciauts' in 'provincia' per uniformare la nomenclatura
-mlr -I --csv rename provinciauts,provincia then uniq -a "${folder}"/../resources/province_sdi_istat.csv
+mlr -I --csv rename provinciauts,provincia,provinciauts_2,provincia_uts then uniq -a "${folder}"/../resources/province_sdi_istat.csv
 
 # Arricchimento dei dati con le informazioni geografiche
 # Per ogni file CSV (tranne 'omicidi_dcpc.csv'), esegue un join con il file delle province

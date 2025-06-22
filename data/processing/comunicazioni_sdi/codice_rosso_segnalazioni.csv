@@ -1,4 +1,4 @@
-anno,provincia,descrizione_reato,eta_alla_data_del_reato_vittima,sesso,valore,provinciauts_corretto,codice_regione,codice_provincia_storico,codice_provinciauts,ripartizione_geografica,regione,provinciauts_2,flag_tipo_uts,sigla_automobilistica
+anno,provincia,descrizione_reato,eta_alla_data_del_reato_vittima,sesso,valore,provinciauts_corretto,codice_regione,codice_provincia_storico,codice_provinciauts,ripartizione_geografica,regione,provincia_uts,flag_tipo_uts,sigla_automobilistica
 2021,AGRIGENTO,COSTRIZIONE O INDUZIONE AL MATRIMONIO,35-44,MASCHILE,1,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
 2024,AGRIGENTO,DEFORMAZIONE DELL'ASPETTO DELLA PERSONA MEDIANTE LESIONI PERMANENTI AL VISO,45-54,MASCHILE,1,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
 2019,AGRIGENTO,DEFORMAZIONE DELL'ASPETTO DELLA PERSONA MEDIANTE LESIONI PERMANENTI AL VISO,55-64,FEMMINILE,1,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
