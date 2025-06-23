@@ -2,7 +2,7 @@
 
 Questa directory contiene gli script per l'elaborazione automatica dei dati sui reati di genere forniti dal Sistema di Indagine (SDI).
 
-## etl.sh
+## etl_5.sh
 
 Script che trasforma i dati grezzi dal file `MI-123-U-A-SD-2025-90_5.xlsx` in formati utilizzabile per analisi.
 
