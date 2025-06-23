@@ -4,3 +4,4 @@ tmp*
 data/rawdata/risposta sudano (MI-123-U-A-SD-2025-90_4)_txt.pdf
 data/rawdata/doc FOIA PERIOD.pdf
 .~lock.*
+.vscode/mcp.json
