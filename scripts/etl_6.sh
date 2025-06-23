@@ -37,3 +37,6 @@ sed -i '1s/.*/\L&/' "${folder}"/tmp/"${file}".csv
 
 # rimuovi evetuali duplicati, righe vuote e colonne vuote, spazi bianchi inutili
 mlr --csv uniq -a then remove-empty-columns then skip-trivial-records then clean-whitespace "${folder}"/tmp/"${file}".csv > "${folder}"/../data/processing/"${file}"/"${file}".csv
+
+# Impostare stato a Italia, quando regione è valorizzato
+mlr -I --csv --from "${folder}"/../data/processing/"${file}"/"${file}".csv put 'if($regione =~ ".+") { $stato="ITALIA" } else { $stato = $stato }'
