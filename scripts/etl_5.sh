@@ -203,10 +203,10 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read
   # Applica solo filtro righe vuote e aggiunge etichetta categoria
   elif [[ "$(basename "${csv_file}")" == "omicidi_dcpc.csv" ]]; then
     mlr -I --csv -N filter -x 'is_null($2)' "${folder}"/../data/processing/"${file}"/"${file_name}"
-    mlr -I --csv label categoria "${folder}"/../data/processing/"${file}"/"${file_name}"
+    mlr -I --csv label categoria then clean-whitespace "${folder}"/../data/processing/"${file}"/"${file_name}"
 
     # rimuovi la prima riga di "${folder}"/../data/processing/"${file}"/"${file_name}" con sed
-    sed -i '1d' "${folder}"/../data/processing/"${file}"/"${file_name}"
+    #sed -i '1d' "${folder}"/../data/processing/"${file}"/"${file_name}"
 
   # Elaborazione file: reati_spia_commessi.csv
   # Applica trasformazioni standard per file con colonne anno
@@ -277,7 +277,7 @@ done
 
 # ===== FASE 3: NORMALIZZAZIONE =====
 # Applica normalizzazione dei nomi delle colonne a tutti i file CSV generati
-find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" | while read -r csv_file; do
+find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" ! -name "omicidi_dcpc.csv" | while read -r csv_file; do
 
   # Utilizza DuckDB per normalizzare i nomi delle colonne (es. spazi -> underscore, minuscole)
 # Questo comando legge il CSV originale e produce un nuovo file con nomi colonna normalizzati
