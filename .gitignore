@@ -6,3 +6,5 @@ data/rawdata/doc FOIA PERIOD.pdf
 .~lock.*
 .vscode/mcp.json
 scripts/find_unique_combinations.py
+data/rawdata/richiesta.md
+data/rawdata/risposta.md
