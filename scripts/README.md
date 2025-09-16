@@ -1,6 +1,11 @@
 # Script di Elaborazione Dati SDI
 
-Questa directory contiene gli script per l'elaborazione automatica dei dati sui reati di genere forniti dal Sistema di Indagine (SDI).
+## Panoramica rapida
+
+- `etl_5.sh`: estrae i dieci fogli tematici del file `MI-123-U-A-SD-2025-90_5.xlsx`, applica pulizia (righe vuote, asterischi) e normalizza le serie temporali e, quando presenti, i campi per genere. Esegue tutte le elaborazioni in `data/processing/comunicazioni_sdi/`. Avvio: `bash scripts/etl_5.sh`.
+- `etl_6.sh`: carica il foglio unico di `MI-123-U-A-SD-2025-90_6.xlsx`, corregge i nomi di province/comuni, aggiunge i codici ISTAT tramite i file in `resources/` e salva il dataset unico in `data/processing/reati_sdi/`. Avvio: `bash scripts/etl_6.sh`.
+
+Assicurati che `jq`, `qsv`, `mlr`, `duckdb` e `csvmatch` siano nel PATH prima di lanciare gli script.
 
 ## etl_5.sh
 
@@ -53,7 +58,7 @@ Il file sorgente è `MI-123-U-A-SD-2025-90_5.xlsx` che contiene 10 fogli Excel c
 **Come usarlo:**
 
 ```bash
-./etl.sh
+bash scripts/etl_5.sh
 ```
 
 Lo script elabora automaticamente il file Excel presente in `../data/rawdata/` e salva i risultati in `../data/processing/comunicazioni_sdi/`.
