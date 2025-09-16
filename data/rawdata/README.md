@@ -45,6 +45,19 @@ Nel caso degli omicidi, è presente una tabella specifica con ulteriori disaggre
 - In ambito familiare/affettivo
 - Compiuti da partner o ex partner
 
+È suddiviso in diversi fogli:
+
+- Omicidi DCPC > Omicidi volontari consumati in Italia (fonte D.C.P.C. - dati operativi)
+- Delitti - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Delitti - Vittime > Numero vittime di reato in Italia, di sesso femminile  disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Delitti - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Reati spia - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Reati spia - Vittime > Numero vittime di reato in Italia, di sesso femminile disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Reati spia - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Codice Rosso - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Codice Rosso - Vittime > Numero vittime di reato in Italia, di sesso femminile disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+- Codice Rosso - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+
 ### 2. `MI-123-U-A-SD-2025-90_6.xlsx`
 
 Contiene le comunicazioni registrate nel sistema SDI riconducibili a episodi di violenza di genere, dove è indicata una relazione vittima-autore.
