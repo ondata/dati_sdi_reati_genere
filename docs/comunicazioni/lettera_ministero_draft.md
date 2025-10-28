@@ -21,7 +21,7 @@ Innanzitutto, desideriamo esprimere **apprezzamento per la trasparenza** dimostr
 
 ### Osservazioni tecniche
 
-Nel corso di un'analisi di validazione del dataset, abbiamo rilevato alcune **incongruenze rispetto al report ufficiale ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (ottobre 2020)**, che rappresenta il benchmark pubblico disponibile per il periodo agosto 2019 – agosto 2020.
+Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD-2025-90_5.xlsx e MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato alcune **incongruenze rispetto al report ufficiale ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (ottobre 2020)**, che rappresenta il benchmark pubblico disponibile per il periodo agosto 2019 – agosto 2020.
 
 ### Undercount significativo per fattispecie Codice Rosso
 
@@ -46,12 +46,12 @@ Questa discrepanza solleva dubbi sulla **completezza del dataset** per il period
 
 I file Excel forniti mancano di informazioni critiche per la corretta interpretazione:
 
-- **Data estrazione SDI**: non è specificato quando i dati sono stati estrapolati dal sistema
+- **Data estrazione SDI**: non è specificato quando i dati sono stati estrapolati dal sistema SDI/SSD/DCPC per ogni anno (2019-2024)
 - **Data consolidamento**: non è chiaro quando i dati divengono "ufficiali" e stabili
-- **Significato di "non consolidato" (2024)**: quali righe sono soggette a variazione? Con quale frequenza verranno aggiornate?
-- **Granularità temporale**: sono disponibili date specifiche di inizio fatto e denuncia, oltre all'anno?
-- **Mapping codici reato**: la corrispondenza tra testo descrittivo (es. "COSTRIZIONE O INDUZIONE AL MATRIMONIO") e articoli c.p. (es. art. 558 bis) non è sempre esplicita
-- **Lineage dati**: quale sistema di origine per ogni colonna? Come sono stati trasformati?
+- **Significato "non consolidato" (2024)**: nella lettera di risposta FOIA si specifica che dati 2024 non sono consolidati. Quali righe sono soggette a variazione? Con quale frequenza verranno aggiornati?
+- **Granularità temporale in file_6**: il file con relazioni vittima-autore (file_6.xlsx) fornisce `DATA_INIZIO_FATTO`, `DATA_FINE_FATTO`, `DATA_DENUNCIA` (granularità giornaliera), ma il file con dati aggregati (file_5.xlsx) fornisce solo `anno`. Come sono stati trasformati i dati granulari in aggregati?
+- **Mapping codici reato**: la corrispondenza tra descrizioni full-text (es. "COSTRIZIONE O INDUZIONE AL MATRIMONIO") e articoli c.p. (es. art. 558 bis) non è esplicita in nessun foglio
+- **Lineage dati**: quale sistema di origine (SDI vs SSD vs DCPC) per ogni colonna? Come sono stati trasformati i dati?
 
 Questa assenza di metadati **limita significativamente il riuso** dei dati per scopi scientifici, organizzazioni della società civile e amministrazioni pubbliche.
 
@@ -69,10 +69,10 @@ I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Ro
 
 Nel file con disaggregazione comunale e relazioni vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato:
 
-- **Descrizioni reati in full-text** (DES_REA_EVE): impone parsing complesso e errore-prone. Sarebbe utile una colonna aggiuntiva con codice articolo c.p. standardizzato (es. "558 bis" anziché "COSTRIZIONE O INDUZIONE AL MATRIMONIO").
-- **Codifi geografici incompleti**: il file fornisce solo `REGIONE`, `PROVINCIA`, `COMUNE` senza codici ISTAT. Nel dataset processato vengono aggiunti (provinciauts_corretto, codice_provinciauts), ma nel file originale sono assenti, complicando riconciliazione.
-- **Chiave primaria ambigua** (segnalato dalla community): il campo `PROT_SDI` non è univoco – righe duplicate. Come contare episodi unici?
-- **Semantica campi geografici** (segnalato dalla community): significato di `DES_OBIET` non documentato; differenza con `LUOGO_SPECIF_FATTO` non chiara.
+- **Descrizioni reati in full-text** (colonna DES_REA_EVE): "COSTRIZIONE O INDUZIONE AL MATRIMONIO", "DEFORMAZIONE DELL'ASPETTO...", etc. Impone parsing complesso. Sarebbe utile una colonna aggiuntiva con codice articolo c.p. standardizzato (es. "558 bis").
+- **Codici geografici mancanti**: il file fornisce `REGIONE`, `PROVINCIA`, `COMUNE` (nomi in testo), ma senza corrispondenti codici ISTAT. Necessario per riconciliazione con database ISTAT ufficiali.
+- **Chiave primaria ambigua** (segnalato dalla community): il campo `PROT_SDI` non è univoco – righe duplicate dello stesso protocollo. Come contare episodi unici vs righe duplicate?
+- **Semantica campi geografici ambigua** (segnalato dalla community): significato di `DES_OBIET` non documentato (contiene "PRIVATO CITTADINO", "COMMERCIANTE", "NON PREVISTO/ALTRO" con 62.5% dei record). Differenza con `LUOGO_SPECIF_FATTO` ("ABITAZIONE", "PUBBLICA VIA", etc.) non chiara.
 
 ---
 
@@ -160,6 +160,11 @@ Comprendiamo che l'Open Data pubblico è un processo di evoluzione continua. Nel
 ### Prossimi passi
 
 Rimaniamo **disponibili per dialogo costruttivo** e per supportare il Dipartimento nella documentazione dei dati, se utile. Riteniamo che una **riconciliazione trasparente** con il report ISTAT e una migliore documentazione beneficerebbe l'intera comunità di utenti (ricercatori, NGO, pubblica amministrazione).
+
+Attualmente i file Excel forniti sono il punto di partenza per ulteriori analisi. Una risposta chiara su questi punti permetterebbe di:
+- Validare l'affidabilità dei dati
+- Riconciliarli con benchmark ufficiali ISTAT
+- Enableare ricercatori a utilizzare i dati con consapevolezza dei loro limiti
 
 Agradiremo risposta entro **30 giorni** da questa comunicazione.
 
