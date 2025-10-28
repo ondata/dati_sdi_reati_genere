@@ -31,7 +31,14 @@ Una prima considerazione tecnica è importante per la corretta interpretazione d
 
 In particolare, la **definizione di quali reati includere in FILE_6 non è chiara**, soprattutto per articoli che legalmente NON richiedono una relazione vittima-autore:
 
-- **Art. 558 bis (Costrizione al matrimonio)**: per legge può essere commesso da chiunque (padre, fratello, estraneo). Nel file_6 NON compaiono casi nel periodo agosto 2019–agosto 2020, ma compaiono 8 casi nel 2024 (tutti con "ALTRO PARENTE"). **Domanda**: dove sono i casi 2019-2020? Erano registrati nel sistema SDI ma esclusi da FILE_6? O non erano mai stati registrati?
+- **Art. 558 bis (Costrizione al matrimonio)**: per legge può essere commesso da chiunque (padre, fratello, estraneo). Nel file_6 NON compaiono casi nel periodo agosto 2019–agosto 2020, ma compaiono 8 casi nel 2024 (tutti con "ALTRO PARENTE").
+  
+  **Domanda critica**: Se FILE_6 è definito come "comunicazioni SDI con relazione V-A codificata", dovrebbe contenere TUTTI gli art. 558 bis del periodo agosto 2019–agosto 2020 che avevano relazione V-A codificata nel sistema SDI. Il report ISTAT ne riporta 11 per lo stesso periodo. 
+  
+  **Chiarimenti richiesti**:
+  - Quanti art. 558 bis erano registrati nel sistema SDI con relazione V-A codificata nel periodo agosto 2019–agosto 2020?
+  - Se meno di 11 (numero ISTAT): significa che i dati ISTAT provengono da una fonte diversa (DCPC)? Oppure che il sistema SDI nel 2019-2020 non aveva relazione V-A codificata per la maggior parte dei casi?
+  - Perché tutti gli 8 casi di art. 558 bis in FILE_6 sono nel 2024 con "ALTRO PARENTE"? È un cambio nei criteri di classificazione?
 
 - **Art. 583 quinquies (Deformazione del viso)**: per legge può essere commesso da chiunque (partner, collega, estraneo). Nel file_6 NON compaiono casi nel 2019-2020, ma compaiono 5 casi nel 2024 (tutti con "FIDANZATO"). **Domanda**: se nel 2024 compaiono solo quelli con fidanzato, dov'è la casistica con altri autori? Sono inclusi in FILE_6 o esclusi per scelta?
 
@@ -70,6 +77,25 @@ In particolare:
 3. ❓ Retroimplementazione o sincronizzazione dati 2019-2022 effettuata tra 2023-2024 (richiede chiarimento)
 
 **Domanda al Ministero**: È possibile distinguere quante comunicazioni nel file_6 per il periodo 2019-2022 siano **retroattivamente codificate** (cioè: fatto accaduto in 2019-2020, ma codificata la relazione V-A solo in 2023-2024)? Questo chiarimento permetterebbe di valutare se il pattern temporale riflette cambamenti reali nel fenomeno oppure evoluzioni nella completezza della codifica nel sistema SDI.
+
+### Completezza e coerenza temporale di FILE_6: "buchi" inspiegati nei dati
+
+Un'ulteriore questione critica emerge dall'analisi della completezza temporale di FILE_6: **il dataset contiene "buchi" temporali che ne compromettono l'interpretabilità come "sottinsieme coerente"**.
+
+Se FILE_6 è definito come **"tutte le comunicazioni SDI con relazione V-A codificata"**, allora per ogni articolo e per ogni anno dovrebbe contenere almeno i record presenti nel sistema SDI con relazione V-A codificata. Tuttavia:
+
+- **Art. 558 bis**: 0 casi nel periodo agosto 2019–agosto 2020, ma 8 casi nel 2024
+- **Art. 583 quinquies**: 0 casi nel periodo agosto 2019–agosto 2020, ma 5 casi nel 2024
+- **Art. 387 bis**: 0 casi nel periodo agosto 2019–agosto 2020, ma 68 casi nel 2023-2024
+
+Se questi "buchi" riflettono l'assenza reale di dati nel sistema SDI (cioè: nessuna relazione V-A codificata nel 2019-2020), allora:
+- **Ipotesi 1**: I 11 casi di art. 558 bis riportati da ISTAT (agosto 2019–agosto 2020) NON erano registrati nel sistema SDI con relazione V-A codificata. Questo suggerisce o fonti diverse (ISTAT=DCPC, FILE_6=SDI) o mancanza di codifica della relazione V-A nel sistema SDI al tempo.
+- **Ipotesi 2**: Il sistema SDI ha subito un cambio nei criteri di codifica della relazione V-A tra il 2022 e il 2023, rendendo FILE_6 non coerente nel tempo.
+
+**Domande specifiche al Ministero**:
+- Nel periodo agosto 2019–agosto 2020, quanti art. 558 bis, 583 quinquies, 387 bis erano registrati nel sistema SDI **con relazione V-A codificata**?
+- Se il numero è significativamente inferiore ai dati ISTAT, come si spiega la differenza?
+- È un problema di: (a) fonti dati diverse (DCPC vs SDI)? (b) completezza della codifica della relazione V-A? (c) cambio criteri nel tempo?
 
 ### Definizione e scope non documentati del file_6: quali criteri di inclusione/esclusione?
 
