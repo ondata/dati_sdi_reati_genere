@@ -23,7 +23,7 @@ Innanzitutto, desideriamo esprimere **apprezzamento per la trasparenza** dimostr
 
 Nel corso di un'analisi di validazione del dataset, abbiamo rilevato alcune **incongruenze rispetto al report ufficiale ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (ottobre 2020)**, che rappresenta il benchmark pubblico disponibile per il periodo agosto 2019 – agosto 2020.
 
-#### 1. Undercount significativo per fattispecie Codice Rosso
+### Undercount significativo per fattispecie Codice Rosso
 
 Il confronto tra i dati FOIA e il report ISTAT rivela **discrepanze critiche**:
 
@@ -42,7 +42,7 @@ Questa discrepanza solleva dubbi sulla **completezza del dataset** per il period
 
 ---
 
-#### 2. Mancanza di metadati essenziali
+### Mancanza di metadati essenziali
 
 I file Excel forniti mancano di informazioni critiche per la corretta interpretazione:
 
@@ -57,7 +57,7 @@ Questa assenza di metadati **limita significativamente il riuso** dei dati per s
 
 ---
 
-#### 3. Mismatch di aggregazione temporale
+### Mismatch di aggregazione temporale
 
 I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Rosso utilizza **anno fiscale** (9 agosto 2019 – 8 agosto 2020). Questo rende **impossibile una validazione diretta**.
 
@@ -65,11 +65,15 @@ I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Ro
 
 ---
 
-#### 4. Problematiche strutturali minori
+### Problematiche strutturali nel file con relazioni vittima-autore
+
+Nel file con disaggregazione comunale e relazioni vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato:
 
 - **Descrizioni reati in full-text**: impone parsing complesso e errore-prone. Sarebbe utile una colonna aggiuntiva con codice articolo standardizzato.
 - **NULL geografici**: circa 0.5-0.7% delle righe ha valori NULL in campi provincia. Per quale motivo?
 - **Nomi colonne ridondanti**: colonne come "provinciauts_corretto", "codice_provincia_storico", "codice_provinciauts" creano confusione sulla mappatura ISTAT corretta da utilizzare.
+- **Chiave primaria ambigua** (segnalato dalla community): il campo PROT_SDI non è univoco – righe duplicate. Come contare episodi unici?
+- **Semantica campi geografici** (segnalato dalla community): significato di DES_OBIET non documentato; differenza con LUOGO_SPECIF_FATTO non chiara.
 
 ---
 
@@ -77,11 +81,11 @@ I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Ro
 
 Vorremmo sottoporre le seguenti richieste, che ritengo possano **aumentare significativamente il valore pubblico** del dataset:
 
-#### A) Riconciliazione dati storici
+### Riconciliazione dati storici
 
 Fornire, per le fattispecie introdotte da Codice Rosso (art. 558 bis, 583 quinquies, 612 ter, 387 bis), una tabella riconciliata con il report ISTAT relativa al periodo agosto 2019 – agosto 2020, spiegando eventuali discrepanze.
 
-#### B) Documento metadati
+### Documento metadati strutturato
 
 Allegare a ogni distribuzione futura un documento (formato: Excel o Markdown) con:
 - Data estrazione SDI per ogni anno (2019-2024)
@@ -91,7 +95,7 @@ Allegare a ogni distribuzione futura un documento (formato: Excel o Markdown) co
 - Mapping colonne → sistema di origine SDI/SSD/DCPC
 - Changelog versioni schema SDI (ci sono stati aggiornamenti rilevanti?)
 
-#### C) Granularità temporale (se disponibile)
+### Granularità temporale (se disponibile in SDI)
 
 Se il sistema SDI lo consente, integrare nei file (o fornire come separato dataset):
 - `data_inizio_fatto`: data in cui è avvenuto il reato
@@ -100,11 +104,11 @@ Se il sistema SDI lo consente, integrare nei file (o fornire come separato datas
 
 Questo permetterebbe di **spiegare i lag temporali** tra fatto e registrazione, cruciale per interpretare correttamente i dati.
 
-#### D) Standardizzazione codici reato
+### Standardizzazione codici reato
 
 Aggiungere colonna con codice articolo c.p. (es. "558 bis", "387 bis") accanto alle descrizioni full-text, per facilitare parsing e riconciliazione automatica con altre fonti normative.
 
-#### E) Chiarimento chiave primaria file_6
+### Chiarimento chiave primaria file_6
 
 **Critico**: Nel file con relazioni vittima-autore (file_6), il campo `PROT_SDI` presenta righe duplicate. Necessario chiarire:
 - Quale campo o combinazione di campi forma la **chiave primaria**?
@@ -113,9 +117,9 @@ Aggiungere colonna con codice articolo c.p. (es. "558 bis", "387 bis") accanto a
 
 Esempio problematico: PROT_SDI "BOPC042024000134" è ripetuto 5 volte nel file. È un episodio con 5 vittime oppure un errore?
 
-**Impatto**: Conteggio riga ≠ conteggio episodi. Analisi quantitative potrebbero essere sovrastimate.
+**Impatto**: Conteggio riga ≠ conteggio episodi. Analisi quantitative potrebbero essere sovrastimate. Questa ambiguità è stata segnalata anche dalla community GitHub.
 
-#### F) Significato campi geografici file_6
+### Significato campi geografici/contesto file_6
 
 Nel file_6, non è chiaro il significato e l'uso di:
 - `LUOGO_SPECIF_FATTO`: "ABITAZIONE", "PUBBLICA VIA", etc.
@@ -127,7 +131,7 @@ Domande:
 - Perché così alta percentuale di "NON PREVISTO"?
 - Sono campi legacy mantenuti per compatibilità?
 
-#### G) Chiarimento roadmap 2024
+### Roadmap consolidamento dati 2024
 
 Indicare **quando i dati 2024 saranno consolidati** e se sono preveduti aggiornamenti retroattivi su anni precedenti (2019-2023).
 
