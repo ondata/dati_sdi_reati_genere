@@ -23,16 +23,21 @@ Innanzitutto, desideriamo esprimere **apprezzamento per la trasparenza** dimostr
 
 Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD-2025-90_5.xlsx e MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato alcune **questioni critiche sulla struttura, completezza e documentazione dei dati**, in particolare sul file_6 che contiene le comunicazioni SDI con relazioni vittima-autore.
 
-### Struttura e scope del file_6: sottinsieme filtrato, non estrazione completa
+### Struttura e scope del file_6: sottinsieme filtrato con scope non completamente documentato
 
 Una prima considerazione tecnica è importante per la corretta interpretazione dei dati forniti:
 
-**Il file_6 (comunicazioni SDI con relazioni vittima-autore) non è un'estrazione completa dei dati SDI per il periodo 2019-2024, ma un sottinsieme deliberatamente filtrato**, contenente solo le comunicazioni dove sia stata codificata una "relazione vittima-autore" (partner, coniuge, parente, ecc.).
+**Il file_6 (comunicazioni SDI con relazioni vittima-autore) è un sottinsieme filtrato dei dati SDI**, contenente solo le comunicazioni dove sia stata codificata una "relazione vittima-autore" (partner, coniuge, parente, ecc.). Tuttavia, **il perimetro esatto di questo sottinsieme non è completamente documentato** e pone questioni critiche sulla completezza dei dati.
 
-Questo ha implicazioni importanti:
-- Non è direttamente comparabile con dataset pubblici come il rapporto ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (agosto 2019 – agosto 2020), che rappresenta **tutti i reati di genere registrati dalla Polizia**, indipendentemente dalla tipologia di relazione
-- Le differenze quantitative rispetto a fonti esterne (es. ISTAT) riflettono il filtro applicato, non necessariamente "missing data"
-- Tuttavia, rimangono questioni legittime sulla **completezza della codifica della relazione V-A** nel sistema SDI stesso
+In particolare, la **definizione di quali reati includere in FILE_6 non è chiara**, soprattutto per articoli che legalmente NON richiedono una relazione vittima-autore:
+
+- **Art. 558 bis (Costrizione al matrimonio)**: per legge può essere commesso da chiunque (padre, fratello, estraneo). Nel file_6 NON compaiono casi nel periodo agosto 2019–agosto 2020, ma compaiono 8 casi nel 2024 (tutti con "ALTRO PARENTE"). **Domanda**: dove sono i casi 2019-2020? Erano registrati nel sistema SDI ma esclusi da FILE_6? O non erano mai stati registrati?
+
+- **Art. 583 quinquies (Deformazione del viso)**: per legge può essere commesso da chiunque (partner, collega, estraneo). Nel file_6 NON compaiono casi nel 2019-2020, ma compaiono 5 casi nel 2024 (tutti con "FIDANZATO"). **Domanda**: se nel 2024 compaiono solo quelli con fidanzato, dov'è la casistica con altri autori? Sono inclusi in FILE_6 o esclusi per scelta?
+
+- **Art. 387 bis (Violazione allontanamento)**: questo sì richiede relazione V-A per definizione (violazione di provvedimento da violenza domestica). Nel file_6 compaiono 68 casi nel 2023-2024, contro 1.741 nel report ISTAT (periodo agosto 2019–agosto 2020). La differenza temporale è significativa.
+
+**Conseguenza**: le differenze quantitative rispetto a fonti esterne (es. ISTAT) potrebbero riflettere **sia il filtro applicato che una mancanza effettiva di dati** nel periodo 2019-2022. Non è possibile distinguere senza chiarimenti dal Ministero.
 
 ### Sproporzione temporale nei dati: concentrazione anomala 2023-2024
 
@@ -65,6 +70,35 @@ In particolare:
 3. ❓ Retroimplementazione o sincronizzazione dati 2019-2022 effettuata tra 2023-2024 (richiede chiarimento)
 
 **Domanda al Ministero**: È possibile distinguere quante comunicazioni nel file_6 per il periodo 2019-2022 siano **retroattivamente codificate** (cioè: fatto accaduto in 2019-2020, ma codificata la relazione V-A solo in 2023-2024)? Questo chiarimento permetterebbe di valutare se il pattern temporale riflette cambamenti reali nel fenomeno oppure evoluzioni nella completezza della codifica nel sistema SDI.
+
+### Definizione e scope non documentati del file_6: quali criteri di inclusione/esclusione?
+
+Emerge dall'analisi una questione ancora più fondamentale: **i criteri di inclusione e esclusione dei reati in FILE_6 non sono esplicitamente documentati**, creando ambiguità sulla rappresentatività dei dati.
+
+In particolare:
+
+**Domande critiche sulla definizione di scope**:
+
+1. **Quali reati sono inclusi in FILE_6?**
+   - Tutti gli articoli c.p. commessi da chi ha relazione V-A codificata (PARTNER, CONIUGE, PARENTE, ecc.)?
+   - Oppure solo gli articoli che **per legge richiedono** una relazione V-A (es. art. 387 bis)?
+   - Nel primo caso, dovrebbero esserci art. 558 bis e 583 quinquies anche nel 2019-2022 (ma non ci sono)
+   - Nel secondo caso, la selezione è legale ma non documentata
+
+2. **Perché art. 558 bis (costrizione al matrimonio) e 583 quinquies (deformazione viso) compaiono SOLO nel 2024?**
+   - Questi articoli NON richiedono legalmente una relazione V-A predefinita
+   - Nel 2024 compaiono entrambi, ma solo con relazione V-A codificata (ALTRO PARENTE, FIDANZATO)
+   - **Ipotesi**: il Ministero ha cambiato nel 2023-2024 i criteri di classificazione, includendo questi articoli in FILE_6 solo quando c'è relazione V-A (scelta classificatoria)
+   - **Conseguenza**: i casi 2019-2020 di questi articoli (incluso quelli senza relazione V-A) restano "invisibili" in FILE_6
+
+3. **Quale è la completezza attesa della codifica della relazione V-A?**
+   - Non tutti i reati di genere nel sistema SDI hanno relazione V-A codificata
+   - È normale? È un problema di qualità? È una scelta di design?
+
+**Impatto**: Senza chiarezza su questi criteri, è impossibile valutare se FILE_6 rappresenta:
+- Un sottinsieme deliberato e coerente con una definizione di "violenza di genere con relazione V-A" (lecito, ma va documentato)
+- Una mancanza reale di dati per il periodo 2019-2022 (problema di data quality)
+- Una combinazione dei due (cambio criteri tra periodi)
 
 ---
 
