@@ -65,6 +65,36 @@ I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Ro
 
 ---
 
+### Formato dati pivottato nel file_5
+
+Il file con dati aggregati per provincia (MI-123-U-A-SD-2025-90_5.xlsx) è fornito in **formato pivottato**:
+
+```
+Provincia  | Delitto              | 2019 | 2020 | 2021 | 2022 | 2023 | 2024
+-----------|----------------------|------|------|------|------|------|------
+AGRIGENTO  | 5. TENTATI OMICIDI   | 14   | 10   | 11   | 8    | 13   | 13
+AGRIGENTO  | 8. LESIONI DOLOSE    | 502  | 473  | 462  | 484  | 520  | 504
+```
+
+**Problema**:
+- Anni come intestazioni di colonna (non come data/dimensione)
+- Rende difficile analisi temporale cross-anno
+- Rende difficile estensione futura (nuovo anno = nuova colonna nel file)
+- Standard internazionali (FAIR data) raccomandano formato "tidy" (una riga per anno)
+
+**Formato tidy consigliato**:
+```
+Provincia  | Delitto              | Anno | Valore
+-----------|----------------------|------|-------
+AGRIGENTO  | 5. TENTATI OMICIDI   | 2019 | 14
+AGRIGENTO  | 5. TENTATI OMICIDI   | 2020 | 10
+AGRIGENTO  | 5. TENTATI OMICIDI   | 2021 | 11
+```
+
+Questo permetterebbe query standard come: "SELECT * WHERE Anno = 2024 AND Provincia = 'ROMA'" senza dipendere dalla struttura del file.
+
+---
+
 ### Problematiche strutturali nel file con relazioni vittima-autore
 
 Nel file con disaggregazione comunale e relazioni vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato:
@@ -133,6 +163,15 @@ Domande:
 ### Roadmap consolidamento dati 2024
 
 Indicare **quando i dati 2024 saranno consolidati** e se sono preveduti aggiornamenti retroattivi su anni precedenti (2019-2023).
+
+### Fornire file anche in formato tidy per file_5
+
+Per il file con dati aggregati per provincia (file_5), fornire una versione in formato "tidy":
+- Una riga per combinazione provincia-delitto-anno
+- Colonne: Provincia, Delitto, Anno, Valore
+- Questo standard facilita query, estensione futura e interoperabilità
+
+Il formato pivottato attuale può essere mantenuto per leggibilità, ma il formato tidy sarebbe preferibile per analisi automatizzate e rispetto degli standard FAIR data.
 
 ---
 
