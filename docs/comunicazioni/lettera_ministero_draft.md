@@ -27,13 +27,14 @@ Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD
 
 Il confronto tra i dati FOIA e il rapporto ISTAT rivela **discrepanze critiche**:
 
-| Reato | ISTAT (ago 2019–ago 2020) | FOIA ricevuto (2019-2020) | Delta |
+| Reato | ISTAT (ago 2019–ago 2020) | FOIA ricevuto (ago 2019–ago 2020) | Delta |
 |-------|---------|---|---|
-| Art. 558 bis (costrizione matrimonio) | 11 | 7-8 | **-27%** (minimo) |
-| Art. 583 quinquies (deformazione viso) | 56 | 25-56 | **-55%** (minimo) |
-| Art. 612 ter (revenge porn) | 718 | ~1.230 | +71% |
+| Art. 558 bis (costrizione matrimonio) | 11 | 0 | **-100%** |
+| Art. 583 quinquies (deformazione viso) | 56 | 0 | **-100%** |
+| Art. 612 ter (revenge porn) | 718 | Dato non verificato | ? |
+| Art. 387 bis (violazione allontanamento) | 1.741 | 0 | **-100%** |
 
-**Nota sulla discrepanza**: I dati FOIA sono disaggregati per anno civile (2019, 2020), mentre il rapporto ISTAT utilizza anno fiscale (9 agosto 2019 – 8 agosto 2020). La discrepanza potrebbe essere parzialmente dovuta a questo mismatch temporale. Tuttavia, anche considerando il migliore scenario (intero anno 2020 per ISTAT), la mancanza rimane significativa per art. 558 bis e 583 quinquies.
+**Nota critica**: Applicando il filtro sul periodo agosto 2019 – agosto 2020 (periodo del rapporto ISTAT), i dati FOIA forniti non contengono alcun record per le fattispecie Codice Rosso nel periodo di benchmark. Tuttavia, sono presenti 8 casi art. 558 bis nel 2024 e 69 casi art. 387 bis nel 2023-2024.
 
 **Domanda**: Potete fornire una riconciliazione di questi dati con il report ISTAT, spiegando se:
 - Si tratta di snapshot parziale del sistema SDI?
