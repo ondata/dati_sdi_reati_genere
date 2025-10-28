@@ -27,18 +27,19 @@ Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD
 
 Il confronto tra i dati FOIA e il rapporto ISTAT rivela **discrepanze critiche**:
 
-| Reato | ISTAT (ago 2019–ago 2020) | FOIA ricevuto | Delta |
+| Reato | ISTAT (ago 2019–ago 2020) | FOIA ricevuto (2019-2020) | Delta |
 |-------|---------|---|---|
-| Art. 558 bis (costrizione matrimonio) | 11 | 0-1 | **-90%** |
-| Art. 583 quinquies (deformazione viso) | 56 | 1 | **-98%** |
-| Art. 612 ter (revenge porn) | 718 | ~1.230 | -43% |
+| Art. 558 bis (costrizione matrimonio) | 11 | 7-8 | **-27%** (minimo) |
+| Art. 583 quinquies (deformazione viso) | 56 | 25-56 | **-55%** (minimo) |
+| Art. 612 ter (revenge porn) | 718 | ~1.230 | +71% |
 
-Questa discrepanza solleva dubbi sulla **completezza del dataset** per il periodo di riferimento e può indurre utenti in errore, che potrebbero pensare che tali reati fossero effettivamente poco diffusi nel 2019-2020.
+**Nota sulla discrepanza**: I dati FOIA sono disaggregati per anno civile (2019, 2020), mentre il rapporto ISTAT utilizza anno fiscale (9 agosto 2019 – 8 agosto 2020). La discrepanza potrebbe essere parzialmente dovuta a questo mismatch temporale. Tuttavia, anche considerando il migliore scenario (intero anno 2020 per ISTAT), la mancanza rimane significativa per art. 558 bis e 583 quinquies.
 
 **Domanda**: Potete fornire una riconciliazione di questi dati con il report ISTAT, spiegando se:
 - Si tratta di snapshot parziale del sistema SDI?
 - Ci sono stati aggiornamenti retroattivi dopo la pubblicazione del report ISTAT?
 - Esiste una causa tecnica (es. ritardo nell'implementazione della codifica art. 387 bis)?
+- Come sono stati mappati i dati dall'anno fiscale al sistema di estrapolazione FOIA (anno civile)?
 
 ---
 
