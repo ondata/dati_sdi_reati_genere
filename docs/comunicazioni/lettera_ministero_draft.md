@@ -61,7 +61,7 @@ Ulteriore elemento critico emerge dall'analisi della distribuzione temporale nei
 Sebbene parte della crescita sia spiegabile da maggiore sensibilizzazione e introduzione nuove fattispecie, il pattern suggerisce una **ondata di registrazioni retroattive nel sistema SDI tra 2023-2024**. Dato che il file fornisce date granulari (data_inizio_fatto, data_denuncia), è possibile verificare quante denunce 2019-2020 sono state registrate retroattivamente in 2023-2024, confermando questa ipotesi.
 
 **Domanda**: Potete fornire una riconciliazione di questi dati con il report ISTAT, spiegando se:
-- Si tratta di snapshot parziale del sistema SDI?
+- Si tratta di un'estrazione parziale del sistema SDI?
 - Ci sono stati aggiornamenti retroattivi dopo la pubblicazione del report ISTAT?
 - Esiste una causa tecnica (es. ritardo nell'implementazione della codifica art. 387 bis)?
 - Come sono stati mappati i dati dall'anno fiscale al sistema di estrapolazione FOIA (anno civile)?
