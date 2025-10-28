@@ -40,6 +40,26 @@ Il confronto tra i dati FOIA e il rapporto ISTAT rivela **discrepanze critiche**
 - Nota: i dati FOIA sono per anno civile 2019-2020; il rapporto ISTAT usa anno fiscale agosto 2019 – agosto 2020. Anche considerando questo mismatch, le discrepanze rimangono critiche per art. 558 bis, 583 quinquies, 387 bis.
 - Questi tre reati compaiono solo in **2023-2024** nei dati FOIA (8 casi art. 558 bis, 69 casi art. 387 bis totali), suggerendo registrazioni retroattive.
 
+### Sproporzione temporale nei dati: concentrazione anomala 2023-2024
+
+Ulteriore elemento critico emerge dall'analisi della distribuzione temporale nei dati file_6 (comunicazioni SDI con relazioni vittima-autore):
+
+| Anno | Denunce registrate |
+|------|---|
+| 2019 | 5 |
+| 2020 | 5 |
+| 2021 | 3 |
+| 2022 | 13 |
+| 2023 | 530 |
+| 2024 | 4.277 |
+
+**Interpretazione**: 
+- 2019-2022: media 6,5 denunce/anno
+- 2023: +4.000% (salto a 530)
+- 2024: +700% ulteriore (salto a 4.277)
+
+Sebbene parte della crescita sia spiegabile da maggiore sensibilizzazione e introduzione nuove fattispecie, il pattern suggerisce una **ondata di registrazioni retroattive nel sistema SDI tra 2023-2024**. Dato che il file fornisce date granulari (data_inizio_fatto, data_denuncia), è possibile verificare quante denunce 2019-2020 sono state registrate retroattivamente in 2023-2024, confermando questa ipotesi.
+
 **Domanda**: Potete fornire una riconciliazione di questi dati con il report ISTAT, spiegando se:
 - Si tratta di snapshot parziale del sistema SDI?
 - Ci sono stati aggiornamenti retroattivi dopo la pubblicazione del report ISTAT?
