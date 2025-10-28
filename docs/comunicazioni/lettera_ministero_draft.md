@@ -78,6 +78,26 @@ In particolare:
 
 **Domanda al Ministero**: È possibile distinguere quante comunicazioni nel file_6 per il periodo 2019-2022 siano **retroattivamente codificate** (cioè: fatto accaduto in 2019-2020, ma codificata la relazione V-A solo in 2023-2024)? Questo chiarimento permetterebbe di valutare se il pattern temporale riflette cambamenti reali nel fenomeno oppure evoluzioni nella completezza della codifica nel sistema SDI.
 
+### Discrepanze critiche con il report ISTAT: stessa fonte, dati diversi
+
+Il confronto con il report ISTAT "Un anno di Codice Rosso" (agosto 2019–agosto 2020) rivela discrepanze significative che mettono in dubbio la completezza di FILE_6 come estrazione dal sistema SDI-SSD.
+
+**Nota metodologica cruciale**: Il report ISTAT estrae dalla stessa fonte (SDI-SSD) di FILE_6, ma trova numeri completamente diversi per gli stessi articoli e periodo.
+
+| Articolo | ISTAT (SDI-SSD, ago 2019–ago 2020) | FILE_6 (SDI, stesso periodo) | Differenza |
+|----------|---|---|---|
+| Art. 558 bis | 11 casi | 0 casi | **-100%** |
+| Art. 583 quinquies | 56 casi | 0 casi | **-100%** |
+| Art. 612 ter | 718 casi | 8 casi | **-98.9%** |
+| Art. 387 bis | 1.741 casi | 0 casi | **-100%** |
+
+**Domande specifiche al Ministero**:
+- Perché FILE_6 ha numeri così diversi da ISTAT nonostante la stessa fonte (SDI-SSD)?
+- ISTAT include TUTTI gli articoli (senza filtro relazione V-A) mentre FILE_6 filtra per relazione V-A?
+- Se sì, perché ISTAT trova 11 casi di art. 558 bis nel periodo, mentre FILE_6 trova 0?
+- Questo significa che i 11 casi di art. 558 bis erano commessi senza relazione V-A codificata?
+- Oppure FILE_6 è un'estrazione incompleta del sistema SDI-SSD?
+
 ### Completezza e coerenza temporale di FILE_6: "buchi" inspiegati nei dati
 
 Un'ulteriore questione critica emerge dall'analisi della completezza temporale di FILE_6: **il dataset contiene "buchi" temporali che ne compromettono l'interpretabilità come "sottinsieme coerente"**.
@@ -101,14 +121,25 @@ Se questi "buchi" riflettono l'assenza reale di dati nel sistema SDI (cioè: nes
 
 Emerge dall'analisi una questione ancora più fondamentale: **i criteri di inclusione e esclusione dei reati in FILE_6 non sono esplicitamente documentati**, creando ambiguità sulla rappresentatività dei dati.
 
-In particolare:
+In particolare, il confronto con il report ISTAT "Un anno di Codice Rosso" (agosto 2019–agosto 2020) rivela discrepanze significative che mettono in dubbio la completezza di FILE_6:
+
+**Discrepanze critiche con ISTAT (stessa fonte SDI-SSD)**:
+
+| Articolo | ISTAT (ago 2019–ago 2020) | FILE_6 (stesso periodo) | Differenza |
+|----------|---|---|---|
+| Art. 558 bis | 11 casi | 0 casi | **-100%** |
+| Art. 583 quinquies | 56 casi | 0 casi | **-100%** |
+| Art. 612 ter | 718 casi | 8 casi | **-98.9%** |
+| Art. 387 bis | 1.741 casi | 0 casi | **-100%** |
+
+**Nota cruciale**: Il report ISTAT estrae dalla stessa fonte (SDI-SSD) di FILE_6, ma trova numeri significativamente diversi. Questo indica che FILE_6 è un'estrazione incompleta o filtrata in modo diverso.
 
 **Domande critiche sulla definizione di scope**:
 
 1. **Quali reati sono inclusi in FILE_6?**
    - Tutti gli articoli c.p. commessi da chi ha relazione V-A codificata (PARTNER, CONIUGE, PARENTE, ecc.)?
    - Oppure solo gli articoli che **per legge richiedono** una relazione V-A (es. art. 387 bis)?
-   - Nel primo caso, dovrebbero esserci art. 558 bis e 583 quinquies anche nel 2019-2022 (ma non ci sono)
+   - Nel primo caso, perché mancano i 11 casi di art. 558 bis trovati da ISTAT?
    - Nel secondo caso, la selezione è legale ma non documentata
 
 2. **Perché art. 558 bis (costrizione al matrimonio) e 583 quinquies (deformazione viso) compaiono SOLO nel 2024?**
@@ -116,6 +147,11 @@ In particolare:
    - Nel 2024 compaiono entrambi, ma solo con relazione V-A codificata (ALTRO PARENTE, FIDANZATO)
    - **Ipotesi**: il Ministero ha cambiato nel 2023-2024 i criteri di classificazione, includendo questi articoli in FILE_6 solo quando c'è relazione V-A (scelta classificatoria)
    - **Conseguenza**: i casi 2019-2020 di questi articoli (incluso quelli senza relazione V-A) restano "invisibili" in FILE_6
+
+3. **Perché FILE_6 ha numeri così diversi da ISTAT nonostante la stessa fonte?**
+   - ISTAT trova 11 casi di art. 558 bis nel periodo, FILE_6 trova 0
+   - Questo indica che FILE_6 è un'estrazione incompleta del sistema SDI-SSD
+   - Oppure che FILE_6 applica filtri aggiuntivi non documentati
 
 3. **Quale è la completezza attesa della codifica della relazione V-A?**
    - Non tutti i reati di genere nel sistema SDI hanno relazione V-A codificata
