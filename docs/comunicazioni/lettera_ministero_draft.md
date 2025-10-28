@@ -21,24 +21,18 @@ Innanzitutto, desideriamo esprimere **apprezzamento per la trasparenza** dimostr
 
 ### Osservazioni tecniche
 
-Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD-2025-90_5.xlsx e MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato alcune **incongruenze rispetto al rapporto ufficiale ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (ottobre 2020)**, che rappresenta il riferimento pubblico disponibile per il periodo agosto 2019 – agosto 2020.
+Nel corso di un'analisi di validazione dei due file Excel forniti (MI-123-U-A-SD-2025-90_5.xlsx e MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato alcune **questioni critiche sulla struttura, completezza e documentazione dei dati**, in particolare sul file_6 che contiene le comunicazioni SDI con relazioni vittima-autore.
 
-### Mancanza significativa di dati per fattispecie Codice Rosso
+### Struttura e scope del file_6: sottinsieme filtrato, non estrazione completa
 
-Il confronto tra i dati FOIA e il rapporto ISTAT rivela **discrepanze critiche**:
+Una prima considerazione tecnica è importante per la corretta interpretazione dei dati forniti:
 
-| Reato | ISTAT (ago 2019–ago 2020) | FOIA ricevuto (2019-2020) | Delta |
-|-------|---------|---|---|
-| Art. 558 bis (costrizione matrimonio) | 11 | 0 | **-100%** |
-| Art. 583 quinquies (deformazione viso) | 56 | 0 | **-100%** |
-| Art. 612 ter (revenge porn) | 718 | 1.230 | **+71%** |
-| Art. 387 bis (violazione allontanamento) | 1.741 | 0 | **-100%** |
+**Il file_6 (comunicazioni SDI con relazioni vittima-autore) non è un'estrazione completa dei dati SDI per il periodo 2019-2024, ma un sottinsieme deliberatamente filtrato**, contenente solo le comunicazioni dove sia stata codificata una "relazione vittima-autore" (partner, coniuge, parente, ecc.).
 
-**Analisi della tabella**:
-- Art. 558 bis, 583 quinquies, 387 bis: **completamente assenti** nel periodo agosto 2019 – agosto 2020 nei dati FOIA
-- Art. 612 ter: presente ma **sovrastimato** (1.230 vs 718 del rapporto ISTAT)
-- Nota: i dati FOIA sono per anno civile 2019-2020; il rapporto ISTAT usa anno fiscale agosto 2019 – agosto 2020. Anche considerando questo mismatch, le discrepanze rimangono critiche per art. 558 bis, 583 quinquies, 387 bis.
-- Questi tre reati compaiono solo in **2023-2024** nei dati FOIA (8 casi art. 558 bis, 69 casi art. 387 bis totali), suggerendo registrazioni retroattive.
+Questo ha implicazioni importanti:
+- Non è direttamente comparabile con dataset pubblici come il rapporto ISTAT "Violenza contro le donne – Un anno di Codice Rosso" (agosto 2019 – agosto 2020), che rappresenta **tutti i reati di genere registrati dalla Polizia**, indipendentemente dalla tipologia di relazione
+- Le differenze quantitative rispetto a fonti esterne (es. ISTAT) riflettono il filtro applicato, non necessariamente "missing data"
+- Tuttavia, rimangono questioni legittime sulla **completezza della codifica della relazione V-A** nel sistema SDI stesso
 
 ### Sproporzione temporale nei dati: concentrazione anomala 2023-2024
 
@@ -46,7 +40,7 @@ Ulteriore elemento critico emerge dall'analisi della distribuzione temporale nei
 
 | Anno | Denunce registrate |
 |------|---|
-| 2019 | 5 |
+| 2019 | 4 |
 | 2020 | 5 |
 | 2021 | 3 |
 | 2022 | 13 |
@@ -54,17 +48,23 @@ Ulteriore elemento critico emerge dall'analisi della distribuzione temporale nei
 | 2024 | 4.277 |
 
 **Interpretazione**: 
-- 2019-2022: media 6,5 denunce/anno
-- 2023: +4.000% (salto a 530)
-- 2024: +700% ulteriore (salto a 4.277)
+- 2019-2022: media 6,25 denunce/anno
+- 2023: +8.480% (salto a 530)
+- 2024: +707% ulteriore (salto a 4.277)
 
-Sebbene parte della crescita sia spiegabile da maggiore sensibilizzazione e introduzione nuove fattispecie, il pattern suggerisce una **ondata di registrazioni retroattive nel sistema SDI tra 2023-2024**. Dato che il file fornisce date granulari (data_inizio_fatto, data_denuncia), è possibile verificare quante denunce 2019-2020 sono state registrate retroattivamente in 2023-2024, confermando questa ipotesi.
+Sebbene parte della crescita sia spiegabile da **maggiore emersione del fenomeno negli ultimi anni** (combinazione di: aumentata sensibilizzazione, introduzione nuove fattispecie dal Codice Rosso nel 2019, migliore codifica della relazione V-A nel sistema), il pattern estremo della distribuzione pone questioni legittime sulla **completezza della codifica retrospettiva della relazione vittima-autore nel sistema SDI**.
 
-**Domanda**: Potete fornire una riconciliazione di questi dati con il report ISTAT, spiegando se:
-- Si tratta di un'estrazione parziale del sistema SDI?
-- Ci sono stati aggiornamenti retroattivi dopo la pubblicazione del report ISTAT?
-- Esiste una causa tecnica (es. ritardo nell'implementazione della codifica art. 387 bis)?
-- Come sono stati mappati i dati dall'anno fiscale al sistema di estrapolazione FOIA (anno civile)?
+In particolare:
+- Nel periodo 2019-2022, file_6 contiene solo 26 comunicazioni complessivamente (media 6,5/anno)
+- Nel 2023: salto a 530 (+20x)
+- Nel 2024: ulteriore salto a 4.277 (+8x)
+
+**Possibili spiegazioni**:
+1. ✅ Aumento reale dei reati e della sensibilizzazione (plausibile)
+2. ⚠️ Miglioramento significativo nella codifica della relazione V-A nel sistema SDI tra 2023-2024 (da verificare)
+3. ❓ Retroimplementazione o sincronizzazione dati 2019-2022 effettuata tra 2023-2024 (richiede chiarimento)
+
+**Domanda al Ministero**: È possibile distinguere quante comunicazioni nel file_6 per il periodo 2019-2022 siano **retroattivamente codificate** (cioè: fatto accaduto in 2019-2020, ma codificata la relazione V-A solo in 2023-2024)? Questo chiarimento permetterebbe di valutare se il pattern temporale riflette cambamenti reali nel fenomeno oppure evoluzioni nella completezza della codifica nel sistema SDI.
 
 ---
 
@@ -135,9 +135,14 @@ Nel file con disaggregazione comunale e relazioni vittima-autore (MI-123-U-A-SD-
 
 Vorremmo sottoporre le seguenti richieste, che ritengo possano **aumentare significativamente il valore pubblico** del dataset:
 
-### Riconciliazione dati storici
+### Completezza della codifica della relazione vittima-autore
 
-Fornire, per le fattispecie introdotte da Codice Rosso (art. 558 bis, 583 quinquies, 612 ter, 387 bis), una tabella riconciliata con il report ISTAT relativa al periodo agosto 2019 – agosto 2020, spiegando eventuali discrepanze.
+Fornire documentazione sulla **completezza attesa della codifica della relazione V-A** nel sistema SDI per il periodo 2019-2024. In particolare:
+- Quale percentuale di comunicazioni SDI dovrebbe idealmente avere una relazione V-A codificata?
+- Ci sono stati aggiornamenti nei criteri di codifica tra 2019 e 2024?
+- È possibile identificare comunicazioni retroattivamente codificate?
+
+Questo chiarimento permetterebbe di valutare se il pattern temporale nei dati (concentrazione 2023-2024) riflette un miglioramento nella completezza della codifica oppure variazioni reali nel fenomeno.
 
 ### Documento metadati strutturato
 
@@ -202,11 +207,11 @@ Il formato attuale con anni come colonne può essere mantenuto per leggibilità 
 
 ### Allegati
 
-Allego i seguenti documenti tecnici a supporto delle osservazioni:
+I seguenti documenti tecnici supportano le osservazioni contenute in questa comunicazione:
 
-1. **findings_rossella_validazione.md**: analisi dettagliata delle discrepanze FOIA vs ISTAT
-2. **analisi_temporale_codice_rosso.csv**: distribuzione temporale fattispecie 2019-2024
-3. **template_metadati.csv**: proposta di schema metadati
+1. **analisi_struttura_file_6.md** (da allegare): analisi dettagliata della struttura e del scope del file_6
+2. **analisi_temporale_codice_rosso.csv** (da allegare): distribuzione temporale delle comunicazioni SDI 2019-2024
+3. **template_metadati.md** (da allegare): proposta di schema metadati per future distribuzioni
 
 ---
 
@@ -223,12 +228,12 @@ Comprendiamo che l'Open Data pubblico è un processo di evoluzione continua. Nel
 
 ### Prossimi passi
 
-Rimaniamo **disponibili per dialogo costruttivo** e per supportare il Dipartimento nella documentazione dei dati, se utile. Riteniamo che una **riconciliazione trasparente** con il report ISTAT e una migliore documentazione beneficerebbe l'intera comunità di utenti (ricercatori, NGO, pubblica amministrazione).
+Rimaniamo **disponibili per dialogo costruttivo** e per supportare il Dipartimento nella documentazione dei dati, se utile. Riteniamo che una **migliore documentazione della struttura, scope e metodologia di estrazione dei dati** beneficerebbe l'intera comunità di utenti (ricercatori, NGO, pubblica amministrazione).
 
-Attualmente i file Excel forniti sono il punto di partenza per ulteriori analisi. Una risposta chiara su questi punti permetterebbe di:
-- Validare l'affidabilità dei dati
-- Riconciliarli con i riferimenti ufficiali ISTAT
-- Permettere ai ricercatori di utilizzare i dati con consapevolezza dei loro limiti
+Attualmente i file Excel forniti rappresentano un importante contributo all'open data sulla violenza di genere. Una risposta chiara su questi punti permetterebbe di:
+- Garantire l'affidabilità e l'interpretabilità corretta dei dati
+- Permettere ai ricercatori di utilizzare il dataset con piena consapevolezza della sua struttura e dei filtri applicati
+- Supportare analisi comparative con altre fonti dati (es. ISTAT)
 
 Agradiremo risposta entro **30 giorni** da questa comunicazione.
 
