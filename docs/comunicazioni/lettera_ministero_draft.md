@@ -104,7 +104,30 @@ Questo permetterebbe di **spiegare i lag temporali** tra fatto e registrazione, 
 
 Aggiungere colonna con codice articolo c.p. (es. "558 bis", "387 bis") accanto alle descrizioni full-text, per facilitare parsing e riconciliazione automatica con altre fonti normative.
 
-#### E) Chiarimento roadmap 2024
+#### E) Chiarimento chiave primaria file_6
+
+**Critico**: Nel file con relazioni vittima-autore (file_6), il campo `PROT_SDI` presenta righe duplicate. Necessario chiarire:
+- Quale campo o combinazione di campi forma la **chiave primaria**?
+- Righe duplicate di PROT_SDI rappresentano: vittime multiple? Reati multipli dello stesso episodio? Errore di registrazione?
+- Come contare correttamente gli **episodi unici** (non righe duplicate)?
+
+Esempio problematico: PROT_SDI "BOPC042024000134" è ripetuto 5 volte nel file. È un episodio con 5 vittime oppure un errore?
+
+**Impatto**: Conteggio riga ≠ conteggio episodi. Analisi quantitative potrebbero essere sovrastimate.
+
+#### F) Significato campi geografici file_6
+
+Nel file_6, non è chiaro il significato e l'uso di:
+- `LUOGO_SPECIF_FATTO`: "ABITAZIONE", "PUBBLICA VIA", etc.
+- `DES_OBIET`: "PRIVATO CITTADINO", "COMMERCIANTE", etc. (62.5% dei record ha "NON PREVISTO/ALTRO")
+
+Domande:
+- Qual è la differenza tra questi due campi?
+- Quale usare per geolocalizzare l'episodio?
+- Perché così alta percentuale di "NON PREVISTO"?
+- Sono campi legacy mantenuti per compatibilità?
+
+#### G) Chiarimento roadmap 2024
 
 Indicare **quando i dati 2024 saranno consolidati** e se sono preveduti aggiornamenti retroattivi su anni precedenti (2019-2023).
 

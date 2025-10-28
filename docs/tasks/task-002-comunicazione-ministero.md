@@ -10,7 +10,10 @@ Comunicare al Dipartimento della Pubblica Sicurezza del Ministero dell'Interno l
 
 - **FOIA**: richiesta inviata 18 aprile 2025 da Avv. Giulia Sudano (Period Think Tank)
 - **Destinatario**: Dipartimento della Pubblica Sicurezza, Ministero dell'Interno
-- **Riferimento**: Task-001 findings (undercount -90% fattispecie Codice Rosso vs ISTAT 2020)
+- **Riferimento**: 
+  - Task-001 findings (undercount -90% fattispecie Codice Rosso vs ISTAT 2020)
+  - Note Rossella (validata su file_6)
+  - GitHub issue #1, #2 di lalafrufru (chiave primaria e metadati file_6)
 
 ## Brutture dati identificate
 

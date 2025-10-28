@@ -22,6 +22,12 @@
   - Uso: Dimostrazione di cosa manca, proposta concreta
   - Size: ~15 KB
 
+- [ ] **issue_lalafrufru_integrazione.md**
+  - Formato: Markdown
+  - Descrizione: Integrazione GitHub issue #1, #2 (chiave primaria, DES_OBIET ambiguo)
+  - Uso: Evidenziare problematiche file_6 riportate dalla community
+  - Size: ~8 KB
+
 ---
 
 ### 📋 Allegati Amministrativi (dipende da canale)

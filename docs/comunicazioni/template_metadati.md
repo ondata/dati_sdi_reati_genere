@@ -132,6 +132,28 @@ Disponibili tre versioni della provincia:
 
 ---
 
+### File_6: Chiave primaria e campi geografici (AMBIGUITÀ CRITICA)
+
+**Problema identificato** (GitHub issue #1, #2):
+- Campo `PROT_SDI` (Protocollo SDI) **non è univoco** – righe duplicate
+- Campi `LUOGO_SPECIF_FATTO` e `DES_OBIET` hanno significati **non chiariti**
+
+| Campo | Valore | Note |
+|-------|--------|------|
+| `PROT_SDI` | Es. BOPC042024000134 | Dovrebbe essere PK, ma è duplicato |
+| `LUOGO_SPECIF_FATTO` | "ABITAZIONE", "PUBBLICA VIA" | Geo-contesto episodio |
+| `DES_OBIET` | "PRIVATO CITTADINO", "COMMERCIANTE" | **Non chiaro significato** – 62.5% "NON PREVISTO/ALTRO" |
+
+**Impatto**: Contare **RIGHE ≠ contare COMUNICAZIONI UNICHE**. Risultati analitici **potenzialmente sovrastimati**.
+
+**Richiesta urgente**: Ministero deve chiarire:
+1. Quale campo + combinazione = chiave primaria file_6?
+2. Righe duplicate (PROT_SDI) rappresentano vittima multiple? Reati multipli?
+3. Definizione ufficiale di `DES_OBIET`
+4. Differenza tra `LUOGO_SPECIF_FATTO` e `DES_OBIET`
+
+---
+
 ### NULL geografici (0.5-0.7% sparsità)
 
 **Causa**: [SPECIFICARE DAL MINISTERO]
