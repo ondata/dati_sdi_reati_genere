@@ -69,11 +69,10 @@ I dati FOIA sono aggregati per **anno civile**, mentre il report ISTAT Codice Ro
 
 Nel file con disaggregazione comunale e relazioni vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx), abbiamo rilevato:
 
-- **Descrizioni reati in full-text**: impone parsing complesso e errore-prone. Sarebbe utile una colonna aggiuntiva con codice articolo standardizzato.
-- **NULL geografici**: circa 0.5-0.7% delle righe ha valori NULL in campi provincia. Per quale motivo?
-- **Nomi colonne ridondanti**: colonne come "provinciauts_corretto", "codice_provincia_storico", "codice_provinciauts" creano confusione sulla mappatura ISTAT corretta da utilizzare.
-- **Chiave primaria ambigua** (segnalato dalla community): il campo PROT_SDI non è univoco – righe duplicate. Come contare episodi unici?
-- **Semantica campi geografici** (segnalato dalla community): significato di DES_OBIET non documentato; differenza con LUOGO_SPECIF_FATTO non chiara.
+- **Descrizioni reati in full-text** (DES_REA_EVE): impone parsing complesso e errore-prone. Sarebbe utile una colonna aggiuntiva con codice articolo c.p. standardizzato (es. "558 bis" anziché "COSTRIZIONE O INDUZIONE AL MATRIMONIO").
+- **Codifi geografici incompleti**: il file fornisce solo `REGIONE`, `PROVINCIA`, `COMUNE` senza codici ISTAT. Nel dataset processato vengono aggiunti (provinciauts_corretto, codice_provinciauts), ma nel file originale sono assenti, complicando riconciliazione.
+- **Chiave primaria ambigua** (segnalato dalla community): il campo `PROT_SDI` non è univoco – righe duplicate. Come contare episodi unici?
+- **Semantica campi geografici** (segnalato dalla community): significato di `DES_OBIET` non documentato; differenza con `LUOGO_SPECIF_FATTO` non chiara.
 
 ---
 
