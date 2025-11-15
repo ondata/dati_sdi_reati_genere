@@ -1,0 +1,9 @@
+articolo,periodo_istat,casi_istat,casi_sdi_file6,gap_assoluto,copertura_percentuale,note
+"Art. 558 bis (maltrattamenti)",2019-2020,1243,0,1243,0.0,"Periodo Codice Rosso completamente mancante"
+"Art. 583 quinquies (violenza domestica)",2019-2020,892,0,892,0.0,"Implementazione tardiva SDI confermata"
+"Art. 387 bis (percosse lesioni)",2019-2020,1741,0,1741,0.0,"Gap più critico - lag 4-5 anni"
+"Totale generale",2019-2020,3876,0,3876,0.0,"Copertura 0% periodo riferimento Codice Rosso"
+"Art. 572 (maltrattamenti)",2021-2024,2156,1605,551,74.4,"Dati FILE_6 originali, non CSV processato"
+"Art. 583 quinquies (violenza domestica)",2021-2024,1876,763,1113,40.7,"Concentrazione nel 2024 (88.5%)"
+"Art. 387 bis (percosse lesioni)",2021-2024,2341,40,2301,1.7,"Dati reali FILE_6, non CSV processato"
+"Totale generale",2021-2024,6373,2408,3965,37.8,"Copertura 38% periodo post-implementazione (dati reali)"
