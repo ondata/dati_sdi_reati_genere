@@ -73,7 +73,7 @@ I nomi campi nel dataset originale utilizzano la convenzione **SCREAMING_SNAKE_C
 
 Per garantire **interoperabilità**, **geocodifica** e **analisi territoriali** corrette, si raccomanda fortemente l'adozione di classificazioni standard:
 
-#### 1. STATO - Standard ISO 3166-1
+#### STATO - Standard ISO 3166-1
 
 **Standard raccomandato:** ISO 3166-1 alpha-3 (codice a 3 lettere)
 
@@ -95,7 +95,7 @@ Per garantire **interoperabilità**, **geocodifica** e **analisi territoriali** 
 
 **Riferimento:** https://www.iso.org/iso-3166-country-codes.html
 
-#### 2. REGIONE - Classificazione ISTAT
+#### REGIONE - Classificazione ISTAT
 
 **Standard obbligatorio:** Elenco ufficiale Regioni ISTAT
 
@@ -132,7 +132,7 @@ Per garantire **interoperabilità**, **geocodifica** e **analisi territoriali** 
 
 **Riferimento:** ISTAT - Classificazione delle unità amministrative territoriali (Regioni)
 
-#### 3. PROVINCIA - Classificazione ISTAT
+#### PROVINCIA - Classificazione ISTAT
 
 **Standard obbligatorio:** Elenco Province/Città metropolitane ISTAT
 
@@ -149,7 +149,7 @@ Per garantire **interoperabilità**, **geocodifica** e **analisi territoriali** 
 
 **Riferimento:** ISTAT - Elenco codici e denominazioni province
 
-#### 4. COMUNE - Classificazione ISTAT
+#### COMUNE - Classificazione ISTAT
 
 **Standard obbligatorio:** Codice Catastale o Codice ISTAT Comune
 
