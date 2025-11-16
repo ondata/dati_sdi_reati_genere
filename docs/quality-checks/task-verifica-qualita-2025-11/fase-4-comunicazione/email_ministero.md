@@ -95,15 +95,124 @@ Confrontando i dati tra i due file Excel ricevuti, notiamo un'altra discrepanza 
 
 Anche in questo caso, saremmo grati se poteste aiutarci a capire questa discrepanza.
 
+### 6. Formato e struttura dei dati non idonei per elaborazioni automatiche
+
+Il file `MI-123-U-A-SD-2025-90_5.xlsx` presenta caratteristiche di strutturazione che, pur rendendo i dati leggibili a schermo, li rendono estremamente difficili da elaborare automaticamente con strumenti di analisi dati:
+
+#### 6.1 Righe di intestazione ridondanti usate come didascalie
+
+Ogni foglio del file inizia con una riga di descrizione narrativa che precede le vere intestazioni di colonna:
+
+**Esempio (foglio "Omicidi DCPC")**:
+
+```
+Riga 1: "Omicidi volontari consumati in Italia (fonte D.C.P.C. - dati operativi)"
+Riga 2: [vuota] | 2019 | 2020 | 2021 | ...
+Riga 3: "Omicidi commessi" | 321 | 287 | 312 | ...
+```
+
+**Esempio (foglio "Delitti - Commessi")**:
+
+```
+Riga 1: "Numero reati commessi in Italia disaggregati a livello provinciale
+        (Dati di fonte SDI/SSD non consolidati per il 2024...)"
+Riga 2: Provincia | Delitto | 2019 | 2020 | 2021 | ...
+Riga 3: AGRIGENTO | 5. TENTATI OMICIDI | 14 | 10 | 11 | ...
+```
+
+**Perché è critico**: Le didascalie in riga 1 impediscono il parsing automatico dei dati. Qualsiasi software di analisi (R, Python, QGIS, ecc.) richiede che la prima riga contenga esclusivamente i nomi delle colonne. Attualmente è necessaria una pre-elaborazione manuale per rimuovere queste righe, introducendo rischio di errori e rallentando significativamente l'analisi.
+
+#### 6.2 Utilizzo di formato wide invece di long
+
+I dati sono organizzati in formato "wide" (anni come colonne separate) invece che "long" (anni come valori in una colonna):
+
+**Formato attuale (wide)**:
+
+```
+Provincia   | Delitto              | 2019 | 2020 | 2021 | 2022 | 2023 | 2024
+AGRIGENTO   | 5. TENTATI OMICIDI   | 14   | 10   | 11   | 8    | 13   | 13
+ALESSANDRIA | 5. TENTATI OMICIDI   | 3    | 5    | 10   | 2    | 5    | 5
+```
+
+**Formato raccomandato (long)**:
+
+```
+Provincia   | Delitto              | Anno | Valore
+AGRIGENTO   | 5. TENTATI OMICIDI   | 2019 | 14
+AGRIGENTO   | 5. TENTATI OMICIDI   | 2020 | 10
+AGRIGENTO   | 5. TENTATI OMICIDI   | 2021 | 11
+ALESSANDRIA | 5. TENTATI OMICIDI   | 2019 | 3
+```
+
+**Perché è critico**: Il formato wide è obsoleto e contrario alle best practice internazionali di data management (standard "tidy data"). Rende difficili o impossibili operazioni di base come:
+
+- Filtrare dati per anno
+- Calcolare medie temporali
+- Creare serie storiche
+- Aggregare dati su periodi personalizzati
+- Incrociare con altre fonti temporali
+
+Tutti gli standard moderni di dati aperti (W3C, Open Data Charter, AgID) raccomandano il formato long per dati con dimensione temporale.
+
+#### 6.3 Assenza di codici standardizzati per entità geografiche
+
+Le entità geografiche (province, regioni, comuni, stati) sono rappresentate solo attraverso denominazioni testuali, senza i corrispondenti codici standardizzati:
+
+- **Regioni**: mancano i codici ISTAT regionali
+- **Province**: mancano i codici ISTAT provinciali (codici a 3 cifre)
+- **Comuni**: mancano i codici ISTAT comunali (codici a 6 cifre)
+- **Stati**: mancano i codici ISO 3166-1 alpha-2 o alpha-3
+
+**Perché è critico**: L'assenza di codici standardizzati costituisce una barriera significativa all'interoperabilità dei dati. I codici ISTAT per gli enti territoriali italiani e i codici ISO per gli stati esteri sono standard riconosciuti che permettono:
+
+- **Incrocio preciso con altre fonti dati** (ISTAT, banche dati amministrative, open data regionali e comunali)
+- **Eliminazione di ambiguità** dovute a varianti grafiche, abbreviazioni o errori di trascrizione (es. "Reggio Calabria" vs "Reggio Emilia", "Aosta" vs "Valle d'Aosta")
+- **Analisi territoriali affidabili** senza rischi di errate aggregazioni
+- **Conformità agli standard internazionali** di condivisione dati aperti
+
+#### 6.4 Proposta: doppio formato XLSX + CSV
+
+Comprendiamo che il formato XLSX attuale possa essere utile per visualizzazione diretta a schermo o stampa. Per questo proponiamo una soluzione che soddisfi entrambe le esigenze:
+
+**File XLSX** (per visualizzazione umana):
+
+- Mantenere il formato attuale con didascalie e layout wide se necessario
+- Utile per consultazione rapida e presentazioni
+
+**File CSV** (per elaborazioni automatiche):
+
+- Formato long (tidy data) con colonna "anno"
+- Prima riga con soli nomi di colonne (senza didascalie narrative)
+- Codici geografici standardizzati ISTAT/ISO in colonne dedicate
+- Encoding UTF-8 con BOM
+- Separatore punto e virgola (standard italiano)
+
+Questa soluzione rappresenta una best practice consolidata in ambito internazionale (es. Eurostat, OECD, UK ONS) e nazionale (ISTAT) e permetterebbe di rendere i dati immediatamente utilizzabili per analisi riproducibili senza pre-elaborazioni manuali.
+
+Sarebbe possibile adottare questo doppio formato nei rilasci futuri?
+
 ## Proposta Collaborativa
 
 Il nostro obiettivo non è critico ma costruttivo. Le osservazioni che abbiamo definito "critiche" lo sono perché potrebbero compromettere l'utilità dei dati per ricercatori, policymaker e società civile che si affidano a questi dati per comprendere e contrastare la violenza di genere.
+
+### Obiettivo principale: pubblicazione online regolare
+
+L'obiettivo per noi più importante, tuttavia, va oltre il miglioramento della qualità tecnica dei dati: **auspichiamo che il Dipartimento possa pubblicare questi dataset online in modo proattivo e continuativo**, non soltanto come risposte a richieste FOIA.
+
+La violenza di genere è un fenomeno che si sviluppa in modo continuo e richiede monitoraggio costante. Per questo motivo suggeriamo:
+
+- **Pubblicazione proattiva**: rendere disponibili i dati su un portale open data dedicato, accessibile a ricercatori, giornalisti, organizzazioni della società civile e cittadini
+- **Frequenza trimestrale**: aggiornamenti ogni tre mesi invece che annuali, per permettere analisi tempestive e supportare interventi di policy più rapidi ed efficaci
+- **Documentazione tecnica**: accompagnare i dati con metadati completi, dizionario dati e note metodologiche
+
+Questa pratica è già consolidata in molti paesi europei (UK, Spagna, Francia) e permetterebbe all'Italia di allinearsi agli standard internazionali di trasparenza su un tema di rilevanza sociale così critica.
 
 Siamo a vostra disposizione per:
 
 - discutere queste osservazioni in un incontro
 - collaborare allo sviluppo di documentazione più chiara
 - aiutare a testare la qualità dei dataset prima della loro diffusione
+- supportare tecnicamente l'implementazione di un sistema di pubblicazione regolare
 
 ## Allegati
 
