@@ -177,27 +177,31 @@ gg) Art. 601 CP - Tratta di persone
 
 ---
 
-## 9. INDICATORI RISCHIO REVITTIMIZZAZIONE ✅ PER RIFERIMENTO
+## 9. INDICATORI RISCHIO REVITTIMIZZAZIONE ✅ PER RIFERIMENTO NORMATIVO ESTERNO
 
 **Fonte normativa:** Art. 4, comma 2, lettera c
 
-**Testo:** "gli indicatori di rischio di revittimizzazione previsti dall'allegato B al decreto del Presidente del Consiglio dei ministri 24 novembre 2017"
+**Testo:** "gli indicatori di rischio di revittimizzazione previsti dall'**allegato B al decreto del Presidente del Consiglio dei ministri 24 novembre 2017**"
 
-**Lista controllata:** Definita in DPCM 24/11/2017, Allegato B
+**Lista controllata:** **Definita in normativa esterna** - DPCM 24/11/2017, Allegato B
 
-**Indicatori principali (estratto):**
+**⚠️ IMPORTANTE:** La Legge 53/2022 NON specifica gli indicatori, ma **rinvia all'Allegato B del DPCM 24/11/2017** (Linee guida nazionali per assistenza socio-sanitaria donne vittime violenza).
 
-1. Precedenti episodi di violenza
+**L'elenco ufficiale obbligatorio deve essere estratto dal DPCM 2017, Allegato B.**
+
+**Indicatori comunemente utilizzati (NON ufficiali, solo esempi):**
+
+1. Precedenti episodi di violenza tra stessi soggetti
 2. Escalation della violenza
 3. Minacce di morte
-4. Disponibilità di armi
+4. Disponibilità/uso di armi
 5. Violenza durante gravidanza
 6. Violenza sessuale
 7. Gelosia/controllo estremo
 8. Separazione recente
-9. Problemi economici dell'autore
-10. Abuso sostanze dell'autore
-11. Depressione dell'autore
+9. Problemi economici autore
+10. Abuso sostanze autore
+11. Depressione autore
 12. Comportamenti autolesionistici autore
 13. Violazione misure protezione
 14. Stalking
@@ -206,7 +210,11 @@ gg) Art. 601 CP - Tratta di persone
 17. Dipendenza economica vittima
 18. Paura della vittima
 
-**Conformità dataset:** ❌ CAMPO MANCANTE (proposto in v2.0 parziale)
+**Nota:** Questo elenco è indicativo e basato su prassi internazionali. **Deve essere verificato e sostituito con l'elenco ufficiale del DPCM 2017, All. B.**
+
+**Conformità dataset:** ❌ CAMPO MANCANTE (proposta v2.0 richiede verifica DPCM)
+
+**Azione richiesta:** Acquisire testo ufficiale DPCM 24/11/2017, Allegato B per elenco completo e vincolante.
 
 ---
 

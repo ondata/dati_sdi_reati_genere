@@ -25,22 +25,62 @@ I nomi campi nel dataset originale utilizzano la convenzione **SCREAMING_SNAKE_C
 
 **Nello schema seguente vengono mantenuti i nomi SCREAMING_SNAKE_CASE originali per coerenza con il dataset esistente.**
 
+## Struttura e granularità del dataset
+
+### ⚠️ CRITICITÀ: Duplicati e Prodotto Cartesiano
+
+Il dataset presenta **due problemi critici di qualità**:
+
+**1. Duplicati esatti completi (49.4% delle righe)**
+
+- **5.124 righe totali nel file originale**
+- **2.534 righe (49.4%) sono duplicati esatti** (tutti i campi identici)
+- **798 gruppi di duplicati**, con casi estremi fino a 30 righe identiche
+- Dopo deduplica: **3.329 righe uniche**
+
+**2. Prodotto cartesiano tra denunciati e colpiti da provvedimento**
+
+Il dataset crea un **prodotto cartesiano** quando ci sono più denunciati E più persone colpite da provvedimento nello stesso evento:
+
+- **Esempio PGPQ102023002369**: 6 denunciati × 6 colpiti da provvedimento = 36 righe
+- Ogni denunciato viene abbinato a OGNI persona colpita da provvedimento
+- Questo genera righe "artificiose" senza relazione diretta tra i soggetti
+
+**Granularità (dopo deduplica):** 1 riga = 1 combinazione evento-reato-vittima-denunciato-colpito_da_provv
+
+**Dataset dedupli cato (3.329 righe uniche):**
+
+- 2.644 eventi unici (`PROT_SDI`)
+- Rapporto: 1.26 righe per evento in media
+- 2.255 eventi (85%) con 1 sola riga
+- 389 eventi (15%) con righe multiple
+
+**Pattern righe multiple (dopo deduplica):**
+
+- 144 eventi con **multi-reati** (stesso evento, articoli diversi)
+- 80 eventi con **multi-vittime** (stesso evento, più persone offese)
+- 45 eventi con **multi-denunciati** (stesso evento, più autori)
+- 46 eventi con pattern non classificabile
+- Pattern misti (combinazioni delle precedenti)
+
+**Implicazioni per l'analisi:**
+
+- **PRIMA** di qualsiasi analisi: **deduplica** righe identiche
+- **ATTENZIONE** al prodotto cartesiano denunciati × colpiti_da_provv
+- Per conteggio **eventi**: raggruppare per `PROT_SDI` unico
+- Per conteggio **reati contestati**: `PROT_SDI` + `ART` distinti
+- Per conteggio **vittime**: `COD_VITTIMA` univoci
+- Per conteggio **denunciati**: `COD_DENUNCIATO` univoci
+- **Documentare sempre** quale aggregazione si usa nell'analisi
+
 ## Campi esistenti (v1.0 - attuale)
 
 ### Identificazione evento
 
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
 |------------|------|--------------|-------------|------|
-| `PROT_SDI` | string | Sì | Protocollo SDI dell'evento | **NON è chiave primaria univoca**: stesso PROT_SDI può avere più righe (più reati contestati o più vittime) |
+| `PROT_SDI` | string | Sì | Protocollo SDI dell'evento | Identifica l'evento (vedi sezione "Struttura e granularità del dataset") |
 | `TENT_CONS` | string | Sì | Tentato/Consumato | Lista controllata: `TENTATO`, `CONSUMATO` |
-
-**⚠️ CRITICITÀ RILEVATA:** Il campo `PROT_SDI` identifica l'evento ma **non la singola riga**. Nel dataset sono presenti 5124 righe ma solo 2644 PROT_SDI unici. Questo significa che lo stesso evento può generare più righe quando:
-
-- Sono contestati più reati contemporaneamente
-- Ci sono più vittime
-- Combinazione dei due casi precedenti
-
-**PROPOSTA CRITICA:** Aggiungere un identificativo univoco di riga.
 
 ### Informazioni reato
 
@@ -277,27 +317,6 @@ Per garantire **interoperabilità**, **geocodifica** e **analisi territoriali** 
 
 ## Campi nuovi proposti (v2.0)
 
-### Identificativo univoco di riga (CRITICO)
-
-| Nome campo | Tipo | Obbligatorio | Descrizione | Note |
-|------------|------|--------------|-------------|------|
-| `ID_RIGA` | string/integer | Sì | Identificativo univoco della riga | Chiave primaria assoluta del dataset |
-
-**Motivazione:** Attualmente non esiste un identificativo univoco di riga. Il campo `PROT_SDI` identifica l'evento ma può essere ripetuto su più righe (stesso evento con più reati contestati o più vittime). Questo rende impossibile:
-
-- Riferirsi univocamente a una specifica riga del dataset
-- Gestire correttamente aggiornamenti e correzioni
-- Tracciare modifiche nel tempo
-- Garantire integrità referenziale in database relazionali
-
-**Implementazione suggerita:**
-
-- Formato: `PROT_SDI` + progressivo numerico (es. `RMPC212024000072_001`, `RMPC212024000072_002`)
-- Oppure: UUID generato automaticamente
-- Oppure: Intero progressivo auto-incrementante
-
-Questo campo è **fondamentale** per la qualità e gestibilità dei dati.
-
 ### Tipologia di violenza (Art. 4, comma 2, lettera a)
 
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
@@ -344,16 +363,28 @@ Questo campo è **fondamentale** per la qualità e gestibilità dei dati.
 
 ### Indicatori di rischio (Art. 4, comma 2, lettera c)
 
+**⚠️ NOTA IMPORTANTE:** La Legge 53/2022, Art. 4, comma 2, lettera c, richiede "gli indicatori di rischio di revittimizzazione previsti dall'**Allegato B al decreto del Presidente del Consiglio dei ministri 24 novembre 2017**".
+
+Gli indicatori seguenti sono **esempi comuni** usati per valutazione rischio violenza di genere. **L'elenco definitivo e obbligatorio deve essere verificato nell'Allegato B del DPCM 24/11/2017** (Linee guida nazionali assistenza donne vittime violenza).
+
+**Campi proposti (da verificare con DPCM 2017, All. B):**
+
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
 |------------|------|--------------|-------------|------|
 | `PRECEDENTI_EPISODI_STESSI_SOGGETTI` | string | No | Precedenti denunce/episodi tra stessi soggetti | Lista controllata: `SI`, `NO`, `NON_NOTO` |
 | `ESCALATION_VIOLENZA` | string | No | Escalation della violenza documentata | Lista controllata: `SI`, `NO`, `NON_NOTO` |
 | `MINACCE_MORTE` | string | No | Presenza minacce di morte | Lista controllata: `SI`, `NO`, `NON_NOTO` |
+| `DISPONIBILITA_ARMI` | string | No | Disponibilità armi da parte autore | Lista controllata: `SI`, `NO`, `NON_NOTO` |
+| `VIOLAZIONE_MISURE_PROTEZIONE` | string | No | Violazione precedenti misure | Lista controllata: `SI`, `NO`, `NON_APPLICABILE` |
 | `DIPENDENZA_ECONOMICA_VITTIMA` | string | No | Dipendenza economica della vittima | Lista controllata: `SI`, `NO`, `NON_NOTO` |
 | `ISOLAMENTO_SOCIALE_VITTIMA` | string | No | Isolamento sociale della vittima | Lista controllata: `SI`, `NO`, `NON_NOTO` |
 | `LIVELLO_RISCHIO_COMPLESSIVO` | string | No | Valutazione rischio complessivo | Lista controllata: `BASSO`, `MEDIO`, `ALTO`, `NON_VALUTATO` |
 
+**IMPORTANTE:** Consultare il DPCM 24/11/2017, Allegato B per l'elenco ufficiale completo e obbligatorio degli indicatori.
+
 ### Misure di protezione (Art. 5, comma 5)
+
+**⚠️ NOTA:** I campi seguenti sono una **proposta di struttura**. In ogni caso, questi dati **devono essere rilevati** perché **obbligatori per legge** (Art. 5, comma 5): il sistema deve raccogliere "informazioni su denunce, misure di prevenzione applicate dal questore o dall'autorità giudiziaria, misure precautelari, misure cautelari, ordini di protezione e misure di sicurezza".
 
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
 |------------|------|--------------|-------------|------|
@@ -383,7 +414,9 @@ Questo campo è **fondamentale** per la qualità e gestibilità dei dati.
 - `PROCURA_REPUBBLICA`
 - `ALTRA_AUTORITA`
 
-### Informazioni procedurali
+### Informazioni procedurali (Art. 5, comma 5)
+
+**⚠️ NOTA:** I campi seguenti sono una **proposta di struttura**. In ogni caso, questi dati **devono essere rilevati** perché **obbligatori per legge** (Art. 5, comma 5): il sistema deve raccogliere informazioni sui "provvedimenti di archiviazione e le sentenze" in ogni grado del procedimento giudiziario.
 
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
 |------------|------|--------------|-------------|------|
@@ -414,6 +447,8 @@ Questo campo è **fondamentale** per la qualità e gestibilità dei dati.
 - `IN_CORSO`
 
 ### Recidiva autore (Art. 6, comma 2, lettera b)
+
+**⚠️ NOTA:** I campi seguenti sono una **proposta di struttura**. In ogni caso, questi dati **devono essere rilevati** perché **obbligatori per legge** (Art. 6, comma 2, lettera b): il sistema deve rilevare "dati relativi a precedenti condanne a pene detentive e alla qualifica di recidivo" per indagati e imputati.
 
 | Nome campo | Tipo | Obbligatorio | Descrizione | Note |
 |------------|------|--------------|-------------|------|

@@ -115,17 +115,25 @@ Il dataset include già elementi fondamentali richiesti dalla normativa:
 
 **Normativa:** "gli indicatori di rischio di revittimizzazione previsti dall'allegato B al decreto del Presidente del Consiglio dei ministri 24 novembre 2017"
 
-**Lacuna:** Gli indicatori previsti dalle linee guida (es. precedenti episodi, escalation della violenza, minacce di morte, ecc.) non sono rilevati.
+**Lacuna:** Gli indicatori di rischio non sono rilevati.
 
-**Proposta:** Integrare almeno i principali indicatori di rischio:
+**⚠️ NOTA IMPORTANTE:** La Legge 53/2022 **rinvia al DPCM 24/11/2017, Allegato B** per l'elenco ufficiale degli indicatori. Non specifica quali indicatori, ma fa riferimento esplicito alle Linee guida nazionali per assistenza socio-sanitaria donne vittime violenza.
+
+**Proposta:** Integrare gli indicatori **come definiti nell'Allegato B del DPCM 24/11/2017** (documento da acquisire per elenco vincolante).
+
+A titolo indicativo, gli indicatori comuni includono:
 
 - Precedenti denunce/episodi tra stessi soggetti
 - Escalation della violenza
-- Presenza di minacce di morte
-- Dipendenza economica della vittima
-- Isolamento sociale della vittima
+- Minacce di morte
+- Disponibilità/uso armi
+- Violazione misure protezione precedenti
+- Dipendenza economica vittima
+- Isolamento sociale vittima
 
-**Beneficio:** Permette di identificare casi ad alto rischio e attivare misure di protezione urgenti.
+**Azione preliminare:** Consultare DPCM 24/11/2017, Allegato B per elenco ufficiale completo.
+
+**Beneficio:** Permette di identificare casi ad alto rischio e attivare misure di protezione urgenti secondo protocolli nazionali validati.
 
 ### 6. Informazioni procedurali (Art. 5, comma 5)
 
