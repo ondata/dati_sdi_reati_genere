@@ -16,3 +16,5 @@ Use `@/openspec/AGENTS.md` to learn:
 Keep this managed block so 'openspec update' can refresh the instructions.
 
 <!-- OPENSPEC:END -->
+- usa duckdb -json -c con funzione st_read per leggere i file xlsx. E usa una oneline
+  python pandas per leggere elenco nomi sheet
