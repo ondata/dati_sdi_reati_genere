@@ -1,12 +1,12 @@
-# Template Metadati Standard DCAT-AP_IT per Dati SDI Reati Genere
+# Template metadati standard DCAT-AP_IT per dati SDI reati genere
 
 **Standard di riferimento**: DCAT-AP_IT v2.0  
 **Versione template**: 1.0  
 **Data**: 2025-11-15  
 
-## Metadati Obbligatori (9/9)
+## Metadati obbligatori (9/9)
 
-### Identificativo Dataset
+### Identificativo dataset
 ```json
 {
   "dct:identifier": "MI-DPS-SDI-REATI-GENERE-2025",
@@ -15,7 +15,7 @@
 }
 ```
 
-### Descrizione Completa
+### Descrizione completa
 ```json
 {
   "dct:description": {
@@ -25,7 +25,7 @@
 }
 ```
 
-### Editore/Pubblicatore
+### Editore/pubblicatore
 ```json
 {
   "dct:publisher": {
@@ -36,7 +36,7 @@
 }
 ```
 
-### Data di Pubblicazione e Aggiornamento
+### Data di pubblicazione e aggiornamento
 ```json
 {
   "dct:issued": "2025-10-15",
@@ -50,7 +50,7 @@
 }
 ```
 
-### Periodo Temporale di Riferimento
+### Periodo temporale di riferimento
 ```json
 {
   "dct:temporal": {
@@ -112,9 +112,9 @@
 }
 ```
 
-## Metadati Raccomandati (Importanti)
+## Metadati raccomandati (importanti)
 
-### 10. Soggetto/Keywords
+### 10. Soggetto/keywords
 ```json
 {
   "dcat:keyword": [
@@ -132,7 +132,7 @@
 }
 ```
 
-### 11. Copertura Geografica
+### 11. Copertura geografica
 ```json
 {
   "dct:spatial": {
@@ -145,7 +145,7 @@
 }
 ```
 
-### 12. Metodologia di Raccolta
+### 12. Metodologia di raccolta
 ```json
 {
   "dct:provenance": "Dati raccolti attraverso il Sistema Diagnosi Sociale (SDI) delle Forze di Polizia. I dati sono registrati dalle forze dell'ordine durante interventi relativi a reati di genere, seguendo le procedure operative standard del Dipartimento della Pubblica Sicurezza. La raccolta dati è conforme alle linee guida ISTAT per le statistiche sulla giustizia penale.",
@@ -153,7 +153,7 @@
 }
 ```
 
-### 13. Qualità Dati
+### 13. Qualità dati
 ```json
 {
   "dqv:hasQualityAnnotation": {
@@ -162,7 +162,7 @@
 }
 ```
 
-### 14. Limitazioni e Note
+### 14. Limitazioni e note
 ```json
 {
   "dct:relation": {
@@ -171,9 +171,9 @@
 }
 ```
 
-## Metadati Opzionali (Utili)
+## Metadati opzionali (utili)
 
-### 15. Contatto Tecnico
+### 15. Contatto tecnico
 ```json
 {
   "dcat:contactPoint": {
@@ -184,7 +184,7 @@
 }
 ```
 
-### 16. Formato Dati
+### 16. Formato dati
 ```json
 {
   "dcat:distribution": {
@@ -198,7 +198,7 @@
 }
 ```
 
-### 17. Schema Dati
+### 17. Schema dati
 ```json
 {
   "dcat:dataset": {
@@ -210,7 +210,7 @@
 }
 ```
 
-## Checklist Validazione
+## Checklist validazione
 
 - [ ] Tutti i 9 metadati obbligatori compilati
 - [ ] Descrizione completa in italiano e inglese  

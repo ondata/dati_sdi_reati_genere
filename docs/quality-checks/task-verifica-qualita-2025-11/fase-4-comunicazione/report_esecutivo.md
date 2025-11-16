@@ -1,4 +1,4 @@
-# Report Esecutivo: Audit Qualità Dati SDI Reati Genere
+# Report esecutivo: audit qualità dati SDI reati genere
 
 **Data**: 2025-11-15  
 **Destinatari**: Rossella, Period Think Tank, datiBeneComune  
@@ -16,19 +16,28 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - ❌ **Qualità tecnica**: 7 issue critiche identificate
 - ⚠️ **Metadati**: 22% conformità DCAT-AP_IT
 
-## Issue Critiche Identificate
+## Issue critiche identificate
 
-### Mancanza Metadati Struttura Dati (CRITICO)
+### Duplicati completi e struttura dati non documentata (CRITICO)
 
-- **Problema**: Campo `PROT_SDI` non documentato come identificativo episodio
+**Problema 1: Righe duplicate complete**
+
+- **Scoperta**: 2.534 righe (49.4%) sono **duplicati esatti** (tutti i campi identici)
+- **798 gruppi di duplicati** con stesso PROT_SDI + ART + COD_VITTIMA + COD_DENUNCIATO
+- **Caso estremo**: 1 gruppo con 30 righe identiche
+- **Impatto**: Inflazione artificiale dei conteggi, impossibilità di analisi statistiche affidabili
+- **Causa probabile**: Errore nell'estrazione dati o nella gestione delle tabelle relazionali
+
+**Problema 2: Struttura dati multi-livello non documentata**
+
 - **Dati reali FILE_6**: 5.124 record con 2.644 PROT_SDI unici
-- **2.480 duplicati** = **48.4%** dei record (non 20.6%)
+- **2.480 righe non univoche** per evento (dopo rimozione duplicati esatti rimangono comunque righe multiple)
 - **Pattern identificati**: Multi-autori stessa vittima, multi-reati stesso episodio
-- **Esempio**: PGPQ102023002369 = 48 record, 6 autori, 1 vittima, 1 tipo reato
-- **Impatto**: Rischio double-counting in analisi statistiche
-- **Rischio**: Impossibile distinguere episodi vs singoli reati senza metadati
+- **Granularità non chiara**: 1 riga = 1 evento? 1 reato? 1 combinazione evento-reato-vittima-autore?
+- **Impatto**: Impossibile distinguere episodi vs singoli reati senza metadati
+- **Rischio**: Analisi statistiche errate per mancanza documentazione struttura relazionale
 
-### Campo DES_OBIET Non Documentato (CRITICO)
+### Campo DES_OBIET non documentato (CRITICO)
 
 - **Problema**: Campo `DES_OBIET` senza metadati/classificazione
 - **Dati reali FILE_6**: 3.205 record (**62.5%**) con "NON PREVISTO/ALTRO"
@@ -38,7 +47,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Impatto**: Dati non interpretabili per analisi statistiche
 - **Rischio**: Analisi errate per mancanza di definizione campo
 
-### Distribuzione Temporale Anomala (CRITICO)
+### Distribuzione temporale anomala (CRITICO)
 
 - **Problema**: Distribuzione estremamente sbilanciata dei casi per anno di denuncia
 - **Dati reali File 6**:
@@ -59,7 +68,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Rischio**: Valutazioni distorte dell'andamento dei reati nel tempo
 - **Richiesta**: Documentare quando e come è iniziata la raccolta sistematica di questi dati
 
-### Dati Mancanti Art. 558 bis (CRITICO)
+### Dati mancanti art. 558 bis (CRITICO)
 
 - **Problema**: Dati effettivamente mancanti per reato che richiede sempre relazione identificata
 - **Art. 558 bis (Costrizione o induzione al matrimonio)**: Reato per sua natura richiede SEMPRE relazione vittima-carnefice identificata
@@ -73,7 +82,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Rischio**: Sottostima grave di fenomeni criminali specifici
 - **Richiesta**: Fornire dati completi art. 558 bis periodo 2019-2020
 
-### Dati Mancanti Art. 387 bis (CRITICO)
+### Dati mancanti art. 387 bis (CRITICO)
 
 - **Problema**: Dati effettivamente mancanti per reato che richiede sempre relazione identificata
 - **Art. 387 bis (Violazione provvedimenti allontanamento/avvicinamento)**: Reato per sua natura richiede SEMPRE relazione vittima-autore identificata (basato su provvedimenti giudiziari pre-esistenti)
@@ -87,7 +96,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Rischio**: Valutazione errata efficacia misure di tutela delle vittime
 - **Richiesta**: Fornire dati completi art. 387 bis periodo 2019-2020
 
-### Dati Mancanti Omicidi Partner/Ex Partner (CRITICO)
+### Dati mancanti omicidi partner/ex partner (CRITICO)
 
 - **Problema**: Dati effettivamente mancanti per omicidi con relazione sempre identificata
 - **Omicidi da partner/ex partner**: Reato per sua natura richiede SEMPRE relazione vittima-autore identificata
@@ -107,7 +116,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Rischio**: Valutazione errata fenomeno dei femminicidi e violenza domestica estrema
 - **Richiesta**: Fornire dati completi omicidi partner/ex partner periodo 2019-2022
 
-### Differenza Scope Dati (CRITICO)
+### Differenza scope dati (CRITICO)
 
 - **Problema**: Diversa definizione perimetro analitico tra fonti (solo per art. 583 quinquies)
 - **Art. 583 quinquies**: Non richiede sempre relazione identificata vittima-autore (può includere aggressioni da sconosciuti)
@@ -120,7 +129,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **Impatto**: Analisi statistiche non comparabili per questo articolo
 - **Rischio**: Conclusioni errate se non si considera la diversa metodologia
 
-### Formato Dati Non Standard per Elaborazioni Automatiche (CRITICO)
+### Formato dati non standard per elaborazioni automatiche (CRITICO)
 
 - **Problema**: Struttura file XLSX impedisce elaborazioni automatiche e interoperabilità
 - **File analizzato**: `MI-123-U-A-SD-2025-90_5.xlsx` (10 fogli)
@@ -151,9 +160,9 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - ✅ **Completezza campi**: Tutti i 15 tipi relazione presenti  
 - ✅ **Struttura dati**: Formato CSV standard e pulito  
 
-## Raccomandazioni Strategiche
+## Raccomandazioni strategiche
 
-### Azioni Immediate (Priorità Alta)
+### Azioni immediate (priorità alta)
 
 **Richiesta integrazione dati** al Ministero:
 - Dati completi art. 558 bis periodo 2019-2020 (11 casi mancanti)
@@ -175,7 +184,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - Integrazione codici geografici ISTAT/ISO in colonne dedicate
 - Rimozione righe didascalia narrative da header tabelle
 
-### Azioni Medio Termine (Priorità Media)
+### Azioni medio termine (priorità media)
 
 **Pubblicazione proattiva e continuativa**:
 - **Obiettivo strategico principale**: Passare da rilascio reattivo (FOIA) a pubblicazione proattiva online
@@ -195,14 +204,14 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - Controllo completezza campi geografici
 - Riconciliazione con dati ISTAT
 
-## Allegati Tecnici
+## Allegati tecnici
 
 - **Query SQL validazione** (`query_validazione.sql`)
 - **Tabella confronto ISTAT** (`confronto_istat_file6.csv`)
 - **Checklist metadati** (`checklist_metadati_richiesti.md`)
 - **Template standard** (`template_metadati_standard.md`)
 
-## Prossimi Passi
+## Prossimi passi
 
 - **Revisione report** con Rossella (entro 24h)
 - **Approvazione comunicazione** Ministero

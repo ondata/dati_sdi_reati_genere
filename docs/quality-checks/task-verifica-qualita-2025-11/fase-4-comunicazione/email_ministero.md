@@ -13,59 +13,98 @@ Spettabile Dipartimento Pubblica Sicurezza,
 
 in riferimento alla vostra cortese risposta FOIA (protocollo MI-123-U-A-SD-2025-90_4), abbiamo condotto un'analisi dei file Excel ricevuti (`MI-123-U-A-SD-2025-90_5.xlsx` e `MI-123-U-A-SD-2025-90_6.xlsx`) e, nel nostro desiderio di contribuire costruttivamente al miglioramento della qualità dei dati su questi temi, vorremmo condividere alcune osservazioni che potrebbero risultare utili.
 
-## Osservazioni Tecniche Preliminari
+## Osservazioni tecniche preliminari
 
 **Nota importante**: siamo consapevoli che la nostra analisi potrebbe contenere imprecisioni interpretative, data la complessità dei sistemi SDI. Per questo motivo ci presentiamo in uno spirito collaborativo, pronti ad ascoltare precisazioni e a correggere eventuali errate interpretazioni.
 
 **Premessa metodologica**: valutiamo come "critiche" quelle osservazioni che potrebbero compromettere l'affidabilità statistica dei dati o rendere impossibile la loro corretta interpretazione da parte di ricercatori e analisti. Non si tratta di giudizi di merito sul vostro lavoro, ma di segnalazioni tecniche per migliorare l'usabilità dei dati.
 
-### 1. Struttura dati PROT_SDI
+### Righe duplicate e prodotto cartesiano (CRITICO)
 
-Nel file `MI-123-U-A-SD-2025-90_6.xlsx` abbiamo notato che il campo PROT_SDI presenta alcune caratteristiche che riteniamo critiche o di difficile interpretazione:
+Nel file `MI-123-U-A-SD-2025-90_6.xlsx` abbiamo rilevato **due problemi molto gravi di qualità dei dati** che compromettono completamente l'affidabilità statistica del dataset:
 
-- **5.124 record totali** con **2.644 PROT_SDI unici**
-- **2.480 record (48.4%)** condividono lo stesso PROT_SDI
-- **Esempio**: PGPQ102023002369 compare in 48 record con 6 autori diversi, 1 vittima, 1 tipo reato
+#### Duplicati esatti completi (49.4% del dataset)
 
-**Perché è critico**: Dando per scontato che PROT_SDI identifichi più reati legati allo stesso episodio, riteniamo fondamentale ricevere insieme al file Excel una documentazione completa di tutti i campi. Senza possiamo fare ipotesi interpretative che potrebbero essere errate.
+Analizzando il file con elaborazione completa, abbiamo confermato che:
 
-Saremmo grati se poteste fornire una documentazione tecnica che spieghi la struttura e il significato di tutti i campi del dataset.
+- **5.124 righe totali** nel file originale
+- **2.534 righe (49.4%) sono duplicati esatti completi** - tutti i campi identici
+- **798 gruppi di duplicati**, con casi estremi di **30 righe completamente identiche**
+- Dopo rimozione duplicati: **3.329 righe uniche** e **2.644 eventi unici (PROT_SDI)**
 
-### 2. Campo DES_OBIET
+**Esempio concreto**:
+- PROT_SDI `BSCS352024000004`: 30 righe identiche (stesso evento, stesso reato, stessa vittima, stesso denunciato, tutti i campi uguali)
+- PROT_SDI `BSPC012024000405`: 17 righe identiche
+
+**Perché è critico**: Questi non sono duplicati dovuti a struttura relazionale (più reati o più vittime), ma **errori di estrazione dati** che inflazionano artificialmente tutti i conteggi statistici. Qualsiasi analisi su questi dati senza deduplica produce risultati completamente errati.
+
+#### Prodotto cartesiano tra denunciati e "colpiti da provvedimento"
+
+Anche dopo rimozione dei duplicati esatti, il dataset presenta una struttura a **prodotto cartesiano** che genera righe artificiose:
+
+**Esempio PGPQ102023002369** (dopo deduplica):
+- 1 vittima × 1 reato × 6 denunciati × 6 "colpiti da provvedimento" = **36 righe**
+- Ogni denunciato viene abbinato a OGNI persona colpita da provvedimento
+- Questo crea combinazioni senza relazione diretta tra i soggetti
+
+**Dataset deduplicato (3.329 righe uniche)**:
+- **2.644 eventi unici (PROT_SDI)** - confermato da tutti i nostri output
+- 85% eventi con 1 sola riga
+- 15% eventi con righe multiple dovute a:
+  - Multi-reati (144 eventi)
+  - Multi-vittime (80 eventi)
+  - Multi-denunciati (45 eventi)
+  - **Prodotto cartesiano denunciati × colpiti_da_provv** (causa principale delle righe multiple)
+
+**Perché è critico**:
+
+1. **Impossibile usare i dati per conteggi affidabili** senza una guida dettagliata su come aggregare
+2. **La granularità del dataset non è documentata**: 1 riga = 1 evento? 1 reato? 1 combinazione artificiale?
+3. **Il campo COD_COLP_DA_PROVV genera prodotti cartesiani** che rendono i conteggi inaffidabili
+
+**Domande urgenti**:
+1. I **duplicati esatti** sono un errore di estrazione? Possiamo aspettarci versioni corrette?
+2. Il **prodotto cartesiano** è intenzionale o è un errore nella gestione delle relazioni molti-a-molti?
+3. Qual è la **granularità corretta** del dataset? Come dobbiamo aggregare per conteggi accurati?
+4. Esiste una **documentazione tecnica della struttura relazionale** del database SDI?
+
+Senza questa documentazione, il dataset è **inutilizzabile per analisi statistiche affidabili**.
+
+### Campo DES_OBIET
 
 Abbiamo rilevato nel file `MI-123-U-A-SD-2025-90_6.xlsx` che anche il campo DES_OBIET presenta caratteristiche che lo rendono di difficile interpretazione:
 
-- **3.205 record (62.5%)** con valore "NON PREVISTO/ALTRO"
-- **1.841 record (35.9%)** con valore "PRIVATO CITTADINO"
+- **1.654 eventi (62.5%)** con valore "NON PREVISTO/ALTRO"
+- **950 eventi (35.9%)** con valore "PRIVATO CITTADINO"
 
 **Perché è critico**: non abbiamo documentazione su questo campo. Potreste aiutarci a capire cosa rappresenta esattamente? Si tratta della vittima, del contesto, del luogo?
 
-### 3. Distribuzione temporale
+### Distribuzione temporale
 
 La distribuzione per anno di denuncia nel file `MI-123-U-A-SD-2025-90_6.xlsx` mostra una concentrazione che riteniamo critica per l'analisi temporale:
 
-- 2019: 4 casi
-- 2020: 5 casi
-- 2021: 3 casi
-- 2022: 13 casi
-- 2023: 530 casi
-- 2024: 4.277 casi
+- 2019: 3 casi (0.1%)
+- 2020: 4 casi (0.2%)
+- 2021: 3 casi (0.1%)
+- 2022: 7 casi (0.3%)
+- 2023: 234 casi (9.5%)
+- 2024: 2.208 casi (89.8%)
 
-**Perché è critico**: Il 99.9% dei casi si concentra nel 2023-2024. Questa distribuzione rende il dataset inadeguato per analisi storiche o trend temporali, che sono fondamentali per valutare l'efficacia delle politiche di contrasto alla violenza di genere. Senza sapere se questo riflette l'implementazione progressiva del sistema SDI, una migrazione dati incompleta o altri fattori tecnici, qualsiasi analisi temporale rischia di essere fuorviante.
+**Perché è critico**: Il 99.3% dei casi si concentra nel 2023-2024. Questa distribuzione rende il dataset inadeguato per analisi storiche o trend temporali, che sono fondamentali per valutare l'efficacia delle politiche di contrasto alla violenza di genere. Senza sapere se questo riflette l'implementazione progressiva del sistema SDI, una migrazione dati incompleta o altri fattori tecnici, qualsiasi analisi temporale rischia di essere fuorviante.
 
-### 4. Dati mancanti per reati con relazione obbligatoria
+### Dati mancanti per reati con relazione obbligatoria
 
 Confrontando i dati con il report "Polizia_Un_anno_di_codice_rosso_2020.pdf" (che alleghiamo per vostra comodità), notiamo differenze che riteniamo critiche perché riguardano reati che per loro natura dovrebbero richiedere sempre una relazione identificata vittima-autore:
 
 **Art. 387 bis (violazione provvedimenti allontanamento)**:
 
-- File SDI 2020: 87 casi
+- File SDI 2020: 87 casi (confermato da output array)
 - Report Polizia 2020: 1.741 casi
 - **Dati mancanti: 1.654 casi (95%)**
 
 **Art. 558 bis (costrizione matrimonio)**:
 
-- File SDI 2019-2020: 0 casi
+- File SDI 2019-2020: 0 casi (confermato da output array)
 - Report Polizia 2020: 11 casi
 - **Dati mancanti: 11 casi (100%)**
 
@@ -73,7 +112,7 @@ Confrontando i dati con il report "Polizia_Un_anno_di_codice_rosso_2020.pdf" (ch
 
 Comprendiamo che i perimetri analitici potrebbero essere diversi, ma per questi articoli specifici la differenza sembra indicare dati effettivamente mancanti. Sareste così gentili da aiutarci a capire questa discrepanza?
 
-### 5. Dati mancanti omicidi partner/ex partner - Confronto file 5 vs file 6
+### Dati mancanti omicidi partner/ex partner - Confronto file 5 vs file 6
 
 Confrontando i dati tra i due file Excel ricevuti, notiamo un'altra discrepanza critica per omicidi che per loro natura richiedono sempre una relazione identificata vittima-autore:
 
@@ -95,11 +134,11 @@ Confrontando i dati tra i due file Excel ricevuti, notiamo un'altra discrepanza 
 
 Anche in questo caso, saremmo grati se poteste aiutarci a capire questa discrepanza.
 
-### 6. Formato e struttura dei dati non idonei per elaborazioni automatiche
+### Formato e struttura dei dati non idonei per elaborazioni automatiche
 
 Il file `MI-123-U-A-SD-2025-90_5.xlsx` presenta caratteristiche di strutturazione che, pur rendendo i dati leggibili a schermo, li rendono estremamente difficili da elaborare automaticamente con strumenti di analisi dati:
 
-#### 6.1 Righe di intestazione ridondanti usate come didascalie
+#### Righe di intestazione ridondanti usate come didascalie
 
 Ogni foglio del file inizia con una riga di descrizione narrativa che precede le vere intestazioni di colonna:
 
@@ -122,7 +161,7 @@ Riga 3: AGRIGENTO | 5. TENTATI OMICIDI | 14 | 10 | 11 | ...
 
 **Perché è critico**: Le didascalie in riga 1 impediscono il parsing automatico dei dati. Qualsiasi software di analisi (R, Python, QGIS, ecc.) richiede che la prima riga contenga esclusivamente i nomi delle colonne. Attualmente è necessaria una pre-elaborazione manuale per rimuovere queste righe, introducendo rischio di errori e rallentando significativamente l'analisi.
 
-#### 6.2 Utilizzo di formato wide invece di long
+#### Utilizzo di formato wide invece di long
 
 I dati sono organizzati in formato "wide" (anni come colonne separate) invece che "long" (anni come valori in una colonna):
 
@@ -154,7 +193,7 @@ ALESSANDRIA | 5. TENTATI OMICIDI   | 2019 | 3
 
 Tutti gli standard moderni di dati aperti (W3C, Open Data Charter, AgID) raccomandano il formato long per dati con dimensione temporale.
 
-#### 6.3 Assenza di codici standardizzati per entità geografiche
+#### Assenza di codici standardizzati per entità geografiche
 
 Le entità geografiche (province, regioni, comuni, stati) sono rappresentate solo attraverso denominazioni testuali, senza i corrispondenti codici standardizzati:
 
@@ -170,7 +209,7 @@ Le entità geografiche (province, regioni, comuni, stati) sono rappresentate sol
 - **Analisi territoriali affidabili** senza rischi di errate aggregazioni
 - **Conformità agli standard internazionali** di condivisione dati aperti
 
-#### 6.4 Proposta: doppio formato XLSX + CSV
+#### Proposta: doppio formato XLSX + CSV
 
 Comprendiamo che il formato XLSX attuale possa essere utile per visualizzazione diretta a schermo o stampa. Per questo proponiamo una soluzione che soddisfi entrambe le esigenze:
 
@@ -191,7 +230,7 @@ Questa soluzione rappresenta una best practice consolidata in ambito internazion
 
 Sarebbe possibile adottare questo doppio formato nei rilasci futuri?
 
-## Proposta Collaborativa
+## Proposta collaborativa
 
 Il nostro obiettivo non è critico ma costruttivo. Le osservazioni che abbiamo definito "critiche" lo sono perché potrebbero compromettere l'utilità dei dati per ricercatori, policymaker e società civile che si affidano a questi dati per comprendere e contrastare la violenza di genere.
 
@@ -219,7 +258,7 @@ Siamo a vostra disposizione per:
 Alleghiamo per vostra comodità:
 - File Excel ricevuti: `MI-123-U-A-SD-2025-90_5.xlsx` e `MI-123-U-A-SD-2025-90_6.xlsx`
 - Report Polizia di riferimento: `Polizia_Un_anno_di_codice_rosso_2020.pdf`
-- Nostro report tecnico preliminare con query SQL riproducibili
+- Nostro report tecnico aggiornato con query SQL riproducibili e output processati
 
 ## Contatti
 

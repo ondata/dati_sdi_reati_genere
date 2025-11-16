@@ -1,19 +1,19 @@
-# Sintesi Tecnica per Comunicazione Ministero
+# Sintesi tecnica per comunicazione ministero
 
 **Protocollo**: MI-123-U-A-SD-2025-90  
 **Data**: 2025-11-15  
 **Mittente**: Period Think Tank / datiBeneComune  
 **Destinatario**: Dipartimento Pubblica Sicurezza - Ministero dell'Interno  
 
-## Oggetto: Richiesta Integrazione e Correzione Dati FOIA
+## Oggetto: richiesta integrazione e correzione dati FOIA
 
 ### Contesto
 
 In riferimento alla risposta FOIA MI-123-U-A-SD-2025-90_4 del 15/10/2025, dopo analisi tecnica approfondita dei dati ricevuti, si riscontrano criticità che impattano l'affidabilità statistica e la conformità normativa.
 
-### Issue Tecniche Identificate
+### Issue tecniche identificate
 
-#### Mancanza Metadati Struttura Dati (CRITICO)
+#### Mancanza metadati struttura dati (CRITICO)
 - **File**: MI-123-U-A-SD-2025-90_6.xlsx
 - **Campo**: PROT_SDI 
 - **Problema**: 5.124 record con 2.644 PROT_SDI unici, 2.480 duplicati (48.4%)
@@ -22,7 +22,7 @@ In riferimento alla risposta FOIA MI-123-U-A-SD-2025-90_4 del 15/10/2025, dopo a
 - **Impatto**: Rischio double-counting analisi statistiche
 - **Richiesta**: Documentare se PROT_SDI identifica episodio o singolo reato
 
-#### Campo DES_OBIET Non Documentato (CRITICO)
+#### Campo DES_OBIET non documentato (CRITICO)
 - **File**: MI-123-U-A-SD-2025-90_6.xlsx
 - **Campo**: DES_OBIET
 - **Problema**: 3.205 record (62.5%) con "NON PREVISTO/ALTRO", 1.841 (35.9%) "PRIVATO CITTADINO"
@@ -31,7 +31,7 @@ In riferimento alla risposta FOIA MI-123-U-A-SD-2025-90_4 del 15/10/2025, dopo a
 - **Impatto**: Dati non interpretabili per analisi statistiche
 - **Richiesta**: Definizione campo e dizionario completo valori
 
-#### Differenza Scope Dati (CRITICO)
+#### Differenza scope dati (CRITICO)
 
 - **File**: MI-123-U-A-SD-2025-90_6.xlsx (relazione vittima-autore)
 - **Dati reali 2020**: 87 record totali, 49 episodi unici (PROT_SDI)
@@ -45,7 +45,7 @@ In riferimento alla risposta FOIA MI-123-U-A-SD-2025-90_4 del 15/10/2025, dopo a
 - **Impatto**: Analisi statistiche non comparabili tra le due fonti
 - **Richiesta**: Documentare metodologia e perimetro dati forniti
 
-### Metadati Mancanti
+### Metadati mancanti
 
 Secondo standard DCAT-AP_IT, risultano assenti:
 
@@ -56,7 +56,7 @@ Secondo standard DCAT-AP_IT, risultano assenti:
 - **Metodologia di raccolta** (importante)
 - **Limitazioni e note** (importante)
 
-### Conformità Legge 53/2022
+### Conformità legge 53/2022
 
 **Requisiti soddisfatti (3/6)**:
 - ✅ Tipi relazione V-A completi (15/15)
@@ -68,14 +68,14 @@ Secondo standard DCAT-AP_IT, risultano assenti:
 - ❌ Qualità geografica
 - ❌ Metadati completi
 
-### Allegati Tecnici
+### Allegati tecnici
 
 - **Query SQL validazione** - Riproducibile con DuckDB
 - **Tabella confronto ISTAT** - Dati mancanti 2019-2020
 - **Checklist metadati** - Requisiti DCAT-AP_IT
 - **Report audit completo** - Analisi dettagliata
 
-### Richiesta Formale
+### Richiesta formale
 
 Si richiede formalmente:
 
@@ -84,7 +84,7 @@ Si richiede formalmente:
 - **Definizione campo** DES_OBIET e classificazione utilizzata
 - **Fornitura metadati** completi secondo DCAT-AP_IT
 
-### Tempi e Modalità
+### Tempi e modalità
 
 - **Preferibile**: Fornitura integrazione entro 30 giorni
 - **Formato**: Excel/CSV con metadati completi
