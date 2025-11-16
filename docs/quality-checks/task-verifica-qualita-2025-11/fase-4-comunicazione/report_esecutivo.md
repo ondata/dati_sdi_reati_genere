@@ -13,7 +13,7 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 
 - ✅ **Conformità Legge 53/2022**: 50% (3/6 requisiti soddisfatti)
 - ❌ **Completezza temporale**: 99.9% casi concentrati 2023-2024
-- ❌ **Qualità tecnica**: 6 issue critiche identificate
+- ❌ **Qualità tecnica**: 7 issue critiche identificate
 - ⚠️ **Metadati**: 22% conformità DCAT-AP_IT
 
 ## Issue Critiche Identificate
@@ -114,11 +114,36 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - **File 6**: 1 caso solo nel 2024
 - **Report Polizia 2020**: 56 casi periodo 2019-2020
 - **Possibile spiegazione**: Molti casi del report potrebbero non avere relazione identificata
-- **Fonti ufficiali**: 
+- **Fonti ufficiali**:
   - File Excel: `MI-123-U-A-SD-2025-90_6.xlsx` (foglio "Sheet")
   - Report Polizia: `Polizia_Un_anno_di_codice_rosso_2020.pdf`
 - **Impatto**: Analisi statistiche non comparabili per questo articolo
 - **Rischio**: Conclusioni errate se non si considera la diversa metodologia
+
+### Formato Dati Non Standard per Elaborazioni Automatiche (CRITICO)
+
+- **Problema**: Struttura file XLSX impedisce elaborazioni automatiche e interoperabilità
+- **File analizzato**: `MI-123-U-A-SD-2025-90_5.xlsx` (10 fogli)
+- **Issue identificate**:
+  - **Righe intestazione ridondanti**: Ogni foglio inizia con riga descrittiva narrativa che precede le vere intestazioni colonne
+  - **Formato wide invece di long**: Anni come colonne separate (2019, 2020, 2021...) invece che come valori in colonna "anno"
+  - **Assenza codici geografici standardizzati**: Solo denominazioni testuali per province/regioni/comuni/stati, mancano codici ISTAT/ISO
+- **Esempi concreti**:
+  - Foglio "Omicidi DCPC" riga 1: testo narrativo invece di header
+  - Foglio "Delitti - Commessi": 6 colonne anno (2019-2024) invece di 1 colonna "anno" + 1 colonna "valore"
+  - Campo "Provincia": "AGRIGENTO" senza codice ISTAT provinciale (084)
+- **Standard violati**:
+  - W3C Data on the Web Best Practices
+  - Open Data Charter (tidy data)
+  - AgID Linee Guida Valorizzazione Patrimonio Informativo Pubblico
+  - Eurostat/OECD standard pubblicazione dati
+- **Impatto**:
+  - Pre-elaborazione manuale obbligatoria per ogni analisi
+  - Impossibile incrocio automatico con altre fonti (ISTAT, banche dati amministrative)
+  - Rischio errori umani in fase di pulizia dati
+  - Non conformità standard internazionali open data
+- **Rischio**: Dati inutilizzabili per ricerca riproducibile e policy-making data-driven
+- **Soluzione proposta**: Doppio formato XLSX (visualizzazione) + CSV (elaborazioni automatiche con formato long, codici geografici, no didascalie)
 
 ## Punti di Eccellenza
 
@@ -144,11 +169,25 @@ L'audit completo dei dati FOIA ricevuti dal Ministero dell'Interno rivela **crit
 - Documentazione scope e metodologia
 - Timestamp estrazione dati SDI
 
+**Standardizzazione formato dati**:
+- Adozione doppio formato XLSX + CSV
+- Conversione a formato long (tidy data) per serie temporali
+- Integrazione codici geografici ISTAT/ISO in colonne dedicate
+- Rimozione righe didascalia narrative da header tabelle
+
 ### Azioni Medio Termine (Priorità Media)
+
+**Pubblicazione proattiva e continuativa**:
+- **Obiettivo strategico principale**: Passare da rilascio reattivo (FOIA) a pubblicazione proattiva online
+- **Portale open data dedicato**: Sezione specifica per dati violenza di genere accessibile a ricercatori, giornalisti, società civile
+- **Frequenza aggiornamenti**: Trimestrale invece di annuale (fenomeno continuo richiede monitoraggio costante)
+- **Documentazione tecnica completa**: Metadati, dizionario dati, note metodologiche
+- **Best practice internazionali**: Allineamento a standard UK, Spagna, Francia su trasparenza dati violenza di genere
+- **Impatto atteso**: Maggiore tempestività analisi, supporto policy-making data-driven, accountability pubblica
 
 **Sviluppo dashboard monitoraggio**:
 - KPI qualità dati in real-time
-- All automatici per anomalie
+- Alert automatici per anomalie
 - Report periodici conformità
 
 **Standardizzazione processi ETL**:

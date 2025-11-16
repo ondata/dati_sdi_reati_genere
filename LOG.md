@@ -1,5 +1,28 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2025-11-16
+
+### Aggiornamento Documenti Comunicazione Ministero
+
+**Issue critica #7 aggiunta**: Formato dati non standard per elaborazioni automatiche
+- Righe intestazione ridondanti (didascalie narrative)
+- Formato wide invece long (anni come colonne vs valori)
+- Assenza codici geografici ISTAT/ISO
+
+**Raccomandazione strategica aggiunta**: Pubblicazione proattiva trimestrale
+- Portale open data dedicato
+- Frequenza trimestrale vs annuale
+- Allineamento standard internazionali (UK, Spagna, Francia)
+
+**Documenti aggiornati**:
+- `report_esecutivo.md`: 7 issue critiche (era 6)
+- `email_ministero.md`: punto 6 con 4 sotto-punti formato dati
+- Proposta doppio formato: XLSX (visualizzazione) + CSV (elaborazioni)
+
+**Allineamento completo** email_ministero.md ↔ report_esecutivo.md
+
+---
+
 ## 2025-11-15
 
 ### Audit Qualità Completo Dati FOIA Ministero
