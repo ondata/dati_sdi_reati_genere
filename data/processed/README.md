@@ -9,14 +9,29 @@
 
 Il file Excel originale presentava due criticità principali che lo rendevano inutilizzabile per analisi statistiche affidabili:
 
-1. **49.4% di duplicati esatti** - 2.534 righe completamente identiche dovute a errore di estrazione
-2. **Prodotto cartesiano** - relazione artificiale tra denunciati e colpiti da provvedimento che generava combinazioni senza senso logico
+- **49.4% di duplicati esatti** - 2.534 righe completamente identiche dovute a errore di estrazione
+- **Prodotto cartesiano** - relazione artificiale tra denunciati e colpiti da provvedimento che generava combinazioni senza senso logico
+
+### Premessa: I due problemi del file XLSX
+
+Il file Excel di input conteneva due problemi distinti:
+
+**Duplicati (errore tecnico):**
+- Righe completamente identiche in tutti i campi
+- Esempio: evento `BSCS352024000004` con 30 righe identiche
+- Causa: errore nell'estrazione dati dal sistema SDI
+
+**Prodotto cartesiano (struttura non documentata):**
+- Quando un evento ha più denunciati E più persone colpite da provvedimento
+- Ogni denunciato viene abbinato a OGNI persona colpita da provvedimento
+- Esempio: evento `PGPQ102023002369` con 6 denunciati × 6 colpiti_provv = 36 righe
+- Le combinazioni generate includono tutti gli abbinamenti possibili tra denunciati e persone colpite da provvedimento
 
 ## Output disponibili
 
 Sono stati generati 3 tipi di output per soddisfare diverse esigenze analitiche:
 
-### 1. Prodotto cartesiano (dedupplicato non aggregato)
+### Prodotto cartesiano (dedupplicato non aggregato)
 
 **File:** `dataset_cartesiano.csv`
 **Righe:** 3.329
@@ -33,7 +48,7 @@ Sono stati generati 3 tipi di output per soddisfare diverse esigenze analitiche:
 - Richiede documentazione esplicita: "1 riga = 1 combinazione"
 - Conteggi eventi richiedono `count(DISTINCT PROT_SDI)`
 
-### 2. Tabella unica con array (soluzione consigliata)
+### Tabella unica con array (soluzione consigliata)
 
 **File:** `dataset_array.csv`
 **Righe:** 2.644 (1 per evento)
@@ -52,7 +67,7 @@ Sono stati generati 3 tipi di output per soddisfare diverse esigenze analitiche:
 - Nessun prodotto cartesiano artificiale
 - Tutte le relazioni preservate
 
-### 3. Modello relazionale (database)
+### Modello relazionale (database)
 
 **File:** 5 tabelle separate
 - `relazionale_eventi.csv` (2.644 righe)
@@ -121,7 +136,7 @@ erDiagram
         string SEX_COLP_PROVV
         int ETA_COLP_PROVV
         string NAZIONE_NASCITA_COLP_PROVV
-    }
+}
 ```
 
 ## Statistiche comparativa
