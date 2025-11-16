@@ -21,7 +21,7 @@ in riferimento alla vostra cortese risposta FOIA (protocollo MI-123-U-A-SD-2025-
 
 ### Righe duplicate e prodotto cartesiano (CRITICO)
 
-Nel file `MI-123-U-A-SD-2025-90_6.xlsx` abbiamo rilevato **due problemi molto gravi di qualità dei dati** che compromettono completamente l'affidabilità statistica del dataset:
+Nel file `MI-123-U-A-SD-2025-90_6.xlsx` abbiamo rilevato **due problemi importanti di qualità dei dati** che compromettono l'affidabilità statistica del dataset:
 
 #### Duplicati esatti completi (49.4% del dataset)
 
@@ -60,15 +60,13 @@ Anche dopo rimozione dei duplicati esatti, il dataset presenta una struttura a *
 
 1. **Impossibile usare i dati per conteggi affidabili** senza una guida dettagliata su come aggregare
 2. **La granularità del dataset non è documentata**: 1 riga = 1 evento? 1 reato? 1 combinazione artificiale?
-3. **Il campo COD_COLP_DA_PROVV genera prodotti cartesiani** che rendono i conteggi inaffidabili
 
-**Domande urgenti**:
-1. I **duplicati esatti** sono un errore di estrazione? Possiamo aspettarci versioni corrette?
-2. Il **prodotto cartesiano** è intenzionale o è un errore nella gestione delle relazioni molti-a-molti?
-3. Qual è la **granularità corretta** del dataset? Come dobbiamo aggregare per conteggi accurati?
-4. Esiste una **documentazione tecnica della struttura relazionale** del database SDI?
+**Domande**:
+- I **duplicati esatti** sono un errore di estrazione? Possiamo aspettarci versioni corrette?
+- Qual è la **granularità corretta** del dataset? Come dobbiamo aggregare per conteggi accurati?
+- Esiste una **documentazione tecnica della struttura relazionale** del database SDI?
 
-Senza questa documentazione, il dataset è **inutilizzabile per analisi statistiche affidabili**.
+Senza questa documentazione, il dataset è **difficilmente utilizzabile per analisi statistiche affidabili**.
 
 ### Campo DES_OBIET
 
@@ -77,7 +75,7 @@ Abbiamo rilevato nel file `MI-123-U-A-SD-2025-90_6.xlsx` che anche il campo DES_
 - **1.654 eventi (62.5%)** con valore "NON PREVISTO/ALTRO"
 - **950 eventi (35.9%)** con valore "PRIVATO CITTADINO"
 
-**Perché è critico**: non abbiamo documentazione su questo campo. Potreste aiutarci a capire cosa rappresenta esattamente? Si tratta della vittima, del contesto, del luogo?
+**Perché è critico**: non abbiamo documentazione su questo campo. Potreste aiutarci a capire cosa rappresenta esattamente? **Si tratta della vittima, del contesto, del luogo**?
 
 ### Distribuzione temporale
 
@@ -141,14 +139,6 @@ Il file `MI-123-U-A-SD-2025-90_5.xlsx` presenta caratteristiche di strutturazion
 #### Righe di intestazione ridondanti usate come didascalie
 
 Ogni foglio del file inizia con una riga di descrizione narrativa che precede le vere intestazioni di colonna:
-
-**Esempio (foglio "Omicidi DCPC")**:
-
-```
-Riga 1: "Omicidi volontari consumati in Italia (fonte D.C.P.C. - dati operativi)"
-Riga 2: [vuota] | 2019 | 2020 | 2021 | ...
-Riga 3: "Omicidi commessi" | 321 | 287 | 312 | ...
-```
 
 **Esempio (foglio "Delitti - Commessi")**:
 
@@ -226,7 +216,28 @@ Comprendiamo che il formato XLSX attuale possa essere utile per visualizzazione 
 - Encoding UTF-8 con BOM
 - Separatore punto e virgola (standard italiano)
 
-Questa soluzione rappresenta una best practice consolidata in ambito internazionale (es. Eurostat, OECD, UK ONS) e nazionale (ISTAT) e permetterebbe di rendere i dati immediatamente utilizzabili per analisi riproducibili senza pre-elaborazioni manuali.
+#### Nota specifica per il file 6: gestione del prodotto cartesiano
+
+Per il file `MI-123-U-A-SD-2025-90_6.xlsx`, che presenta il problema del prodotto cartesiano tra denunciati e "colpiti da provvedimento", proponiamo due soluzioni alternative:
+
+**Opzione A: Documentazione esplicita del prodotto cartesiano**
+- Mantenere il formato flat attuale
+- Fornire documentazione tecnica che spieghi chiaramente:
+  - Quando e perché si genera il prodotto cartesiano
+  - Come aggregare correttamente i dati per conteggi affidabili
+  - Qual è la granularità esatta del dataset (1 riga = 1 combinazione)
+
+**Opzione B: Struttura relazionale multi-tabella (raccomandata)**
+- Fornire i dati in formato relazionale con tabelle separate:
+  - `eventi.csv` (dati principali dell'evento)
+  - `vittime.csv` (anagrafiche vittime)
+  - `denunciati.csv` (anagrafiche denunciati)
+  - `colpiti_provv.csv` (persone colpite da provvedimento)
+  - `reati.csv` (tipologie di reato)
+
+Questa struttura elimina il problema del prodotto cartesiano alla fonte e rappresenta lo standard per database relazionali.
+
+Questa soluzione rappresenta una *best practice* consolidata in ambito internazionale.
 
 Sarebbe possibile adottare questo doppio formato nei rilasci futuri?
 
@@ -234,17 +245,15 @@ Sarebbe possibile adottare questo doppio formato nei rilasci futuri?
 
 Il nostro obiettivo non è critico ma costruttivo. Le osservazioni che abbiamo definito "critiche" lo sono perché potrebbero compromettere l'utilità dei dati per ricercatori, policymaker e società civile che si affidano a questi dati per comprendere e contrastare la violenza di genere.
 
-### Obiettivo principale: pubblicazione online regolare
+### Pubblicazione online regolare
 
-L'obiettivo per noi più importante, tuttavia, va oltre il miglioramento della qualità tecnica dei dati: **auspichiamo che il Dipartimento possa pubblicare questi dataset online in modo proattivo e continuativo**, non soltanto come risposte a richieste FOIA.
+Un obiettivo per noi molto importante, tuttavia, va oltre il miglioramento della qualità tecnica dei dati: **auspichiamo che il Dipartimento possa pubblicare questi dataset online in modo proattivo e continuativo**, non soltanto come risposte a richieste FOIA.
 
 La violenza di genere è un fenomeno che si sviluppa in modo continuo e richiede monitoraggio costante. Per questo motivo suggeriamo:
 
 - **Pubblicazione proattiva**: rendere disponibili i dati su un portale open data dedicato, accessibile a ricercatori, giornalisti, organizzazioni della società civile e cittadini
-- **Frequenza trimestrale**: aggiornamenti ogni tre mesi invece che annuali, per permettere analisi tempestive e supportare interventi di policy più rapidi ed efficaci
+- **Frequenza trimestrale**: aggiornamenti ogni tre mesi invece che annuali, per permettere analisi più continue e supportare interventi di *policy* più rapidi ed efficaci
 - **Documentazione tecnica**: accompagnare i dati con metadati completi, dizionario dati e note metodologiche
-
-Questa pratica è già consolidata in molti paesi europei (UK, Spagna, Francia) e permetterebbe all'Italia di allinearsi agli standard internazionali di trasparenza su un tema di rilevanza sociale così critica.
 
 Siamo a vostra disposizione per:
 
@@ -253,28 +262,4 @@ Siamo a vostra disposizione per:
 - aiutare a testare la qualità dei dataset prima della loro diffusione
 - supportare tecnicamente l'implementazione di un sistema di pubblicazione regolare
 
-## Allegati
-
-Alleghiamo per vostra comodità:
-- File Excel ricevuti: `MI-123-U-A-SD-2025-90_5.xlsx` e `MI-123-U-A-SD-2025-90_6.xlsx`
-- Report Polizia di riferimento: `Polizia_Un_anno_di_codice_rosso_2020.pdf`
-- Nostro report tecnico aggiornato con query SQL riproducibili e output processati
-
-## Contatti
-
-Restiamo a vostra completa disposizione per qualsiasi chiarimento o approfondimento. Siamo convinti che un dialogo costruttivo possa portare a un miglioramento complessivo della qualità degli opendata sulla violenza di genere.
-
 Ringraziandovi ancora per la disponibilità e l'attenzione, porgiamo distinti saluti.
-
-**Period Think Tank / datiBeneComune**
-[Contatto di riferimento]
-[Email]
-[Telefono]
-
----
-
-**In allegato**:
-- MI-123-U-A-SD-2025-90_5.xlsx
-- MI-123-U-A-SD-2025-90_6.xlsx
-- Polizia_Un_anno_di_codice_rosso_2020.pdf
-- Report tecnico analisi preliminare
