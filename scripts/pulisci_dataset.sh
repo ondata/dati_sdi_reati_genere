@@ -76,6 +76,9 @@ COPY (
 ) TO '${OUTPUT_CARTESIANO}' (HEADER, DELIMITER ',');
 "
 
+# Rimuovi le stringhe "(null)" dal CSV
+sed -i 's/(null)//g' "${OUTPUT_CARTESIANO}"
+
 echo "Output 1 salvato in: ${OUTPUT_CARTESIANO}"
 
 # STEP 3: OUTPUT 2 - Tabella unica con array (soluzione attuale)
@@ -135,6 +138,9 @@ COPY (
 ) TO '${OUTPUT_ARRAY}' (HEADER, DELIMITER ',');
 "
 
+# Rimuovi le stringhe "(null)" e gli array vuoti dal CSV
+sed -i -e 's/(null)//g' -e "s/\[''\]//g" "${OUTPUT_ARRAY}"
+
 echo "Output 2 salvato in: ${OUTPUT_ARRAY}"
 
 # STEP 4: OUTPUT 3 - Modello relazionale (più tabelle)
@@ -166,6 +172,8 @@ COPY (
 ) TO '${OUTPUT_EVENTI}' (HEADER, DELIMITER ',');
 "
 
+sed -i 's/(null)//g' "${OUTPUT_EVENTI}"
+
 # Tabella reati
 OUTPUT_REATI="${OUTPUT_DIR}/relazionale_reati.csv"
 duckdb -c "
@@ -185,6 +193,8 @@ COPY (
 ) TO '${OUTPUT_REATI}' (HEADER, DELIMITER ',');
 "
 
+sed -i 's/(null)//g' "${OUTPUT_REATI}"
+
 # Tabella vittime
 OUTPUT_VITTIME="${OUTPUT_DIR}/relazionale_vittime.csv"
 duckdb -c "
@@ -203,6 +213,8 @@ COPY (
   WHERE COD_VITTIMA IS NOT NULL
 ) TO '${OUTPUT_VITTIME}' (HEADER, DELIMITER ',');
 "
+
+sed -i 's/(null)//g' "${OUTPUT_VITTIME}"
 
 # Tabella denunciati
 OUTPUT_DENUNCIATI="${OUTPUT_DIR}/relazionale_denunciati.csv"
@@ -224,6 +236,8 @@ COPY (
 ) TO '${OUTPUT_DENUNCIATI}' (HEADER, DELIMITER ',');
 "
 
+sed -i 's/(null)//g' "${OUTPUT_DENUNCIATI}"
+
 # Tabella colpiti da provvedimento
 OUTPUT_COLPITI="${OUTPUT_DIR}/relazionale_colpiti_provv.csv"
 duckdb -c "
@@ -242,6 +256,8 @@ COPY (
   WHERE COD_COLP_DA_PROVV IS NOT NULL
 ) TO '${OUTPUT_COLPITI}' (HEADER, DELIMITER ',');
 "
+
+sed -i 's/(null)//g' "${OUTPUT_COLPITI}"
 
 echo "Output 3 salvato in:"
 echo "  - Eventi: ${OUTPUT_EVENTI}"
@@ -312,12 +328,12 @@ CREATE OR REPLACE TABLE colpiti_provv (
     FOREIGN KEY (PROT_SDI) REFERENCES eventi(PROT_SDI)
 );
 
--- Importazione dati con gestione null
-COPY eventi FROM '${OUTPUT_EVENTI}' (HEADER, DELIMITER ',', NULLSTR '(null)', AUTO_DETECT TRUE);
-COPY reati FROM '${OUTPUT_REATI}' (HEADER, DELIMITER ',', NULLSTR '(null)', AUTO_DETECT TRUE);
-COPY vittime FROM '${OUTPUT_VITTIME}' (HEADER, DELIMITER ',', NULLSTR '(null)', AUTO_DETECT TRUE);
-COPY denunciati FROM '${OUTPUT_DENUNCIATI}' (HEADER, DELIMITER ',', NULLSTR '(null)', AUTO_DETECT TRUE);
-COPY colpiti_provv FROM '${OUTPUT_COLPITI}' (HEADER, DELIMITER ',', NULLSTR '(null)', AUTO_DETECT TRUE);
+-- Importazione dati con gestione null (celle vuote = NULL)
+COPY eventi FROM '${OUTPUT_EVENTI}' (HEADER, DELIMITER ',', NULLSTR '', AUTO_DETECT TRUE);
+COPY reati FROM '${OUTPUT_REATI}' (HEADER, DELIMITER ',', NULLSTR '', AUTO_DETECT TRUE);
+COPY vittime FROM '${OUTPUT_VITTIME}' (HEADER, DELIMITER ',', NULLSTR '', AUTO_DETECT TRUE);
+COPY denunciati FROM '${OUTPUT_DENUNCIATI}' (HEADER, DELIMITER ',', NULLSTR '', AUTO_DETECT TRUE);
+COPY colpiti_provv FROM '${OUTPUT_COLPITI}' (HEADER, DELIMITER ',', NULLSTR '', AUTO_DETECT TRUE);
 
 -- Creazione indici per performance
 CREATE INDEX idx_reati_prot_sdi ON reati(PROT_SDI);
