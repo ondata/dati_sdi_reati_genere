@@ -68,10 +68,12 @@ Data sources:
 
 ```
 scripts/
-  etl_5.sh     # Process "comunicazioni_sdi" (victim-perpetrator relationships)
-  etl_6.sh     # Process "reati_sdi" (crime statistics)
-  task/        # Task-specific scripts (e.g., issue_30.sh)
-  tmp/         # Temporary processing files
+  etl_5.sh                  # Process "comunicazioni_sdi" (victim-perpetrator relationships)
+  etl_6.sh                  # Process "reati_sdi" (crime statistics)
+  pulisci_dataset.sh        # General dataset cleaning utility
+  find_unique_combinations.py  # Python script for data analysis
+  task/                     # Task-specific scripts (e.g., issue_30.sh)
+  tmp/                      # Temporary processing files
 
 data/
   rawdata/     # Original Excel files from Ministry
