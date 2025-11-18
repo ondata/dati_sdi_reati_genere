@@ -1,5 +1,83 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2025-11-18
+
+### Arricchimento Dati Geografici e Nazioni
+
+**Fuzzy Matching Comuni**:
+- Implementato matching automatico per 19 comuni con caratteri speciali/apostrofi
+- Threshold similarità: ≥95% (algoritmo Levenshtein)
+- Tool utilizzato: `csvmatch`
+- Risultati: 100% dei comuni matchati con successo
+- Esempi correzioni: `SALO'` → `Salò` (017170), `CANTU'` → `Cantù` (013041)
+- Output: `scripts/tmp/fuzzy_match_comuni.csv`
+
+**Aggiornamento Automatico Dataset**:
+- Integrato STEP 7 nello script `pulisci_dataset.sh`
+- Aggiornamento automatico di 3 dataset CSV con comuni corretti e codici ISTAT
+- Dataset aggiornati:
+  - `dataset_cartesiano.csv`: aggiunta colonna `CODICE_COMUNE`
+  - `dataset_array.csv`: aggiunta colonna `CODICE_COMUNE`
+  - `relazionale_eventi.csv`: aggiornamento `COMUNE` e `CODICE_COMUNE`
+- Database DuckDB: tabella `eventi` aggiornata con dati corretti
+
+**Codici ISO Nazioni di Nascita**:
+- Aggiunta colonna ISO alpha-3 alle tabelle relazionali:
+  - `relazionale_vittime.csv`: `NAZIONE_NASCITA_VITTIMA_ISO`
+  - `relazionale_denunciati.csv`: `NAZIONE_NASCITA_DENUNCIATO_ISO`
+  - `relazionale_colpiti_provv.csv`: `NAZIONE_NASCITA_COLP_PROVV_ISO`
+- Espansione `resources/codici_stati.csv` da 8 a 105 stati
+- Mappatura completa di tutti gli stati presenti nei dataset
+- Statistiche copertura:
+  - Vittime: 2.821/2.821 (100% con ISO)
+  - Denunciati: 2.432/2.856 (85% - i restanti hanno NAZIONE NULL)
+  - Colpiti provv: 2.297/2.762 (83% - i restanti hanno NAZIONE NULL)
+
+**File modificati**:
+- `scripts/pulisci_dataset.sh`: 
+  - STEP 6: fuzzy matching comuni mancanti
+  - STEP 7: aggiornamento dataset con comuni matchati
+  - Aggiunta LEFT JOIN con `codici_stati.csv` per vittime, denunciati, colpiti_provv
+- `resources/codici_stati.csv`: +97 stati con codici ISO alpha-3 e alpha-2
+- Schema database DuckDB: aggiunte colonne `*_ISO` alle tabelle relazionali
+
+**Impatto Qualità Dati**:
+- Normalizzazione nomi comuni: 19 correzioni (risolti problemi apostrofi)
+- Arricchimento geografico: +26 codici ISTAT via fuzzy matching
+- Arricchimento internazionale: 105 stati con codici ISO standardizzati
+- Interoperabilità: compatibilità con standard ISO 3166-1
+
+> 📋 **Documentazione completa**: Per l'analisi dettagliata dei problemi geografici identificati e le soluzioni implementate, consultare [docs/problemi_nomi_geografici.md](../docs/problemi_nomi_geografici.md)
+
+---
+
+### Miglioramenti Script Pulizia Dataset
+
+**Risoluzione issue valori NULL nei CSV**:
+- Rimosso stringa letterale `(null)` dai file CSV esportati
+- Implementato `sed` post-processing per sostituire `(null)` con celle vuote
+- Rimosso array vuoti `['']` dai file con aggregazioni
+- Configurato DuckDB per interpretare celle vuote come NULL (`NULLSTR ''`)
+
+**Aggiunta codici ISO 3166-1 alpha-3 per gli stati**:
+- Creato file `resources/codici_stati.csv` con mappatura stati → codici ISO
+- Aggiunto campo `STATO_ISO` a tutti gli output (cartesiano, array, relazionale)
+- Gestione automatica: eventi senza STATO mappati a `ITALIA → ITA`
+- Codici speciali: `UNK` (IGNOTO), `INT` (ACQUE INTERNAZIONALI)
+- Supporto completo database DuckDB con nuovo campo nella tabella `eventi`
+
+**File modificati**:
+- `scripts/pulisci_dataset.sh`: LEFT JOIN con tabella codici_stati
+- `resources/codici_stati.csv`: 7 stati mappati (ITA, FRA, ESP, CHE, LKA, UNK, INT)
+- Schema database: aggiunto campo `STATO_ISO VARCHAR` alla tabella `eventi`
+
+**Statistiche codici ISO**:
+- 2.540 eventi → ITA (Italia)
+- 97 eventi → UNK (ignoto)
+- 7 eventi → codici esteri (FRA, ESP, CHE, LKA, INT)
+
+---
+
 ## 2025-11-16
 
 ### Aggiornamento Documenti Comunicazione Ministero

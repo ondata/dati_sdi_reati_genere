@@ -12,7 +12,7 @@ Il Dipartimento ha risposto trasmettendo due file Excel:
 
     - Omicidi, tentati omicidi, lesioni dolose, percosse, minacce
     - Violenze sessuali, atti persecutori, maltrattamenti in famiglia
-    - Reati specifici del Codice Rosso (es. costrizione al matrimonio, diffusione illecita di immagini, deformazione del viso, violazioni di allontanamento)
+    - Reati specifici del Codice Rosso (es. costrizione al matrimonio, diffusione illecita di imagini, deformazione del viso, violazioni di allontanamento)
     - Incidenza delle vittime di sesso femminile
     - Denunce e arresti
 
@@ -27,3 +27,33 @@ Il Dipartimento ha risposto trasmettendo due file Excel:
 2. **Comunicazioni SDI con indicazione della relazione vittima-autore**, disaggregate fino al livello comunale, nei casi in cui tale relazione risulti compilata nel sistema.
 
 I dati ottenuti sono resi disponibili pubblicamente e liberamente riutilizzabili da parte dell'iniziativa **datiBeneComune**, con l'obiettivo di favorire trasparenza, ricerca e consapevolezza sul fenomeno della violenza di genere in Italia.
+
+## Dataset Processati
+
+I dati grezzi sono stati processati e arricchiti con:
+
+- **Codici ISTAT** per regioni, province e comuni (con fuzzy matching per normalizzare i nomi)
+- **Codici ISO 3166-1 alpha-3** per gli stati delle nazioni di nascita
+- **Normalizzazione nomi comuni** (es. `SALO'` → `Salò`)
+- **Formato relazionale** ottimizzato per analisi
+
+> 📋 **Documentazione problemi geografici**: Vedi [docs/problemi_nomi_geografici.md](docs/problemi_nomi_geografici.md) per un'analisi dettagliata dei 51 problemi identificati e risolti nei nomi di regioni, province e comuni.
+
+### Output Disponibili
+
+1. **Dataset Cartesiano** (`data/processed/dataset_cartesiano.csv`): prodotto cartesiano dedupplicato non aggregato
+2. **Dataset Array** (`data/processed/dataset_array.csv`): un evento per riga con array per vittime/denunciati/colpiti
+3. **Modello Relazionale** (`data/processed/relazionale_*.csv`): tabelle normalizzate
+   - `relazionale_eventi.csv`: informazioni sull'evento
+   - `relazionale_reati.csv`: reati associati agli eventi
+   - `relazionale_vittime.csv`: vittime (con nazione nascita ISO)
+   - `relazionale_denunciati.csv`: denunciati (con nazione nascita ISO)
+   - `relazionale_colpiti_provv.csv`: colpiti da provvedimento (con nazione nascita ISO)
+4. **Database DuckDB** (`data/processed/reati_sdi_relazionale.duckdb`): database relazionale pronto per query SQL
+
+### Statistiche
+
+- **2.644 eventi unici** (da 5.124 righe originali)
+- **19 comuni corretti** tramite fuzzy matching (≥95% similarità)
+- **105 stati mappati** con codici ISO alpha-3
+- **100% dei record con nazione specificata** hanno codice ISO
