@@ -84,33 +84,79 @@ Non gestiva i problemi critici di qualità dati:
 
 ## pulisci_dataset.sh
 
-Script che risolve i problemi di qualità identificati nel dataset SDI delle comunicazioni con relazione vittima-autore.
+Script completo che risolve i problemi di qualità dei dati SDI e genera dataset arricchiti con codici geografici e internazionali.
 
 **Problemi risolti:**
 
 1. **Duplicati esatti completi** (49.4% delle righe nel dataset originale)
 2. **Prodotto cartesiano** denunciati × colpiti da provvedimento
+3. **Nomi comuni con caratteri speciali** (es. apostrofi non standard)
+4. **Assenza codici ISTAT** per comuni non matchati direttamente
+5. **Assenza codici ISO** per nazioni di nascita
 
-**Cosa fa:**
+**Pipeline di elaborazione (7 step):**
 
-- Rimuove duplicati esatti usando `SELECT DISTINCT`
-- Aggrega i dati per evento (`PROT_SDI`) eliminando il prodotto cartesiano
-- Converte campi multipli (denunciati, vittime, colpiti) in array
-- Genera conteggi affidabili per ogni tipologia di soggetto
+**STEP 1-3:** Generazione output base
+- Prodotto cartesiano dedupplicato
+- Dataset con array aggregati
+- Modello relazionale (5 tabelle CSV)
+
+**STEP 4:** Creazione database DuckDB relazionale
+
+**STEP 5:** Statistiche finali
+
+**STEP 6:** Fuzzy matching comuni mancanti
+- Estrae comuni senza codice ISTAT da `relazionale_eventi.csv`
+- Esegue fuzzy matching con tabella ISTAT (threshold ≥95%, algoritmo Levenshtein)
+- Tool: `csvmatch`
+- Output: `scripts/tmp/fuzzy_match_comuni.csv`
+
+**STEP 7:** Aggiornamento dataset con comuni matchati
+- Aggiorna nomi comuni con forma corretta ISTAT (es. `SALO'` → `Salò`)
+- Aggiunge codici ISTAT ai comuni matchati
+- Applica correzioni a tutti i dataset CSV e al database DuckDB
 
 **File generati:**
 
-- `data/processed/dataset_pulito.csv` - Dataset pulito (1 riga = 1 evento)
-- `data/processed/pulizia_log.txt` - Log delle operazioni di pulizia
+1. **Dataset Cartesiano** - `data/processed/dataset_cartesiano.csv`
+   - Prodotto cartesiano dedupplicato non aggregato
+   - Include `CODICE_COMUNE` (aggiunto da fuzzy matching)
 
-**Struttura dataset pulito:**
+2. **Dataset Array** - `data/processed/dataset_array.csv`
+   - 1 riga = 1 evento con array per soggetti multipli
+   - Include `CODICE_COMUNE` (aggiunto da fuzzy matching)
 
-Ogni riga rappresenta un evento unico identificato da `PROT_SDI`. I soggetti multipli sono aggregati in array:
+3. **Modello Relazionale** - `data/processed/relazionale_*.csv`
+   - `relazionale_eventi.csv`: eventi con codici ISTAT geografici
+   - `relazionale_reati.csv`: reati associati
+   - `relazionale_vittime.csv`: vittime con `NAZIONE_NASCITA_VITTIMA_ISO`
+   - `relazionale_denunciati.csv`: denunciati con `NAZIONE_NASCITA_DENUNCIATO_ISO`
+   - `relazionale_colpiti_provv.csv`: colpiti con `NAZIONE_NASCITA_COLP_PROVV_ISO`
 
-- `COD_VITTIME`, `N_VITTIME`, `SESSO_VITTIME`, `ETA_VITTIME`
-- `COD_DENUNCIATI`, `N_DENUNCIATI`, `SESSO_DENUNCIATI`, `ETA_DENUNCIATI`
-- `COD_COLPITI_PROVV`, `N_COLPITI_PROVV`
-- `RELAZIONI_AUTORE_VITTIMA`
+4. **Database DuckDB** - `data/processed/reati_sdi_relazionale.duckdb`
+   - Database relazionale con foreign keys
+   - Indici per performance
+   - Tabelle con codici ISO e ISTAT
+
+**Arricchimenti dati:**
+
+- **Codici ISTAT**: regioni, province, comuni (con fuzzy matching ≥95%)
+- **Codici ISO 3166-1 alpha-3**: stati di nascita (105 stati mappati)
+- **Normalizzazione nomi**: 19 comuni corretti (apostrofi e caratteri speciali)
+
+**Struttura dataset relazionale:**
+
+Tabella `eventi`:
+- Identificazione: `PROT_SDI` (primary key)
+- Temporale: `DATA_INIZIO_FATTO`, `DATA_FINE_FATTO`, `DATA_DENUNCIA`
+- Geografica: `STATO`, `STATO_ISO`, `REGIONE`, `CODICE_REGIONE`, `PROVINCIA`, `CODICE_PROVINCIA`, `COMUNE`, `CODICE_COMUNE`
+- Luogo: `LUOGO_SPECIF_FATTO`, `DES_OBIET`
+
+Tabelle soggetti (con foreign key su `PROT_SDI`):
+- `vittime`: `COD_VITTIMA`, `SEX_VITTIMA`, `ETA_VITTIMA`, `NAZIONE_NASCITA_VITTIMA`, `NAZIONE_NASCITA_VITTIMA_ISO`
+- `denunciati`: `COD_DENUNCIATO`, `SESSO_DENUNCIATO`, `ETA_DENUNCIATO`, `NAZIONE_NASCITA_DENUNCIATO`, `NAZIONE_NASCITA_DENUNCIATO_ISO`, `RELAZIONE_AUTORE_VITTIMA`
+- `colpiti_provv`: `COD_COLP_DA_PROVV`, `SEX_COLP_PROVV`, `ETA_COLP_PROVV`, `NAZIONE_NASCITA_COLP_PROVV`, `NAZIONE_NASCITA_COLP_PROVV_ISO`
+- `reati`: `ART`, `T_NORMA`, `RIF_LEGGE`, `DES_REA_EVE`
 
 **Come usarlo:**
 
@@ -118,38 +164,66 @@ Ogni riga rappresenta un evento unico identificato da `PROT_SDI`. I soggetti mul
 bash scripts/pulisci_dataset.sh
 ```
 
+**Statistiche output:**
+
+- **2.644 eventi unici** (da 5.124 righe originali)
+- **19 comuni corretti** tramite fuzzy matching (100% successo)
+- **105 stati mappati** con codici ISO alpha-3
+- **100% copertura ISO** per nazioni specificate
+
 **Vantaggi:**
 
-1. 1 riga = 1 evento (granularità chiara)
-2. Conteggi affidabili (`count(*)` = numero eventi reali)
-3. Relazioni preservate (tutti i soggetti in array)
-4. Riduzione ~48% righe senza perdita informazioni
-5. Analisi corrette senza doppi conteggi
+1. Dati geografici completi (ISTAT + fuzzy matching)
+2. Codici ISO internazionali per analisi comparative
+3. 3 formati output per diverse esigenze analitiche
+4. Database relazionale ottimizzato per query SQL
+5. Nomi normalizzati secondo standard ISTAT
 
 **Query esempio:**
 
 ```sql
--- Conteggio eventi per regione
-SELECT REGIONE, count(*) as n_eventi
-FROM read_csv('data/processed/dataset_pulito.csv')
-GROUP BY REGIONE
-ORDER BY n_eventi DESC;
+-- Eventi per nazione di nascita vittima (top 10)
+SELECT 
+  NAZIONE_NASCITA_VITTIMA,
+  NAZIONE_NASCITA_VITTIMA_ISO,
+  COUNT(*) as n_vittime
+FROM vittime
+GROUP BY 1, 2
+ORDER BY n_vittime DESC
+LIMIT 10;
 
--- Eventi con vittime multiple
-SELECT PROT_SDI, N_VITTIME, N_DENUNCIATI
-FROM read_csv('data/processed/dataset_pulito.csv')
-WHERE N_VITTIME > 1
-ORDER BY N_VITTIME DESC;
+-- Comuni corretti da fuzzy matching
+SELECT e.*
+FROM eventi e
+WHERE e.COMUNE IN (
+  SELECT COMUNE_ISTAT 
+  FROM read_csv('scripts/tmp/fuzzy_match_comuni.csv')
+  WHERE CODICE_COMUNE IS NOT NULL
+);
 
--- Unnest array vittime
-SELECT PROT_SDI, unnest(COD_VITTIME) as cod_vittima
-FROM read_csv('data/processed/dataset_pulito.csv');
+-- Join eventi con vittime (modello relazionale)
+SELECT 
+  e.REGIONE,
+  e.PROVINCIA,
+  e.COMUNE,
+  v.NAZIONE_NASCITA_VITTIMA,
+  v.NAZIONE_NASCITA_VITTIMA_ISO
+FROM eventi e
+INNER JOIN vittime v ON e.PROT_SDI = v.PROT_SDI
+WHERE v.NAZIONE_NASCITA_VITTIMA != 'ITALIA';
 ```
 
 **Requisiti tecnici:**
 
 - DuckDB (con supporto spatial per `st_read`)
 - Python 3 (per parsing JSON statistiche)
+- csvmatch (per fuzzy matching comuni)
+- mlr (Miller, per rinomina colonne)
+
+**File di risorse richiesti:**
+
+- `resources/unita_territoriali_istat.csv`: codici ISTAT ufficiali
+- `resources/codici_stati.csv`: mappatura stati → ISO alpha-3 (105 stati)
 
 ---
 
