@@ -1,6 +1,6 @@
 # Dataset SDI reati di genere - output processati
 
-**Data elaborazione:** 2025-11-16
+**Data elaborazione:** 2025-11-18
 **File sorgente:** `../rawdata/MI-123-U-A-SD-2025-90_6.xlsx`
 **Righe originali:** 5.124
 **Eventi unici:** 2.644
@@ -98,6 +98,7 @@ erDiagram
         date DATA_FINE_FATTO
         date DATA_DENUNCIA
         string STATO
+        string STATO_ISO
         string REGIONE
         string PROVINCIA
         string COMUNE
@@ -185,9 +186,23 @@ WHERE COD_VITTIMA = '20220728121231234989';
 
 ## Note tecniche
 
+**Pulizia dati:**
 - Tutti i campi testuali sono stati trimmati per rimuovere spazi extra
+- Valori NULL rappresentati con celle vuote (non `(null)`)
+- Array vuoti rimossi dai file aggregati
 - I dati temporali mantengono il formato originale
 - I codici fiscali/persona sono stati normalizzati
+
+**Codici geografici:**
+- Campo `STATO_ISO`: codici ISO 3166-1 alpha-3 (ITA, FRA, ESP, CHE, etc.)
+- Eventi senza STATO esplicito: mappati automaticamente a ITALIA → ITA
+- Codici speciali: UNK (ignoto), INT (acque internazionali)
+- Mapping completo in `resources/codici_stati.csv`
+
+**Distribuzione stati:**
+- 96.1% Italia (ITA)
+- 3.7% Ignoto (UNK)
+- 0.2% Altri paesi (FRA, ESP, CHE, LKA, INT)
 
 ## Contatti
 
