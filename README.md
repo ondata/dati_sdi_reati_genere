@@ -1,10 +1,10 @@
 # Violenza di genere: dati che servono a chi studia e contrasta il fenomeno
 
-Grazie a una richiesta di accesso civico generalizzato (FOIA) presentata dall'Avv. Giulia Sudano in rappresentanza di **Period Think Tank**, il Dipartimento della Pubblica Sicurezza del Ministero dell'Interno ha rilasciato dei dati relativi ai reati collegati alla violenza di genere, commessi in Italia tra il 2019 e il 2024.
+Grazie a una richiesta di accesso civico generalizzato (FOIA) presentata da Giulia Sudano in rappresentanza di **Period Think Tank**, il Dipartimento della Pubblica Sicurezza del Ministero dell'Interno ha rilasciato dei dati relativi ai reati collegati alla violenza di genere, commessi in Italia nel periodo 2019-2024.
 
 È un'iniziativa che nasce con il sostegno e il contributo di **datiBeneComune**, un progetto che promuove la trasparenza e il riutilizzo dei dati pubblici.
 
-La richiesta, inviata il 18 aprile 2025, mirava ad acquisire informazioni statistiche su diverse tipologie di reato, sull'incidenza delle vittime di genere femminile, sulle denunce/arresti e sulle relazioni vittima-autore.
+La richiesta, inviata il 18 aprile 2025 e riscontrata il 9 maggio 2025, mirava ad acquisire informazioni statistiche su diverse tipologie di reato, sull'incidenza delle vittime di genere femminile, sulle denunce/arresti e sulle relazioni vittima-autore.
 
 Il Dipartimento ha risposto trasmettendo due file Excel:
 
