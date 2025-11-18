@@ -1,17 +1,17 @@
 ## Descrizione dei dati
 
-Questa cartella contiene i dati rilasciati a seguito dell'accesso civico generalizzato presentato da Giulia Sudano in data 18 aprile 2025, relativi a reati connessi alla violenza di genere. I dati sono stati forniti dal Dipartimento della Pubblica Sicurezza del Ministero dell'Interno e riguardano il periodo 2019-2024 (con i dati 2024 non ancora consolidati).
+Questa cartella contiene i dati rilasciati a seguito dell'accesso civico generalizzato presentato da Giulia Sudano in data 18 aprile 2025 e riscontrato il 9 maggio 2025, relativi a reati connessi alla violenza di genere. I dati sono stati forniti dal Dipartimento della Pubblica Sicurezza del Ministero dell'Interno e riguardano il periodo 2019-2024 (con i dati 2024 non ancora consolidati).
 
 ### Fonte dei dati
 
-- Sistema di indagine SDI/SSD (per i reati)
-- Sistema DCPC (per le comunicazioni con relazione vittima/autore)
+- SDI (Sistema di Indagine) / SSD (Sistema di Sorveglianza Dati) - per i reati e le comunicazioni con relazione vittima/autore
+- DCPC (Direzione Centrale della Polizia Criminale) - per gli omicidi volontari consumati
 
 ## Differenza tra i due file principali
 
-Il file `MI-123-U-A-SD-2025-90_6.xlsx` contiene **statistiche ufficiali sui reati** commessi (omicidi, violenze, minacce, ecc.) **registrati dalle forze dell'ordine** e disaggregati **per provincia**. Si tratta di dati strutturati e conteggiati secondo le categorie di reato previste dal codice penale.
+Il file `MI-123-U-A-SD-2025-90_5.xlsx` contiene **statistiche ufficiali sui reati** commessi (omicidi, violenze, minacce, ecc.) **registrati dalle forze dell'ordine** e disaggregati **per provincia**. Si tratta di dati strutturati e conteggiati secondo le categorie di reato previste dal codice penale.
 
-Il file `MI-123-U-A-SD-2025-90_5.xlsx`, invece, raccoglie **comunicazioni SDI** in cui è presente una **relazione vittima-autore** e sono **disaggregate fino al livello comunale**. Questi dati rappresentano segnalazioni/annotazioni di episodi riconducibili a violenza di genere, anche se non sempre formalmente qualificati come reati.
+Il file `MI-123-U-A-SD-2025-90_6.xlsx`, invece, raccoglie **comunicazioni SDI** in cui è presente una **relazione vittima-autore** e sono **disaggregate fino al livello comunale**. Questi dati rappresentano l'elenco delle comunicazioni presenti in SDI riconducibili ai casi di violenza di genere.
 
 ## File presenti
 
@@ -45,18 +45,20 @@ Nel caso degli omicidi, è presente una tabella specifica con ulteriori disaggre
 - In ambito familiare/affettivo
 - Compiuti da partner o ex partner
 
-È suddiviso in diversi fogli:
+È suddiviso in 10 fogli:
 
-- Omicidi DCPC > Omicidi volontari consumati in Italia (fonte D.C.P.C. - dati operativi)
-- Delitti - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Delitti - Vittime > Numero vittime di reato in Italia, di sesso femminile  disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Delitti - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Reati spia - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Reati spia - Vittime > Numero vittime di reato in Italia, di sesso femminile disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Reati spia - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Codice Rosso - Commessi > Numero reati commessi in Italia disaggregati a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Codice Rosso - Vittime > Numero vittime di reato in Italia, di sesso femminile disaggregate a livello provinciale (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
-- Codice Rosso - Segnalazioni > Segnalazioni a carico dei presunti autori noti in Italia disaggregati a livello provinciale,  per sesso e fasce d'età con vittima di sesso femminile (Dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni)
+1. **Omicidi DCPC**: Omicidi volontari consumati in Italia (fonte D.C.P.C. - dati operativi, non consolidati)
+2. **Delitti - Commessi**: Numero reati commessi disaggregati a livello provinciale
+3. **Delitti - Vittime**: Numero vittime di sesso femminile disaggregate a livello provinciale
+4. **Delitti - Segnalazioni**: Segnalazioni a carico dei presunti autori noti, per sesso e fasce d'età con vittima di sesso femminile
+5. **Reati spia - Commessi**: Numero reati commessi disaggregati a livello provinciale
+6. **Reati spia - Vittime**: Numero vittime di sesso femminile disaggregate a livello provinciale
+7. **Reati spia - Segnalazioni**: Segnalazioni a carico dei presunti autori noti, per sesso e fasce d'età con vittima di sesso femminile
+8. **Codice Rosso - Commessi**: Numero reati commessi disaggregati a livello provinciale
+9. **Codice Rosso - Vittime**: Numero vittime di sesso femminile disaggregate a livello provinciale
+10. **Codice Rosso - Segnalazioni**: Segnalazioni a carico dei presunti autori noti, per sesso e fasce d'età con vittima di sesso femminile
+
+*Nota: I fogli 2-10 contengono dati di fonte SDI/SSD non consolidati per il 2024 e quindi suscettibili di variazioni.*
 
 ### 2. `MI-123-U-A-SD-2025-90_6.xlsx`
 
