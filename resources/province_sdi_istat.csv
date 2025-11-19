@@ -2,7 +2,7 @@ provincia,provinciauts_corretto,codice_regione,codice_provincia_storico,codice_p
 AGRIGENTO,AGRIGENTO,19,084,084,Isole,Sicilia,Agrigento,4,AG
 ALESSANDRIA,ALESSANDRIA,01,006,006,Nord-ovest,Piemonte,Alessandria,1,AL
 ANCONA,ANCONA,11,042,042,Centro,Marche,Ancona,1,AN
-AOSTA,VALLE D'AOSTA/VALLÃ‰E D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
+AOSTA,VALLE D'AOSTA/VALLÉE D'AOSTE,02,007,007,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,Valle d'Aosta/Vallée d'Aoste,1,AO
 AREZZO,AREZZO,09,051,051,Centro,Toscana,Arezzo,1,AR
 ASCOLI PICENO,ASCOLI PICENO,11,044,044,Centro,Marche,Ascoli Piceno,1,AP
 ASTI,ASTI,01,005,005,Nord-ovest,Piemonte,Asti,1,AT
@@ -34,7 +34,7 @@ FERMO,FERMO,11,109,109,Centro,Marche,Fermo,1,FM
 FERRARA,FERRARA,08,038,038,Nord-est,Emilia-Romagna,Ferrara,1,FE
 FIRENZE,FIRENZE,09,048,248,Centro,Toscana,Firenze,3,FI
 FOGGIA,FOGGIA,16,071,071,Sud,Puglia,Foggia,1,FG
-FORLI' CESENA,FORLI' CESENA,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
+FORLI' CESENA,Forlì-Cesena,08,040,040,Nord-est,Emilia-Romagna,Forlì-Cesena,1,FC
 FROSINONE,FROSINONE,12,060,060,Centro,Lazio,Frosinone,1,FR
 GENOVA,GENOVA,07,010,210,Nord-ovest,Liguria,Genova,3,GE
 GORIZIA,GORIZIA,06,031,031,Nord-est,Friuli-Venezia Giulia,Gorizia,5,GO
@@ -51,7 +51,7 @@ LODI,LODI,03,098,098,Nord-ovest,Lombardia,Lodi,1,LO
 LUCCA,LUCCA,09,046,046,Centro,Toscana,Lucca,1,LU
 MACERATA,MACERATA,11,043,043,Centro,Marche,Macerata,1,MC
 MANTOVA,MANTOVA,03,020,020,Nord-ovest,Lombardia,Mantova,1,MN
-MASSA CARRARA,MASSA CARRARA,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
+MASSA CARRARA,Massa-Carrara,09,045,045,Centro,Toscana,Massa-Carrara,1,MS
 MATERA,MATERA,17,077,077,Sud,Basilicata,Matera,1,MT
 MESSINA,MESSINA,19,083,283,Isole,Sicilia,Messina,3,ME
 MILANO,MILANO,03,015,215,Nord-ovest,Lombardia,Milano,3,MI
