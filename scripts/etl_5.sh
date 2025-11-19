@@ -289,6 +289,9 @@ find "${folder}"/../data/processing/"${file}" -type f -name "*.csv" ! -name "omi
   # Rinomina le colonne da _value a valore per uniformare la nomenclatura
   sed -i 's/,_value/,valore/g' "${csv_file}" # Escapes quotes in CSV files
 
+  # Rimuove la colonna "valore" che è un artefatto del reshape e non contiene informazioni utili
+  mlr -I -S --csv cut -x -f valore "${csv_file}"
+
   # Applica il sorting dei dati per facilitare l'analisi e le query
   mlr -I --csv sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}"
 
