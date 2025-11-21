@@ -45,3 +45,10 @@ I commit esistenti sono sintetici, in italiano, con verbo d’azione e riferimen
 ## Security & Configuration Tips
 
 Non distribuire i file Excel originali: conservali in `data/rawdata/` con permessi limitati e cita la provenienza nelle note. Gestisci eventuali credenziali via variabili d’ambiente o `.env` ignorati e documenta aggiornamenti alle mappe di `resources/` con fonte e data.
+
+## Dati e tool
+
+- usa duckdb -json -c con funzione st_read per leggere i file xlsx e i file geografici
+- prima di prendere scelte su tabelle dati fai con duckdb query describe e summarize
+- prima di prendere scelte su tabelle dati fai con duckdb un select limit 5 random
+- Usa una oneline python pandas per leggere elenco nomi sheet di un xls e un xlsx
