@@ -183,7 +183,7 @@ bash scripts/pulisci_dataset.sh
 
 ```sql
 -- Eventi per nazione di nascita vittima (top 10)
-SELECT 
+SELECT
   NAZIONE_NASCITA_VITTIMA,
   NAZIONE_NASCITA_VITTIMA_ISO,
   COUNT(*) as n_vittime
@@ -196,13 +196,13 @@ LIMIT 10;
 SELECT e.*
 FROM eventi e
 WHERE e.COMUNE IN (
-  SELECT COMUNE_ISTAT 
+  SELECT COMUNE_ISTAT
   FROM read_csv('scripts/tmp/fuzzy_match_comuni.csv')
   WHERE CODICE_COMUNE IS NOT NULL
 );
 
 -- Join eventi con vittime (modello relazionale)
-SELECT 
+SELECT
   e.REGIONE,
   e.PROVINCIA,
   e.COMUNE,
@@ -224,7 +224,3 @@ WHERE v.NAZIONE_NASCITA_VITTIMA != 'ITALIA';
 
 - `resources/unita_territoriali_istat.csv`: codici ISTAT ufficiali
 - `resources/codici_stati.csv`: mappatura stati → ISO alpha-3 (105 stati)
-
----
-
-*Nota: I dati elaborati sono pronti per essere importati in strumenti di analisi come R, Python o software di business intelligence.*
