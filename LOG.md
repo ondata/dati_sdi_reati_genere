@@ -1,5 +1,22 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2025-11-21
+
+### Fix Join Geografico Province Sardegna
+
+**Problema risolto**:
+- Join geografico falliva per province Sardegna causa codici diversi tra dimensioni_province_situas.csv (312, 114, 115, 318) e unita_territoriali_istat.csv (090, 091, 095, 292)
+
+**Soluzione**:
+- Creato `resources/mappature/codici_province_sardegna_situas_istat.csv` con mappatura SITUAS → ISTAT UTS
+- Integrato join DuckDB in etl_5.sh (linee 357-376) per sostituire codici prima del join con sigle automobilistiche
+- Query usa `COALESCE(m.codice_uts_istat, n.codice_provinciauts)` per preservare codici non-Sardegna
+
+**Risultato**:
+- 107 province totali, tutte con sigla automobilistica (0 mancanti)
+- Province Sardegna correttamente arricchite: SS, CA, NU, OR con regione "Sardegna"
+- Dati comunicazioni_sdi/*.csv tutti con info geografiche complete
+
 ## 2025-11-18
 
 ### Arricchimento Dati Geografici e Nazioni
