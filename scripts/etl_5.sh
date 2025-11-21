@@ -327,16 +327,63 @@ while IFS= read -r line; do
   mlr -I --csv sub -f provinciauts_corretto "^${nome}$" "${nome_corretto}" "${folder}"/tmp/province_sdi.csv
 done <"${folder}"/../resources/problemi_nomi_province.jsonl
 
-# Estrae le colonne rilevanti dalle unità territoriali ISTAT e le salva in un file temporaneo
-# per essere utilizzate nel join con le province SDI
-mlr --csv cut -f codice_provinciauts,provinciauts,flag_tipo_uts,codice_provincia_storico,codice_regione,ripartizione_geografica,regione,sigla_automobilistica then uniq -a "${folder}"/../resources/unita_territoriali_istat.csv >>"${folder}"/tmp/province_istat.csv
+# Applica correzioni specifiche per province Sardegna soppresse (2016-2025)
+# Queste province usano nomi storici nei dati SDI ma hanno nomi diversi in ISTAT
+echo "Applicazione correzioni province Sardegna soppresse..."
+while IFS= read -r line; do
+  nome_sdi=$(jq -r '.nome_sdi' <<<"${line}")
+  nome_istat=$(jq -r '.nome_istat' <<<"${line}")
 
-# Effettua il join fuzzy tra le province SDI e quelle ISTAT utilizzando l'algoritmo Levenshtein
+  # Sostituisce il nome SDI con quello ISTAT per il matching
+  mlr -I --csv sub -f provinciauts_corretto "^${nome_sdi}$" "${nome_istat}" "${folder}"/tmp/province_sdi.csv
+done <"${folder}"/../resources/mappature/province_sardegna_soppresse.jsonl
+
+# Estrae i dati dalle province SITUAS
+mlr --csv cut -f COD_RIP,COD_REG,COD_PROV_STORICO,COD_UTS,DEN_UTS then uniq -a "${folder}"/../tasks/nomi_geo_istat/data/dimensioni_province_situas.csv >"${folder}"/tmp/province_situas.csv
+
+# Crea file di mappatura regioni (codice → nome + ripartizione)
+mlr --csv cut -f codice_regione,regione,ripartizione_geografica then uniq -a "${folder}"/../resources/unita_territoriali_istat.csv >"${folder}"/tmp/mappatura_regioni.csv
+
+# Crea file di mappatura sigle automobilistiche (codice provincia → sigla)
+mlr --csv cut -f codice_provinciauts,sigla_automobilistica then uniq -a "${folder}"/../resources/unita_territoriali_istat.csv >"${folder}"/tmp/mappatura_sigle.csv
+
+# Effettua il join fuzzy tra le province SDI e quelle SITUAS utilizzando l'algoritmo Levenshtein
 # con soglia di similarità 0.9 e join left-outer per mantenere tutte le province SDI
-csvmatch "${folder}"/tmp/province_sdi.csv "${folder}"/tmp/province_istat.csv --fields1 provinciauts_corretto --fields2 provinciauts --fuzzy levenshtein -r 0.9 -i -a -n --join left-outer --output '1*' '2*' >"${folder}"/../resources/province_sdi_istat.csv
+csvmatch "${folder}"/tmp/province_sdi.csv "${folder}"/tmp/province_situas.csv --fields1 provinciauts_corretto --fields2 DEN_UTS --fuzzy levenshtein -r 0.9 -i -a -n --join left-outer --output '1*' '2*' >"${folder}"/tmp/province_joined.csv
 
-# Rinomina il campo 'provinciauts' in 'provincia' per uniformare la nomenclatura
-mlr -I --csv rename provinciauts,provincia,provinciauts_2,provincia_uts then uniq -a "${folder}"/../resources/province_sdi_istat.csv
+# Rinomina le colonne per uniformità con la nomenclatura precedente
+mlr --csv rename provinciauts,provincia then rename provinciauts_corretto,provincia_corretta then rename DEN_UTS,provincia_uts then rename COD_UTS,codice_provinciauts then rename COD_PROV_STORICO,codice_provincia_storico then rename COD_REG,codice_regione then rename COD_RIP,codice_ripartizione_geografica "${folder}"/tmp/province_joined.csv >"${folder}"/tmp/province_normalized.csv
+
+# Correggi codici province Sardegna da SITUAS a ISTAT UTS
+# Usa DuckDB per join e sostituzione condizionale codici provincia
+duckdb -csv -c "
+WITH normalized AS (
+  SELECT * FROM read_csv('${folder}/tmp/province_normalized.csv', auto_detect=true, header=true)
+),
+mappatura AS (
+  SELECT * FROM read_csv('${folder}/../resources/mappature/codici_province_sardegna_situas_istat.csv', auto_detect=true, header=true)
+)
+SELECT
+  n.provincia,
+  n.provincia_corretta,
+  n.provincia_uts,
+  COALESCE(m.codice_uts_istat, n.codice_provinciauts) as codice_provinciauts,
+  n.codice_provincia_storico,
+  n.codice_regione,
+  n.codice_ripartizione_geografica
+FROM normalized n
+LEFT JOIN mappatura m ON n.codice_provinciauts = m.codice_uts_situas
+" >"${folder}"/tmp/province_normalized_fixed.csv
+
+# Integra i dati delle regioni (nome + ripartizione geografica)
+mlr --csv join -u -j codice_regione -f "${folder}"/tmp/province_normalized_fixed.csv "${folder}"/tmp/mappatura_regioni.csv >"${folder}"/tmp/province_with_regioni.csv
+
+# Integra le sigle automobilistiche
+mlr --csv join -u -j codice_provinciauts -f "${folder}"/tmp/province_with_regioni.csv "${folder}"/tmp/mappatura_sigle.csv >"${folder}"/tmp/province_complete.csv
+
+# Riordina le colonne e crea il file finale
+mlr --csv reorder -f provincia,provincia_uts,codice_provinciauts,codice_provincia_storico,codice_regione,regione,ripartizione_geografica,sigla_automobilistica then rename provincia_corretta,provinciauts_corretto then uniq -a "${folder}"/tmp/province_complete.csv >"${folder}"/../resources/province_sdi_istat.csv
+
 
 # Arricchimento dei dati con le informazioni geografiche
 # Per ogni file CSV (tranne 'omicidi_dcpc.csv'), esegue un join con il file delle province
@@ -345,8 +392,11 @@ find "${folder}/../data/processing/${file}" -type f -name "*.csv" ! -name "omici
   # Esegue il join tra i dati dei reati e le informazioni geografiche delle province
   # - --ul: usa un left join per mantenere tutte le righe del file di input
   # - unsparsify: riempie le celle vuote con valori di default
-  # - sort/reorder: riorganizza i dati in modo coerente
-  mlr --csv join --ul -j provincia -f "${csv_file}" then unsparsify then sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima then reorder -f anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${folder}"/../resources/province_sdi_istat.csv >"${folder}"/tmp/tmp.csv
+  mlr --csv join --ul -j provincia -f "${csv_file}" then unsparsify then reorder -f anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${folder}"/../resources/province_sdi_istat.csv >"${folder}"/tmp/tmp.csv
   mv "${folder}"/tmp/tmp.csv "${csv_file}"
+  
+  # Applica il sorting
+  mlr --csv sort -t anno,provincia,delitto,descrizione_reato,eta_alla_data_del_reato_vittima "${csv_file}" >"${folder}"/tmp/tmp_sorted.csv
+  mv "${folder}"/tmp/tmp_sorted.csv "${csv_file}"
 done
 
