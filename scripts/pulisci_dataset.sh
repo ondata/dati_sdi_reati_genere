@@ -175,15 +175,45 @@ COPY (
   sardegna_corrections AS (
     SELECT * FROM read_json('resources/problemi_province_sardegna.jsonl')
   ),
-  istat AS (
+  istat_regioni AS (
     SELECT DISTINCT
-      regione,
       codice_regione,
-      provinciauts,
-      codice_provinciauts,
-      comune_dizione_italiana,
-      codice_comune_alfanumerico
+      regione
     FROM read_csv('resources/unita_territoriali_istat.csv')
+  ),
+  istat_province AS (
+    SELECT DISTINCT ON (COD_UTS)
+      COD_UTS as codice_provinciauts,
+      PROVINCIA as provinciauts
+    FROM read_csv('tasks/nomi_geo_istat/data/comuni_con_provincia.csv')
+    ORDER BY COD_UTS, PRO_COM_T
+  ),
+  istat_comuni AS (
+    -- Tabella comuni con nomi bilingue splittati
+    WITH base AS (
+      SELECT * FROM read_csv('tasks/nomi_geo_istat/data/comuni_con_provincia.csv')
+    ),
+    nome_italiano AS (
+      SELECT 
+        PRO_COM_T as codice_comune_alfanumerico,
+        CASE 
+          WHEN COMUNE LIKE '%/%' THEN trim(split_part(COMUNE, '/', 1))
+          ELSE COMUNE
+        END as comune_dizione_italiana,
+        PROVINCIA as provinciauts
+      FROM base
+    ),
+    nome_altra_lingua AS (
+      SELECT 
+        PRO_COM_T as codice_comune_alfanumerico,
+        trim(split_part(COMUNE, '/', 2)) as comune_dizione_italiana,
+        PROVINCIA as provinciauts
+      FROM base
+      WHERE COMUNE LIKE '%/%'
+    )
+    SELECT * FROM nome_italiano
+    UNION ALL
+    SELECT * FROM nome_altra_lingua
   ),
   -- Applica correzione province Sardegna
   data_with_sardegna AS (
@@ -209,6 +239,9 @@ COPY (
     first(i_prov.codice_provinciauts) as CODICE_PROVINCIA,
     trim(first(d.COMUNE)) as COMUNE,
     first(i_com.codice_comune_alfanumerico) as CODICE_COMUNE,
+    first(i_reg.regione) as REGIONE_NOME_ISTAT,
+    first(i_prov.provinciauts) as PROVINCIA_NOME_ISTAT,
+    first(i_com.comune_dizione_italiana) as COMUNE_NOME_ISTAT,
     trim(first(d.LUOGO_SPECIF_FATTO)) as LUOGO_SPECIF_FATTO,
     trim(first(d.DES_OBIET)) as DES_OBIET
   FROM data_with_sardegna d
@@ -216,15 +249,15 @@ COPY (
     ON COALESCE(trim(d.STATO), 'ITALIA') = c.stato
   LEFT JOIN regioni_corrections rc
     ON UPPER(trim(d.REGIONE)) = UPPER(rc.nome)
-  LEFT JOIN istat i_reg
+  LEFT JOIN istat_regioni i_reg
     ON UPPER(COALESCE(rc.nome_corretto, trim(d.REGIONE))) = UPPER(i_reg.regione)
   LEFT JOIN province_corrections pc
     ON UPPER(trim(d.PROVINCIA_CORRETTA)) = UPPER(pc.nome)
-  LEFT JOIN istat i_prov
+  LEFT JOIN istat_province i_prov
     ON UPPER(COALESCE(pc.nome_corretto, trim(d.PROVINCIA_CORRETTA))) = UPPER(i_prov.provinciauts)
   LEFT JOIN comuni_corrections cc
     ON UPPER(trim(d.COMUNE)) = UPPER(cc.nome)
-  LEFT JOIN istat i_com
+  LEFT JOIN istat_comuni i_com
     ON UPPER(COALESCE(pc.nome_corretto, trim(d.PROVINCIA_CORRETTA))) = UPPER(i_com.provinciauts) 
     AND UPPER(COALESCE(cc.nome_corretto, trim(d.COMUNE))) = UPPER(i_com.comune_dizione_italiana)
   GROUP BY d.PROT_SDI
@@ -359,6 +392,9 @@ CREATE OR REPLACE TABLE eventi (
     CODICE_PROVINCIA VARCHAR,
     COMUNE VARCHAR,
     CODICE_COMUNE VARCHAR,
+    REGIONE_NOME_ISTAT VARCHAR,
+    PROVINCIA_NOME_ISTAT VARCHAR,
+    COMUNE_NOME_ISTAT VARCHAR,
     LUOGO_SPECIF_FATTO VARCHAR,
     DES_OBIET VARCHAR
 );
@@ -648,6 +684,9 @@ COPY (
     de.CODICE_PROVINCIA,
     COALESCE(fm.COMUNE_ISTAT, de.COMUNE) as COMUNE,
     COALESCE(fm.CODICE_COMUNE, de.CODICE_COMUNE) as CODICE_COMUNE,
+    de.REGIONE_NOME_ISTAT,
+    de.PROVINCIA_NOME_ISTAT,
+    COALESCE(fm.COMUNE_ISTAT, de.COMUNE_NOME_ISTAT) as COMUNE_NOME_ISTAT,
     de.LUOGO_SPECIF_FATTO,
     de.DES_OBIET
   FROM read_csv('${OUTPUT_EVENTI}', auto_detect=true) de
@@ -720,3 +759,108 @@ EOF
 echo "Dataset aggiornati con comuni corretti da fuzzy matching"
 echo ""
 echo "=== Aggiornamento completato ==="
+
+# STEP 7.1: Aggiungi codici e nomi ISTAT a dataset_cartesiano e dataset_array
+echo ""
+echo "STEP 7.1: Aggiunta codici e nomi ISTAT agli altri output..."
+
+# Aggiorna dataset_cartesiano con codici e nomi ISTAT
+echo "Aggiornamento dataset_cartesiano con codici ISTAT..."
+duckdb -c "
+COPY (
+  SELECT 
+    dc.PROT_SDI,
+    dc.ART,
+    dc.T_NORMA,
+    dc.RIF_LEGGE,
+    dc.DES_REA_EVE,
+    dc.TENT_CONS,
+    dc.COD_VITTIMA,
+    dc.SEX_VITTIMA,
+    dc.ETA_VITTIMA,
+    dc.NAZIONE_NASCITA_VITTIMA,
+    dc.COD_DENUNCIATO,
+    dc.SESSO_DENUNCIATO,
+    dc.ETA_DENUNCIATO,
+    dc.NAZIONE_NASCITA_DENUNCIATO,
+    dc.COD_COLP_DA_PROVV,
+    dc.SEX_COLP_PROVV,
+    dc.ETA_COLP_PROVV,
+    dc.NAZIONE_NASCITA_COLP_PROVV,
+    dc.RELAZIONE_AUTORE_VITTIMA,
+    dc.DATA_INIZIO_FATTO,
+    dc.DATA_FINE_FATTO,
+    dc.DATA_DENUNCIA,
+    dc.STATO,
+    dc.STATO_ISO,
+    dc.REGIONE,
+    dc.PROVINCIA,
+    dc.COMUNE,
+    dc.LUOGO_SPECIF_FATTO,
+    dc.DES_OBIET,
+    e.CODICE_REGIONE,
+    e.CODICE_PROVINCIA,
+    e.CODICE_COMUNE,
+    e.REGIONE_NOME_ISTAT,
+    e.PROVINCIA_NOME_ISTAT,
+    e.COMUNE_NOME_ISTAT
+  FROM read_csv('${OUTPUT_CARTESIANO}', auto_detect=true) dc
+  LEFT JOIN read_csv('${OUTPUT_EVENTI}', auto_detect=true) e
+    ON dc.PROT_SDI = e.PROT_SDI
+) TO '${OUTPUT_CARTESIANO}.new' (HEADER, DELIMITER ',');
+"
+mv "${OUTPUT_CARTESIANO}.new" "${OUTPUT_CARTESIANO}"
+
+# Aggiorna dataset_array con codici e nomi ISTAT
+echo "Aggiornamento dataset_array con codici ISTAT..."
+duckdb -c "
+COPY (
+  SELECT 
+    da.PROT_SDI,
+    da.ARTICOLI,
+    da.T_NORMA,
+    da.RIF_LEGGE,
+    da.DES_REA_EVE,
+    da.TENT_CONS,
+    da.COD_VITTIME,
+    da.N_VITTIME,
+    da.SESSO_VITTIME,
+    da.ETA_VITTIME,
+    da.NAZIONI_NASCITA_VITTIME,
+    da.COD_DENUNCIATI,
+    da.N_DENUNCIATI,
+    da.SESSO_DENUNCIATI,
+    da.ETA_DENUNCIATI,
+    da.NAZIONI_NASCITA_DENUNCIATI,
+    da.COD_COLPITI_PROVV,
+    da.N_COLPITI_PROVV,
+    da.SESSO_COLPITI_PROVV,
+    da.ETA_COLPITI_PROVV,
+    da.NAZIONI_NASCITA_COLPITI_PROVV,
+    da.RELAZIONI_AUTORE_VITTIMA,
+    da.DATA_INIZIO_FATTO,
+    da.DATA_FINE_FATTO,
+    da.DATA_DENUNCIA,
+    da.STATO,
+    da.STATO_ISO,
+    da.REGIONE,
+    da.PROVINCIA,
+    da.COMUNE,
+    da.LUOGO_SPECIF_FATTO,
+    da.DES_OBIET,
+    e.CODICE_REGIONE,
+    e.CODICE_PROVINCIA,
+    e.CODICE_COMUNE,
+    e.REGIONE_NOME_ISTAT,
+    e.PROVINCIA_NOME_ISTAT,
+    e.COMUNE_NOME_ISTAT
+  FROM read_csv('${OUTPUT_ARRAY}', auto_detect=true) da
+  LEFT JOIN read_csv('${OUTPUT_EVENTI}', auto_detect=true) e
+    ON da.PROT_SDI = e.PROT_SDI
+) TO '${OUTPUT_ARRAY}.new' (HEADER, DELIMITER ',');
+"
+mv "${OUTPUT_ARRAY}.new" "${OUTPUT_ARRAY}"
+
+echo "Codici e nomi ISTAT aggiunti a tutti i dataset"
+echo ""
+echo "=== Arricchimento ISTAT completato ==="
