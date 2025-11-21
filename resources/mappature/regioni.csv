@@ -1,0 +1,21 @@
+codice_regione,ripartizione_geografica,regione
+01,Nord-ovest,Piemonte
+02,Nord-ovest,Valle d'Aosta/Vallée d'Aoste
+07,Nord-ovest,Liguria
+03,Nord-ovest,Lombardia
+04,Nord-est,Trentino-Alto Adige/Südtirol
+05,Nord-est,Veneto
+06,Nord-est,Friuli-Venezia Giulia
+08,Nord-est,Emilia-Romagna
+11,Centro,Marche
+09,Centro,Toscana
+10,Centro,Umbria
+12,Centro,Lazio
+15,Sud,Campania
+13,Sud,Abruzzo
+14,Sud,Molise
+16,Sud,Puglia
+17,Sud,Basilicata
+18,Sud,Calabria
+19,Isole,Sicilia
+20,Isole,Sardegna

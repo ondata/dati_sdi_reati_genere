@@ -1,0 +1,9 @@
+codice_uts_situas,codice_uts_istat,nome_provincia_mappatura,sigla_mappatura,note
+312,090,Sassari,SS,Provincia storica
+114,091,Nuoro,NU,Provincia storica
+115,095,Oristano,OR,Provincia storica
+318,292,Cagliari,CA,Provincia storica (cod_prov_storico 092)
+113,090,Gallura Nord-Est Sardegna,SS,"Provincia ripristinata 2025, confluita in Sassari"
+116,091,Ogliastra,NU,"Provincia ripristinata 2025, confluita in Nuoro"
+117,111,Medio Campidano,SU,"Provincia ripristinata 2025, confluita in Sud Sardegna"
+119,111,Sulcis Iglesiente,SU,"Provincia ripristinata 2025, confluita in Sud Sardegna"
