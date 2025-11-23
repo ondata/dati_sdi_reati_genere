@@ -2,6 +2,62 @@
 
 ## 2025-11-23
 
+### Semplificazione script pulisci_dataset.sh con mapping comuni
+
+**Ridotto script da 866 a 456 righe (-47.4%)**:
+- Eliminati STEP 6-7: fuzzy matching comuni (csvmatch + aggiornamenti multipli)
+- Eliminate CTE complesse: regioni/province/comuni corrections + istat joins (96 righe)
+- Sostituito con **1 join** al mapping `resources/mappature/comuni/mapping_completo_xlsx_istat_shp_situas.csv`
+
+**Output migliorato**:
+- **Deterministico**: aggiunto ORDER BY a tutte le tabelle relazionali
+- **Stesso numero righe**: 2644 eventi, 2908 reati, 2821 vittime, 2856 denunciati, 2762 colpiti
+- **94.29% copertura codici comuni**: 2493/2644 eventi con CODICE_COMUNE (151 NULL = comune assente in xlsx)
+- Formato REGIONE_NOME_ISTAT uppercase (dal mapping ufficiale Istat)
+
+**Ordinamento file CSV**:
+- `relazionale_eventi.csv`: ORDER BY PROT_SDI
+- `relazionale_reati.csv`: ORDER BY PROT_SDI, ART
+- `relazionale_vittime.csv`: ORDER BY PROT_SDI, COD_VITTIMA
+- `relazionale_denunciati.csv`: ORDER BY PROT_SDI, COD_DENUNCIATO
+- `relazionale_colpiti_provv.csv`: ORDER BY PROT_SDI, COD_COLP_DA_PROVV
+
+**File modificati**:
+- `scripts/pulisci_dataset.sh`: logica geografica semplificata (righe 166-169)
+- Backup: `scripts/pulisci_dataset.sh.backup_20251123_212246`
+
+**Vantaggi**:
+- Single source of truth: mapping comuni in `resources/mappature/comuni/`
+- Manutenibilità: -410 righe codice complesso eliminato
+- Performance: 1 join invece di 6+ CTE + fuzzy matching
+- Affidabilità: mapping validato 100% (1222/1222 comuni)
+
+### Mapping completo comuni xlsx → Istat → shapefile → situas
+
+**Creato mapping unificato** in `resources/mappature/comuni/`:
+
+**Goal 1** - Mapping comuni xlsx → PRO_COM Istat:
+- 1222 comuni del file xlsx mappati a codici Istat
+- 1181 match automatici (96.6%)
+- 41 match manuali (apostrofi, nomi bilingue, grafie diverse)
+
+**Goal 2** - Estensione con shapefile e popolazione:
+- Join con shapefile comuni (geometrie)
+- Join con situas (popolazione, superficie)
+- Gestione riforma province Sardegna (29 comuni join su nome)
+- **1222/1222 comuni mappati (100%)**
+
+**Files generati**:
+- `mapping_completo_xlsx_istat_shp_situas.csv`: mapping finale completo (22 campi)
+- `mapping_completo.csv`: mapping base xlsx → Istat
+- `create_mapping.sh`: script Goal 1
+- `extend_mapping_shp_situas.sh`: script Goal 2
+- `mapping_regioni.csv`: supporto COD_REG → nome regione
+- `README.md`: documentazione utilizzo
+
+**Documentazione**:
+- `tasks/check_nomi/prd_check_nomi_comuni.md`: PRD completo con obiettivi, strategia, risultati
+
 ### Refactoring etl_5.sh: mapping province centralizzato
 
 **Semplificata FASE 4** (normalizzazione province):
