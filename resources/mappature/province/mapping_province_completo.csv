@@ -1,0 +1,107 @@
+provincia,provincia_uts,codice_provinciauts,codice_provincia_storico,codice_regione,regione,ripartizione_geografica,sigla_automobilistica,provinciauts_corretto,codice_ripartizione_geografica
+AGRIGENTO,Agrigento,084,84,19,Sicilia,Isole,AG,AGRIGENTO,5
+ALESSANDRIA,Alessandria,006,6,01,Piemonte,Nord-ovest,AL,ALESSANDRIA,1
+ANCONA,Ancona,042,42,11,Marche,Centro,AN,ANCONA,3
+AOSTA,"Valle d'Aosta/Vallée d'Aoste",007,7,02,"Valle d'Aosta/Vallée d'Aoste",Nord-ovest,AO,AOSTA,1
+AREZZO,Arezzo,051,51,09,Toscana,Centro,AR,AREZZO,3
+ASCOLI PICENO,Ascoli Piceno,044,44,11,Marche,Centro,AP,ASCOLI PICENO,3
+ASTI,Asti,005,5,01,Piemonte,Nord-ovest,AT,ASTI,1
+AVELLINO,Avellino,064,64,15,Campania,Sud,AV,AVELLINO,4
+BARI,Bari,272,72,16,Puglia,Sud,BA,BARI,4
+BARLETTA-ANDRIA-TRANI,Barletta-Andria-Trani,110,110,16,Puglia,Sud,BT,BARLETTA-ANDRIA-TRANI,4
+BELLUNO,Belluno,025,25,05,Veneto,Nord-est,BL,BELLUNO,2
+BENEVENTO,Benevento,062,62,15,Campania,Sud,BN,BENEVENTO,4
+BERGAMO,Bergamo,016,16,03,Lombardia,Nord-ovest,BG,BERGAMO,1
+BIELLA,Biella,096,96,01,Piemonte,Nord-ovest,BI,BIELLA,1
+BOLOGNA,Bologna,237,37,08,Emilia-Romagna,Nord-est,BO,BOLOGNA,2
+BOLZANO,Bolzano/Bozen,021,21,04,"Trentino-Alto Adige/Südtirol",Nord-est,BZ,BOLZANO,2
+BRESCIA,Brescia,017,17,03,Lombardia,Nord-ovest,BS,BRESCIA,1
+BRINDISI,Brindisi,074,74,16,Puglia,Sud,BR,BRINDISI,4
+CAGLIARI,Cagliari,NULL,118,NULL,NULL,NULL,CA,CAGLIARI,NULL
+CALTANISSETTA,Caltanissetta,085,85,19,Sicilia,Isole,CL,CALTANISSETTA,5
+CAMPOBASSO,Campobasso,070,70,14,Molise,Sud,CB,CAMPOBASSO,4
+CASERTA,Caserta,061,61,15,Campania,Sud,CE,CASERTA,4
+CATANIA,Catania,287,87,19,Sicilia,Isole,CT,CATANIA,5
+CATANZARO,Catanzaro,079,79,18,Calabria,Sud,CZ,CATANZARO,4
+CHIETI,Chieti,069,69,13,Abruzzo,Sud,CH,CHIETI,4
+COMO,Como,013,13,03,Lombardia,Nord-ovest,CO,COMO,1
+COSENZA,Cosenza,078,78,18,Calabria,Sud,CS,COSENZA,4
+CREMONA,Cremona,019,19,03,Lombardia,Nord-ovest,CR,CREMONA,1
+CROTONE,Crotone,101,101,18,Calabria,Sud,KR,CROTONE,4
+CUNEO,Cuneo,004,4,01,Piemonte,Nord-ovest,CN,CUNEO,1
+ENNA,Enna,086,86,19,Sicilia,Isole,EN,ENNA,5
+FERMO,Fermo,109,109,11,Marche,Centro,FM,FERMO,3
+FERRARA,Ferrara,038,38,08,Emilia-Romagna,Nord-est,FE,FERRARA,2
+FIRENZE,Firenze,248,48,09,Toscana,Centro,FI,FIRENZE,3
+FOGGIA,Foggia,071,71,16,Puglia,Sud,FG,FOGGIA,4
+"FORLI' CESENA","Forlì-Cesena",040,40,08,Emilia-Romagna,Nord-est,FC,"FORLI' CESENA",2
+FROSINONE,Frosinone,060,60,12,Lazio,Centro,FR,FROSINONE,3
+GENOVA,Genova,210,10,07,Liguria,Nord-ovest,GE,GENOVA,1
+GORIZIA,Gorizia,031,31,06,Friuli-Venezia Giulia,Nord-est,GO,GORIZIA,2
+GROSSETO,Grosseto,053,53,09,Toscana,Centro,GR,GROSSETO,3
+IMPERIA,Imperia,008,8,07,Liguria,Nord-ovest,IM,IMPERIA,1
+ISERNIA,Isernia,094,94,14,Molise,Sud,IS,ISERNIA,4
+"L'AQUILA","L'Aquila",066,66,13,Abruzzo,Sud,AQ,"L'AQUILA",4
+LA SPEZIA,La Spezia,011,11,07,Liguria,Nord-ovest,SP,LA SPEZIA,1
+LATINA,Latina,059,59,12,Lazio,Centro,LT,LATINA,3
+LECCE,Lecce,075,75,16,Puglia,Sud,LE,LECCE,4
+LECCO,Lecco,097,97,03,Lombardia,Nord-ovest,LC,LECCO,1
+LIVORNO,Livorno,049,49,09,Toscana,Centro,LI,LIVORNO,3
+LODI,Lodi,098,98,03,Lombardia,Nord-ovest,LO,LODI,1
+LUCCA,Lucca,046,46,09,Toscana,Centro,LU,LUCCA,3
+MACERATA,Macerata,043,43,11,Marche,Centro,MC,MACERATA,3
+MANTOVA,Mantova,020,20,03,Lombardia,Nord-ovest,MN,MANTOVA,1
+MASSA CARRARA,Massa-Carrara,045,45,09,Toscana,Centro,MS,MASSA CARRARA,3
+MATERA,Matera,077,77,17,Basilicata,Sud,MT,MATERA,4
+MESSINA,Messina,283,83,19,Sicilia,Isole,ME,MESSINA,5
+MILANO,Milano,215,15,03,Lombardia,Nord-ovest,MI,MILANO,1
+MODENA,Modena,036,36,08,Emilia-Romagna,Nord-est,MO,MODENA,2
+MONZA E DELLA BRIANZA,Monza e della Brianza,108,108,03,Lombardia,Nord-ovest,MB,MONZA E DELLA BRIANZA,1
+NAPOLI,Napoli,263,63,15,Campania,Sud,NULL,NAPOLI,4
+NOVARA,Novara,003,3,01,Piemonte,Nord-ovest,NO,NOVARA,1
+NUORO,Nuoro,NULL,114,NULL,NULL,NULL,NU,NUORO,NULL
+ORISTANO,Oristano,NULL,115,NULL,NULL,NULL,OR,ORISTANO,NULL
+PADOVA,Padova,028,28,05,Veneto,Nord-est,PD,PADOVA,2
+PALERMO,Palermo,282,82,19,Sicilia,Isole,PA,PALERMO,5
+PARMA,Parma,034,34,08,Emilia-Romagna,Nord-est,PR,PARMA,2
+PAVIA,Pavia,018,18,03,Lombardia,Nord-ovest,PV,PAVIA,1
+PERUGIA,Perugia,054,54,10,Umbria,Centro,PG,PERUGIA,3
+PESARO E URBINO,Pesaro e Urbino,041,41,11,Marche,Centro,PU,PESARO E URBINO,3
+PESCARA,Pescara,068,68,13,Abruzzo,Sud,PE,PESCARA,4
+PIACENZA,Piacenza,033,33,08,Emilia-Romagna,Nord-est,PC,PIACENZA,2
+PISA,Pisa,050,50,09,Toscana,Centro,PI,PISA,3
+PISTOIA,Pistoia,047,47,09,Toscana,Centro,PT,PISTOIA,3
+PORDENONE,Pordenone,093,93,06,Friuli-Venezia Giulia,Nord-est,PN,PORDENONE,2
+POTENZA,Potenza,076,76,17,Basilicata,Sud,PZ,POTENZA,4
+PRATO,Prato,100,100,09,Toscana,Centro,PO,PRATO,3
+RAGUSA,Ragusa,088,88,19,Sicilia,Isole,RG,RAGUSA,5
+RAVENNA,Ravenna,039,39,08,Emilia-Romagna,Nord-est,RA,RAVENNA,2
+REGGIO CALABRIA,Reggio Calabria,280,80,18,Calabria,Sud,RC,REGGIO CALABRIA,4
+REGGIO EMILIA,"Reggio nell'Emilia",035,35,08,Emilia-Romagna,Nord-est,RE,REGGIO EMILIA,2
+RIETI,Rieti,057,57,12,Lazio,Centro,RI,RIETI,3
+RIMINI,Rimini,099,99,08,Emilia-Romagna,Nord-est,RN,RIMINI,2
+ROMA,Roma,258,58,12,Lazio,Centro,RM,ROMA,3
+ROVIGO,Rovigo,029,29,05,Veneto,Nord-est,RO,ROVIGO,2
+SALERNO,Salerno,065,65,15,Campania,Sud,SA,SALERNO,4
+SASSARI,Sassari,NULL,112,NULL,NULL,NULL,SS,SASSARI,NULL
+SAVONA,Savona,009,9,07,Liguria,Nord-ovest,SV,SAVONA,1
+SIENA,Siena,052,52,09,Toscana,Centro,SI,SIENA,3
+SIRACUSA,Siracusa,089,89,19,Sicilia,Isole,SR,SIRACUSA,5
+SONDRIO,Sondrio,014,14,03,Lombardia,Nord-ovest,SO,SONDRIO,1
+TARANTO,Taranto,073,73,16,Puglia,Sud,TA,TARANTO,4
+TERAMO,Teramo,067,67,13,Abruzzo,Sud,TE,TERAMO,4
+TERNI,Terni,055,55,10,Umbria,Centro,TR,TERNI,3
+TORINO,Torino,201,1,01,Piemonte,Nord-ovest,TO,TORINO,1
+TRAPANI,Trapani,081,81,19,Sicilia,Isole,TP,TRAPANI,5
+TRENTO,Trento,022,22,04,"Trentino-Alto Adige/Südtirol",Nord-est,TN,TRENTO,2
+TREVISO,Treviso,026,26,05,Veneto,Nord-est,TV,TREVISO,2
+TRIESTE,Trieste,032,32,06,Friuli-Venezia Giulia,Nord-est,TS,TRIESTE,2
+UDINE,Udine,030,30,06,Friuli-Venezia Giulia,Nord-est,UD,UDINE,2
+VARESE,Varese,012,12,03,Lombardia,Nord-ovest,VA,VARESE,1
+VENEZIA,Venezia,227,27,05,Veneto,Nord-est,VE,VENEZIA,2
+VERBANIA,Verbano-Cusio-Ossola,103,103,01,Piemonte,Nord-ovest,VB,VERBANIA,1
+VERCELLI,Vercelli,002,2,01,Piemonte,Nord-ovest,VC,VERCELLI,1
+VERONA,Verona,023,23,05,Veneto,Nord-est,VR,VERONA,2
+VIBO VALENTIA,Vibo Valentia,102,102,18,Calabria,Sud,VV,VIBO VALENTIA,4
+VICENZA,Vicenza,024,24,05,Veneto,Nord-est,VI,VICENZA,2
+VITERBO,Viterbo,056,56,12,Lazio,Centro,VT,VITERBO,3
