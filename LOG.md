@@ -1,5 +1,193 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2025-11-22
+
+### CORREZIONE CRITICA: FILE 6 contiene anche vittime maschili (14%)
+
+**Scoperta importante**: Il FILE 6 NON contiene solo vittime femminili, ma tutti i casi con relazione vittima-autore:
+- 85.86% vittime femminili (2.422 casi)
+- 14.14% vittime maschili (399 casi)
+- Totale: 2.821 vittime
+
+**Risposta FOIA**: "comunicazioni presenti in SDI riconducibili ai casi di violenza di genere, ove sia stata indicata una 'relazione vittima autore'" → NON specifica "solo femminili"
+
+**Azioni correttive**:
+1. Ricalcolati CSV età vittime filtrando solo SEX_VITTIMA = 'FEMMINA'
+2. Rigenerati grafici 1-2-3 con dati corretti (2.422 vittime femminili invece di 2.821 totali)
+3. Aggiornato PRD con numeri corretti:
+   - Picco 35-39: 331 vittime (13.7%) invece di 366
+   - Totale 2.422 vittime femminili esplicito ovunque
+
+**File aggiornati**:
+- `tasks/marta/outputs/eta_vittime_distribuzione.csv`
+- `tasks/marta/outputs/eta_vittime_per_provincia_boxplot.csv`
+- `tasks/marta/outputs/eta_vittime_2023_vs_2024.csv`
+- `tasks/marta/outputs/eta_vittime_top10_province.csv`
+- Grafici 1-2-3 rigenerati
+
+**PRD aggiornato introduzione**:
+- Aggiunta sezione chiara FILE 6: contiene vittime entrambi sessi (85.9% F, 14.1% M)
+- Specificato che file include solo casi con relazione vittima-autore (esclude sconosciuti)
+- Tabella riassuntiva FILE 6: breakdown vittime per sesso
+- Nota metodologica: analisi violenza genere usa solo vittime femminili, analisi relazioni usa dataset completo
+
+### Precisazione "vittime di sesso femminile" in grafici e testo età vittime
+
+**Grafici età vittime rigenerati** (1-2-3):
+- Titoli aggiornati: "vittime di sesso femminile" invece di generiche "vittime"
+- Sottotitoli aggiornati: "2.821 vittime femminili" (esplicito)
+- Assi Y aggiornati: "Numero vittime femminili" / "Età vittima femminile"
+
+**PRD testo aggiornato**:
+- Paragrafo apertura: "le 2.821 vittime di sesso femminile del FILE 6" (prima era solo "2.821 eventi")
+- Didascalie grafici 1-2-3: aggiunto "femminili" ovunque necessario
+- Titolo sezione grafico 1: "Distribuzione età vittime femminili"
+
+**Motivazione**: Essenziale chiarire che FILE 6 vittime contiene solo donne, non tutte le vittime. I reati possono avere vittime di qualsiasi sesso ma il Ministero ha fornito solo dati vittime femminili (focus violenza di genere).
+
+### Analisi evoluzione temporale categorie reati (Delitti, Reati spia, Codice Rosso)
+
+**Creati grafici trend 2019-2024**:
+- Grafico 10: linee reati commessi per categoria (Delitti +2.8%, Reati spia +34.6%, Codice Rosso +426%)
+- Grafico 11: linee vittime femminili per categoria (Delitti -14.3%, Reati spia +21.4%, Codice Rosso +375%)
+- Grafico 12: facet grid 2x3 confronto commessi vs vittime
+- Grafico 13-14: focus Codice Rosso separato (linee + area chart)
+
+**Insight chiave**:
+- Paradosso Delitti: reati commessi crescono (+2.8%) ma vittime femminili calano (-14.3%)
+- Codice Rosso: crescita esplosiva dopo introduzione Legge 69/2019, quintuplicati in 5 anni
+- Rapporto commessi/vittime Codice Rosso cresce da 1.66 (2019) a 1.84 (2024): più reati per vittima
+
+**PRD aggiornato**:
+- Aggiunta sezione "Focus Codice Rosso: crescita esplosiva dal 2019" in panoramica reati
+- Aggiunta spiegazione tre categorie (delitti, reati spia, codice rosso) in introduzione articolo
+- Aggiunte note tecniche convenzione nomi file CSV: `*_vittime.csv` = solo femminili, `*_commessi.csv` = tutti, `*_segnalazioni.csv` = tutte
+
+**File generati**:
+- `tasks/marta/outputs/trend_categorie_reati_2019_2024.csv`
+- `tasks/marta/outputs/codice_rosso_trend_dettaglio.csv`
+- `tasks/marta/outputs/grafico_10_trend_commessi_categorie.png`
+- `tasks/marta/outputs/grafico_11_trend_vittime_categorie.png`
+- `tasks/marta/outputs/grafico_12_facet_commessi_vittime_categorie.png`
+- `tasks/marta/outputs/grafico_13_codice_rosso_evoluzione.png`
+- `tasks/marta/outputs/grafico_14_codice_rosso_area.png`
+- `tasks/marta/outputs/grafici_trend_categorie.py`
+- `tasks/marta/outputs/grafico_codice_rosso_separato.py`
+
+### Revisione Qualità PRD e Codice - Priorità ALTA
+
+**Analisi qualità completata**: Documento `tasks/marta/ANALISI_QUALITA.md` con 6 problemi PRD + 8 problemi codice identificati
+
+**PRD - Miglioramenti narrativi applicati**:
+
+1. **Riorganizzazione problema Sud Sardegna**
+   - Creata nuova sezione "PROBLEMI DI QUALITÀ: quando i dati nascondono più di quanto rivelano"
+   - Sud Sardegna ora spiegato con linguaggio accessibile (non tecnico)
+   - Aggiunto callout Quarto `.{.callout-warning collapse="true"}` con dettagli tecnici opzionali
+   - Spostati limiti metodologici in callout dedicati (popolazione 2023, dati 2024 non consolidati)
+
+2. **Aggiunta sezione conclusiva**
+   - "CONCLUSIONI: cosa abbiamo imparato e cosa manca ancora"
+   - Riassunto findings principali (età vittime, geografia, relazioni domestiche)
+   - Lista esplicita cosa manca (anni precedenti FILE 6, provincia Sud Sardegna, disaggregazioni)
+   - Chiamata all'azione: trasparenza strutturale, qualità dati, completezza temporale, interoperabilità
+   - Link repository + licenza CC BY 4.0 + ringraziamenti
+
+3. **Migliorata sezione squilibrio temporale FILE 6**
+   - Integrata in "Problemi di qualità"
+   - Spiegato impatto: impossibile studiare evoluzione 2019-2022
+   - Richiesta spiegazione ufficiale da Ministero
+
+**Codice Python - Refactoring applicato**:
+
+1. **Eliminata duplicazione query** (da 80 righe duplicate a funzione unica)
+   - Creata `build_mappa_query()` con docstring completa
+   - Gestisce sia query totale che disaggregata per categoria via flag `with_categoria`
+   - Query ridotte da 131-234 (103 righe) a 232-262 (30 righe chiamate funzione)
+
+2. **Rimosso merge Pandas ridondante**
+   - Campo `sigla` ora incluso direttamente in SELECT DuckDB
+   - Eliminato merge post-query per `codice_provincia_storico`
+   - Codice più pulito: query DuckDB fa tutto il lavoro
+
+3. **Aggiunte docstring complete**
+   - `fmt_it()`, `fmt_pct_it()`, `fmt1_it()`: formattatori numeri stile italiano
+   - `clean_delitto_name()`: pulizia nomi delitti
+   - `save_csv()`: salvataggio con conferma
+   - `build_mappa_query()`: query builder con parametri documentati
+
+4. **Migliorati commenti inline**
+   - Spiegato mapping Sardegna (Cagliari 118 → 92)
+   - Annotato perché `with_categoria=True/False`
+   - Documentato logica JOIN (popolazione, geografia, sigle)
+
+**Test**: Script `grafici_panoramica_reati.py` eseguito con successo, tutti output generati correttamente
+
+**Metriche miglioramento**:
+- Duplicazione codice: -40 righe (-40%)
+- Docstring coverage: da 20% a 100%
+- Leggibilità: funzione riutilizzabile vs query inline duplicate
+
+## 2025-11-22
+
+### Problema Qualità Dati: Provincia Sud Sardegna Mancante
+
+**Issue identificato**: Dati SDI 2024 (periodo 2019-2024) includono solo 4 province sarde (Cagliari, Nuoro, Oristano, Sassari)
+
+**Configurazione corretta 2016-2021**: 5 enti
+- Provincia Nuoro
+- Provincia Oristano
+- Provincia Sassari
+- **Provincia Sud Sardegna** (L.R. 2/2016, operativa 20/04/2016 - aprile 2021)
+- Città Metropolitana Cagliari
+
+**Dettagli Sud Sardegna**:
+- 107 comuni (ex Carbonia-Iglesias + ex Medio Campidano + comuni Cagliari + Genoni + Seui)
+- Soppressa solo aprile 2021 (L.R. 7/2021)
+- **Completamente assente dai dati SDI per anni 2019-2021**
+
+**Conseguenza**: Attribuzione errata reati Sud Sardegna alla provincia Cagliari.
+
+**Verifica FILE 6 (eventi relazionali)**: Analisi comuni nella tabella `eventi` (`data/processed/reati_sdi_relazionale.duckdb`) conferma che comuni Sud Sardegna sono erroneamente attribuiti a Cagliari:
+- Carbonia (1 evento) → provincia CAGLIARI (dovrebbe essere SUD SARDEGNA)
+- Iglesias (2 eventi) → provincia CAGLIARI (dovrebbe essere SUD SARDEGNA)
+- Sanluri (1 evento) → provincia CAGLIARI (dovrebbe essere SUD SARDEGNA)
+- Arbus, Santadi, San Giovanni Suergiu, Villanovafranca → provincia CAGLIARI (tutti Sud Sardegna)
+
+Totale: 12 comuni sardi attribuiti a "CAGLIARI" nel FILE 6, di cui almeno 7 appartengono effettivamente a Sud Sardegna (ex Carbonia-Iglesias + ex Medio Campidano).
+
+Problema qualità dati grave da segnalare a Ministero Interno. Documentato in PRD sezione "Limiti da tenere a mente".
+
+### Mappa Coropletica Province
+
+- Aggiunta generazione mappa coropletica province a `tasks/marta/outputs/grafici_panoramica_reati.py`
+- Output: `grafico_4d_mappa_province_choropleth.png` (324KB, 300dpi)
+- Join basato su sigla automobilistica (campo `SIGLA` shapefile ↔ `sigla` CSV)
+- Stile: scala OrRd, province senza dati in grigio chiaro
+- Documentato in PRD join geografico completo (popolazione via codice_provincia_storico, shapefile via sigla)
+- Fix: aggiunta colonna `sigla` in query DuckDB per rendere disponibile join diretto con shapefile (evitando merge ridondanti pandas)
+
+## 2025-11-21
+
+### Sviluppo PRD Marta - Articolo Divulgativo
+
+**Obiettivo**: Creare contenuti giornalistici per articolo violenza genere (Marta)
+
+**FASE 1 completata - Introduzione**:
+- Testo narrativo 774 parole su storia FOIA, dataset ottenuti, importanza trasparenza
+- Tabelle riassuntive FILE 5 (dati aggregati 107 province) e FILE 6 (2.644 eventi)
+- Deliverable: `tasks/marta/PRD_marta.md`, 2 CSV riassuntivi
+
+**FASE 2 completata - Analisi età vittime**:
+- 4 query DuckDB distribuzione/province/confronto 2023-2024
+- 3 grafici plotnine stile Sunlight Foundation (PNG 129KB, 147KB, 110KB)
+- Sezione narrativa 530 parole su distribuzione età (picco 35-39 anni, 46% vittime 30-50 anni)
+- Evidenziate differenze territoriali (Napoli 43.9 vs Brescia 37.4 anni età media)
+- Script Python commentato `grafici_eta_vittime.py` riutilizzabile
+- Deliverable: 3 PNG, 4 CSV dati, 1 script .py
+
+**Prossimi step**: FASE 3 panoramica reati province, FASE 4 relazioni vittima-autore
+
 ## 2025-11-21
 
 ### Fix Join Geografico Province Sardegna
