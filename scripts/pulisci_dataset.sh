@@ -163,67 +163,11 @@ COPY (
     SELECT DISTINCT *
     FROM st_read('${INPUT_FILE}', layer='Sheet')
   ),
-  regioni_corrections AS (
-    SELECT * FROM read_json('resources/problemi_nomi_regioni.jsonl')
-  ),
-  province_corrections AS (
-    SELECT * FROM read_json('resources/problemi_nomi_province.jsonl')
-  ),
-  comuni_corrections AS (
-    SELECT * FROM read_json('resources/problemi_nomi_comuni.jsonl')
-  ),
-  sardegna_corrections AS (
-    SELECT * FROM read_json('resources/problemi_province_sardegna.jsonl')
-  ),
-  istat_regioni AS (
-    SELECT DISTINCT
-      codice_regione,
-      regione
-    FROM read_csv('resources/unita_territoriali_istat.csv')
-  ),
-  istat_province AS (
-    SELECT DISTINCT ON (COD_UTS)
-      COD_UTS as codice_provinciauts,
-      PROVINCIA as provinciauts
-    FROM read_csv('tasks/nomi_geo_istat/data/comuni_con_provincia.csv')
-    ORDER BY COD_UTS, PRO_COM_T
-  ),
-  istat_comuni AS (
-    -- Tabella comuni con nomi bilingue splittati
-    WITH base AS (
-      SELECT * FROM read_csv('tasks/nomi_geo_istat/data/comuni_con_provincia.csv')
-    ),
-    nome_italiano AS (
-      SELECT 
-        PRO_COM_T as codice_comune_alfanumerico,
-        CASE 
-          WHEN COMUNE LIKE '%/%' THEN trim(split_part(COMUNE, '/', 1))
-          ELSE COMUNE
-        END as comune_dizione_italiana,
-        PROVINCIA as provinciauts
-      FROM base
-    ),
-    nome_altra_lingua AS (
-      SELECT 
-        PRO_COM_T as codice_comune_alfanumerico,
-        trim(split_part(COMUNE, '/', 2)) as comune_dizione_italiana,
-        PROVINCIA as provinciauts
-      FROM base
-      WHERE COMUNE LIKE '%/%'
-    )
-    SELECT * FROM nome_italiano
-    UNION ALL
-    SELECT * FROM nome_altra_lingua
-  ),
-  -- Applica correzione province Sardegna
-  data_with_sardegna AS (
-    SELECT 
-      d.*,
-      COALESCE(sc.provincia_corretta, d.PROVINCIA) as PROVINCIA_CORRETTA
-    FROM deduplicato d
-    LEFT JOIN sardegna_corrections sc
-      ON UPPER(trim(d.PROVINCIA)) = UPPER(sc.provincia)
-      AND UPPER(trim(d.COMUNE)) = UPPER(sc.comune)
+  -- Mapping comuni centralizzato (sostituisce 96 righe di CTE complesse)
+  -- Contiene: xlsx→Istat→shapefile→situas con 1222 comuni mappati al 100%
+  mapping_comuni AS (
+    SELECT *
+    FROM read_csv('resources/mappature/comuni/mapping_completo_xlsx_istat_shp_situas.csv')
   )
   SELECT
     trim(d.PROT_SDI) as PROT_SDI,
@@ -234,33 +178,25 @@ COPY (
     COALESCE(trim(first(d.STATO)), 'ITALIA') as STATO,
     first(c.alpha_3) as STATO_ISO,
     trim(first(d.REGIONE)) as REGIONE,
-    first(i_reg.codice_regione) as CODICE_REGIONE,
+    CAST(first(m.COD_REG_shp) AS VARCHAR) as CODICE_REGIONE,
     trim(first(d.PROVINCIA)) as PROVINCIA,
-    first(i_prov.codice_provinciauts) as CODICE_PROVINCIA,
+    CAST(first(m.COD_PROV_shp) AS VARCHAR) as CODICE_PROVINCIA,
     trim(first(d.COMUNE)) as COMUNE,
-    first(i_com.codice_comune_alfanumerico) as CODICE_COMUNE,
-    first(i_reg.regione) as REGIONE_NOME_ISTAT,
-    first(i_prov.provinciauts) as PROVINCIA_NOME_ISTAT,
-    first(i_com.comune_dizione_italiana) as COMUNE_NOME_ISTAT,
+    first(m.PRO_COM_T) as CODICE_COMUNE,
+    first(m.regione_istat) as REGIONE_NOME_ISTAT,
+    NULL as PROVINCIA_NOME_ISTAT,
+    first(m.comune_istat) as COMUNE_NOME_ISTAT,
     trim(first(d.LUOGO_SPECIF_FATTO)) as LUOGO_SPECIF_FATTO,
     trim(first(d.DES_OBIET)) as DES_OBIET
-  FROM data_with_sardegna d
-  LEFT JOIN read_csv('./resources/codici_stati.csv') c 
+  FROM deduplicato d
+  LEFT JOIN read_csv('./resources/codici_stati.csv') c
     ON COALESCE(trim(d.STATO), 'ITALIA') = c.stato
-  LEFT JOIN regioni_corrections rc
-    ON UPPER(trim(d.REGIONE)) = UPPER(rc.nome)
-  LEFT JOIN istat_regioni i_reg
-    ON UPPER(COALESCE(rc.nome_corretto, trim(d.REGIONE))) = UPPER(i_reg.regione)
-  LEFT JOIN province_corrections pc
-    ON UPPER(trim(d.PROVINCIA_CORRETTA)) = UPPER(pc.nome)
-  LEFT JOIN istat_province i_prov
-    ON UPPER(COALESCE(pc.nome_corretto, trim(d.PROVINCIA_CORRETTA))) = UPPER(i_prov.provinciauts)
-  LEFT JOIN comuni_corrections cc
-    ON UPPER(trim(d.COMUNE)) = UPPER(cc.nome)
-  LEFT JOIN istat_comuni i_com
-    ON UPPER(COALESCE(pc.nome_corretto, trim(d.PROVINCIA_CORRETTA))) = UPPER(i_com.provinciauts) 
-    AND UPPER(COALESCE(cc.nome_corretto, trim(d.COMUNE))) = UPPER(i_com.comune_dizione_italiana)
+  -- Join semplificato su (regione, comune) - sostituisce fuzzy matching e 6+ join
+  LEFT JOIN mapping_comuni m
+    ON UPPER(trim(d.REGIONE)) = UPPER(m.regione_xlsx)
+    AND UPPER(trim(d.COMUNE)) = UPPER(m.comune_xlsx)
   GROUP BY d.PROT_SDI
+  ORDER BY d.PROT_SDI  -- Output deterministico
 ) TO '${OUTPUT_EVENTI}' (HEADER, DELIMITER ',');
 "
 
@@ -282,6 +218,7 @@ COPY (
     trim(DES_REA_EVE) as DES_REA_EVE
   FROM deduplicato
   WHERE ART IS NOT NULL
+  ORDER BY PROT_SDI, ART
 ) TO '${OUTPUT_REATI}' (HEADER, DELIMITER ',');
 "
 
@@ -306,6 +243,7 @@ COPY (
   LEFT JOIN read_csv('./resources/codici_stati.csv') c
     ON trim(d.NAZIONE_NASCITA_VITTIMA) = c.stato
   WHERE d.COD_VITTIMA IS NOT NULL
+  ORDER BY PROT_SDI, COD_VITTIMA
 ) TO '${OUTPUT_VITTIME}' (HEADER, DELIMITER ',');
 "
 
@@ -331,6 +269,7 @@ COPY (
   LEFT JOIN read_csv('./resources/codici_stati.csv') c
     ON trim(d.NAZIONE_NASCITA_DENUNCIATO) = c.stato
   WHERE d.COD_DENUNCIATO IS NOT NULL
+  ORDER BY PROT_SDI, COD_DENUNCIATO
 ) TO '${OUTPUT_DENUNCIATI}' (HEADER, DELIMITER ',');
 "
 
@@ -355,6 +294,7 @@ COPY (
   LEFT JOIN read_csv('./resources/codici_stati.csv') c
     ON trim(d.NAZIONE_NASCITA_COLP_PROVV) = c.stato
   WHERE d.COD_COLP_DA_PROVV IS NOT NULL
+  ORDER BY PROT_SDI, COD_COLP_DA_PROVV
 ) TO '${OUTPUT_COLPITI}' (HEADER, DELIMITER ',');
 "
 
@@ -508,359 +448,3 @@ print(f\"  Colpiti provv: {data['n_colpiti_provv']}\")
 
 echo ""
 echo "=== Pulizia completata ==="
-
-# STEP 6: Analisi fuzzy matching per comuni non matchati
-echo ""
-echo "STEP 6: Analisi fuzzy matching comuni mancanti..."
-
-# Estrai comuni senza codice ISTAT
-duckdb -c "
-COPY (
-  SELECT DISTINCT
-    PROVINCIA,
-    COMUNE
-  FROM read_csv('${OUTPUT_DIR}/relazionale_eventi.csv', auto_detect=true)
-  WHERE COMUNE IS NOT NULL 
-    AND COMUNE != ''
-    AND CODICE_COMUNE IS NULL
-  ORDER BY PROVINCIA, COMUNE
-) TO '${TEMP_DIR}/comuni_senza_codice.csv' (HEADER, DELIMITER ',');
-"
-
-# Prepara tabella ISTAT comuni per matching
-duckdb -c "
-COPY (
-  SELECT DISTINCT
-    provinciauts as PROVINCIA,
-    comune_dizione_italiana as COMUNE,
-    codice_comune_alfanumerico as CODICE_COMUNE
-  FROM read_csv('resources/unita_territoriali_istat.csv')
-  ORDER BY provinciauts, comune_dizione_italiana
-) TO '${TEMP_DIR}/istat_comuni.csv' (HEADER, DELIMITER ',');
-"
-
-# Esegui fuzzy matching con csvmatch
-echo "Esecuzione fuzzy matching (threshold 0.95)..."
-csvmatch \
-  "${TEMP_DIR}/comuni_senza_codice.csv" \
-  "${TEMP_DIR}/istat_comuni.csv" \
-  --fields1 PROVINCIA COMUNE \
-  --fields2 PROVINCIA COMUNE \
-  --fuzzy levenshtein \
-  -r 0.95 \
-  -i \
-  -a \
-  -n \
-  --join left-outer \
-  --output '1.PROVINCIA' '1.COMUNE' 2.COMUNE 2.CODICE_COMUNE \
-  > "${TEMP_DIR}/fuzzy_match_comuni.csv"
-
-# Rinomina colonne per chiarezza
-mlr -I --csv rename 'COMUNE_2,COMUNE_ISTAT,CODICE_COMUNE_2,CODICE_COMUNE' "${TEMP_DIR}/fuzzy_match_comuni.csv"
-
-# Conta risultati
-TOTAL_UNMATCHED=$(wc -l < "${TEMP_DIR}/comuni_senza_codice.csv")
-TOTAL_UNMATCHED=$((TOTAL_UNMATCHED - 1))  # Rimuovi header
-
-FUZZY_MATCHED=$(mlr --csv filter "\$CODICE_COMUNE != \"\"" then count "${TEMP_DIR}/fuzzy_match_comuni.csv" 2>/dev/null || echo "0")
-
-echo "Comuni senza codice ISTAT: ${TOTAL_UNMATCHED}"
-echo "Comuni matchati con fuzzy (≥95%): ${FUZZY_MATCHED}"
-echo ""
-echo "Risultati fuzzy matching salvati in: ${TEMP_DIR}/fuzzy_match_comuni.csv"
-
-# STEP 7: Aggiornamento dataset con comuni matchati da fuzzy
-echo ""
-echo "STEP 7: Aggiornamento dataset con comuni matchati da fuzzy..."
-
-# Aggiorna dataset_cartesiano.csv
-echo "Aggiornamento dataset_cartesiano.csv..."
-duckdb -c "
-COPY (
-  SELECT 
-    dc.PROT_SDI,
-    dc.ART,
-    dc.T_NORMA,
-    dc.RIF_LEGGE,
-    dc.DES_REA_EVE,
-    dc.TENT_CONS,
-    dc.COD_VITTIMA,
-    dc.SEX_VITTIMA,
-    dc.ETA_VITTIMA,
-    dc.NAZIONE_NASCITA_VITTIMA,
-    dc.COD_DENUNCIATO,
-    dc.SESSO_DENUNCIATO,
-    dc.ETA_DENUNCIATO,
-    dc.NAZIONE_NASCITA_DENUNCIATO,
-    dc.COD_COLP_DA_PROVV,
-    dc.SEX_COLP_PROVV,
-    dc.ETA_COLP_PROVV,
-    dc.NAZIONE_NASCITA_COLP_PROVV,
-    dc.RELAZIONE_AUTORE_VITTIMA,
-    dc.DATA_INIZIO_FATTO,
-    dc.DATA_FINE_FATTO,
-    dc.DATA_DENUNCIA,
-    dc.STATO,
-    dc.STATO_ISO,
-    dc.REGIONE,
-    dc.PROVINCIA,
-    COALESCE(fm.COMUNE_ISTAT, dc.COMUNE) as COMUNE,
-    fm.CODICE_COMUNE as CODICE_COMUNE,
-    dc.LUOGO_SPECIF_FATTO,
-    dc.DES_OBIET
-  FROM read_csv('${OUTPUT_CARTESIANO}', auto_detect=true) dc
-  LEFT JOIN read_csv('${TEMP_DIR}/fuzzy_match_comuni.csv', auto_detect=true) fm
-    ON dc.PROVINCIA = fm.PROVINCIA 
-    AND dc.COMUNE = fm.COMUNE
-    AND fm.CODICE_COMUNE IS NOT NULL
-    AND fm.CODICE_COMUNE != ''
-) TO '${OUTPUT_CARTESIANO}.new' (HEADER, DELIMITER ',');
-"
-mv "${OUTPUT_CARTESIANO}.new" "${OUTPUT_CARTESIANO}"
-
-# Aggiorna dataset_array.csv
-echo "Aggiornamento dataset_array.csv..."
-duckdb -c "
-COPY (
-  SELECT 
-    da.PROT_SDI,
-    da.ARTICOLI,
-    da.T_NORMA,
-    da.RIF_LEGGE,
-    da.DES_REA_EVE,
-    da.TENT_CONS,
-    da.COD_VITTIME,
-    da.N_VITTIME,
-    da.SESSO_VITTIME,
-    da.ETA_VITTIME,
-    da.NAZIONI_NASCITA_VITTIME,
-    da.COD_DENUNCIATI,
-    da.N_DENUNCIATI,
-    da.SESSO_DENUNCIATI,
-    da.ETA_DENUNCIATI,
-    da.NAZIONI_NASCITA_DENUNCIATI,
-    da.COD_COLPITI_PROVV,
-    da.N_COLPITI_PROVV,
-    da.SESSO_COLPITI_PROVV,
-    da.ETA_COLPITI_PROVV,
-    da.NAZIONI_NASCITA_COLPITI_PROVV,
-    da.RELAZIONI_AUTORE_VITTIMA,
-    da.DATA_INIZIO_FATTO,
-    da.DATA_FINE_FATTO,
-    da.DATA_DENUNCIA,
-    da.STATO,
-    da.STATO_ISO,
-    da.REGIONE,
-    da.PROVINCIA,
-    COALESCE(fm.COMUNE_ISTAT, da.COMUNE) as COMUNE,
-    fm.CODICE_COMUNE as CODICE_COMUNE,
-    da.LUOGO_SPECIF_FATTO,
-    da.DES_OBIET
-  FROM read_csv('${OUTPUT_ARRAY}', auto_detect=true) da
-  LEFT JOIN read_csv('${TEMP_DIR}/fuzzy_match_comuni.csv', auto_detect=true) fm
-    ON da.PROVINCIA = fm.PROVINCIA 
-    AND da.COMUNE = fm.COMUNE
-    AND fm.CODICE_COMUNE IS NOT NULL
-    AND fm.CODICE_COMUNE != ''
-) TO '${OUTPUT_ARRAY}.new' (HEADER, DELIMITER ',');
-"
-mv "${OUTPUT_ARRAY}.new" "${OUTPUT_ARRAY}"
-
-# Aggiorna relazionale_eventi.csv
-echo "Aggiornamento relazionale_eventi.csv..."
-duckdb -c "
-COPY (
-  SELECT 
-    de.PROT_SDI,
-    de.TENT_CONS,
-    de.DATA_INIZIO_FATTO,
-    de.DATA_FINE_FATTO,
-    de.DATA_DENUNCIA,
-    de.STATO,
-    de.STATO_ISO,
-    de.REGIONE,
-    de.CODICE_REGIONE,
-    de.PROVINCIA,
-    de.CODICE_PROVINCIA,
-    COALESCE(fm.COMUNE_ISTAT, de.COMUNE) as COMUNE,
-    COALESCE(fm.CODICE_COMUNE, de.CODICE_COMUNE) as CODICE_COMUNE,
-    de.REGIONE_NOME_ISTAT,
-    de.PROVINCIA_NOME_ISTAT,
-    COALESCE(fm.COMUNE_ISTAT, de.COMUNE_NOME_ISTAT) as COMUNE_NOME_ISTAT,
-    de.LUOGO_SPECIF_FATTO,
-    de.DES_OBIET
-  FROM read_csv('${OUTPUT_EVENTI}', auto_detect=true) de
-  LEFT JOIN read_csv('${TEMP_DIR}/fuzzy_match_comuni.csv', auto_detect=true) fm
-    ON de.PROVINCIA = fm.PROVINCIA 
-    AND de.COMUNE = fm.COMUNE
-    AND fm.CODICE_COMUNE IS NOT NULL
-    AND fm.CODICE_COMUNE != ''
-) TO '${OUTPUT_EVENTI}.new' (HEADER, DELIMITER ',');
-"
-mv "${OUTPUT_EVENTI}.new" "${OUTPUT_EVENTI}"
-
-# Aggiorna database DuckDB
-echo "Aggiornamento database DuckDB..."
-duckdb "${OUTPUT_DB}" <<EOF
--- Drop tutte le tabelle e indici esistenti nell'ordine corretto
-DROP INDEX IF EXISTS idx_reati_prot_sdi;
-DROP INDEX IF EXISTS idx_vittime_prot_sdi;
-DROP INDEX IF EXISTS idx_denunciati_prot_sdi;
-DROP INDEX IF EXISTS idx_colpiti_provv_prot_sdi;
-DROP INDEX IF EXISTS idx_eventi_regione;
-DROP INDEX IF EXISTS idx_eventi_data_denuncia;
-
-DROP TABLE IF EXISTS reati;
-DROP TABLE IF EXISTS vittime;
-DROP TABLE IF EXISTS denunciati;
-DROP TABLE IF EXISTS colpiti_provv;
-DROP TABLE IF EXISTS eventi;
-
--- Crea tabella eventi aggiornata con fuzzy match
-CREATE TABLE eventi AS
-SELECT 
-  de.PROT_SDI,
-  de.TENT_CONS,
-  de.DATA_INIZIO_FATTO,
-  de.DATA_FINE_FATTO,
-  de.DATA_DENUNCIA,
-  de.STATO,
-  de.STATO_ISO,
-  de.REGIONE,
-  de.CODICE_REGIONE,
-  de.PROVINCIA,
-  de.CODICE_PROVINCIA,
-  COALESCE(fm.COMUNE_ISTAT, de.COMUNE) as COMUNE,
-  COALESCE(fm.CODICE_COMUNE, de.CODICE_COMUNE) as CODICE_COMUNE,
-  de.LUOGO_SPECIF_FATTO,
-  de.DES_OBIET
-FROM read_csv('${OUTPUT_EVENTI}', auto_detect=true) de
-LEFT JOIN read_csv('${TEMP_DIR}/fuzzy_match_comuni.csv', auto_detect=true) fm
-  ON de.PROVINCIA = fm.PROVINCIA 
-  AND de.COMUNE = fm.COMUNE
-  AND fm.CODICE_COMUNE IS NOT NULL
-  AND fm.CODICE_COMUNE != '';
-
--- Ricrea altre tabelle
-CREATE TABLE reati AS SELECT * FROM read_csv('${OUTPUT_REATI}', auto_detect=true);
-CREATE TABLE vittime AS SELECT * FROM read_csv('${OUTPUT_VITTIME}', auto_detect=true);
-CREATE TABLE denunciati AS SELECT * FROM read_csv('${OUTPUT_DENUNCIATI}', auto_detect=true);
-CREATE TABLE colpiti_provv AS SELECT * FROM read_csv('${OUTPUT_COLPITI}', auto_detect=true);
-
--- Ricrea indici
-CREATE INDEX idx_reati_prot_sdi ON reati(PROT_SDI);
-CREATE INDEX idx_vittime_prot_sdi ON vittime(PROT_SDI);
-CREATE INDEX idx_denunciati_prot_sdi ON denunciati(PROT_SDI);
-CREATE INDEX idx_colpiti_provv_prot_sdi ON colpiti_provv(PROT_SDI);
-CREATE INDEX idx_eventi_regione ON eventi(REGIONE);
-CREATE INDEX idx_eventi_data_denuncia ON eventi(DATA_DENUNCIA);
-EOF
-
-echo "Dataset aggiornati con comuni corretti da fuzzy matching"
-echo ""
-echo "=== Aggiornamento completato ==="
-
-# STEP 7.1: Aggiungi codici e nomi ISTAT a dataset_cartesiano e dataset_array
-echo ""
-echo "STEP 7.1: Aggiunta codici e nomi ISTAT agli altri output..."
-
-# Aggiorna dataset_cartesiano con codici e nomi ISTAT
-echo "Aggiornamento dataset_cartesiano con codici ISTAT..."
-duckdb -c "
-COPY (
-  SELECT 
-    dc.PROT_SDI,
-    dc.ART,
-    dc.T_NORMA,
-    dc.RIF_LEGGE,
-    dc.DES_REA_EVE,
-    dc.TENT_CONS,
-    dc.COD_VITTIMA,
-    dc.SEX_VITTIMA,
-    dc.ETA_VITTIMA,
-    dc.NAZIONE_NASCITA_VITTIMA,
-    dc.COD_DENUNCIATO,
-    dc.SESSO_DENUNCIATO,
-    dc.ETA_DENUNCIATO,
-    dc.NAZIONE_NASCITA_DENUNCIATO,
-    dc.COD_COLP_DA_PROVV,
-    dc.SEX_COLP_PROVV,
-    dc.ETA_COLP_PROVV,
-    dc.NAZIONE_NASCITA_COLP_PROVV,
-    dc.RELAZIONE_AUTORE_VITTIMA,
-    dc.DATA_INIZIO_FATTO,
-    dc.DATA_FINE_FATTO,
-    dc.DATA_DENUNCIA,
-    dc.STATO,
-    dc.STATO_ISO,
-    dc.REGIONE,
-    dc.PROVINCIA,
-    dc.COMUNE,
-    dc.LUOGO_SPECIF_FATTO,
-    dc.DES_OBIET,
-    e.CODICE_REGIONE,
-    e.CODICE_PROVINCIA,
-    e.CODICE_COMUNE,
-    e.REGIONE_NOME_ISTAT,
-    e.PROVINCIA_NOME_ISTAT,
-    e.COMUNE_NOME_ISTAT
-  FROM read_csv('${OUTPUT_CARTESIANO}', auto_detect=true) dc
-  LEFT JOIN read_csv('${OUTPUT_EVENTI}', auto_detect=true) e
-    ON dc.PROT_SDI = e.PROT_SDI
-) TO '${OUTPUT_CARTESIANO}.new' (HEADER, DELIMITER ',');
-"
-mv "${OUTPUT_CARTESIANO}.new" "${OUTPUT_CARTESIANO}"
-
-# Aggiorna dataset_array con codici e nomi ISTAT
-echo "Aggiornamento dataset_array con codici ISTAT..."
-duckdb -c "
-COPY (
-  SELECT 
-    da.PROT_SDI,
-    da.ARTICOLI,
-    da.T_NORMA,
-    da.RIF_LEGGE,
-    da.DES_REA_EVE,
-    da.TENT_CONS,
-    da.COD_VITTIME,
-    da.N_VITTIME,
-    da.SESSO_VITTIME,
-    da.ETA_VITTIME,
-    da.NAZIONI_NASCITA_VITTIME,
-    da.COD_DENUNCIATI,
-    da.N_DENUNCIATI,
-    da.SESSO_DENUNCIATI,
-    da.ETA_DENUNCIATI,
-    da.NAZIONI_NASCITA_DENUNCIATI,
-    da.COD_COLPITI_PROVV,
-    da.N_COLPITI_PROVV,
-    da.SESSO_COLPITI_PROVV,
-    da.ETA_COLPITI_PROVV,
-    da.NAZIONI_NASCITA_COLPITI_PROVV,
-    da.RELAZIONI_AUTORE_VITTIMA,
-    da.DATA_INIZIO_FATTO,
-    da.DATA_FINE_FATTO,
-    da.DATA_DENUNCIA,
-    da.STATO,
-    da.STATO_ISO,
-    da.REGIONE,
-    da.PROVINCIA,
-    da.COMUNE,
-    da.LUOGO_SPECIF_FATTO,
-    da.DES_OBIET,
-    e.CODICE_REGIONE,
-    e.CODICE_PROVINCIA,
-    e.CODICE_COMUNE,
-    e.REGIONE_NOME_ISTAT,
-    e.PROVINCIA_NOME_ISTAT,
-    e.COMUNE_NOME_ISTAT
-  FROM read_csv('${OUTPUT_ARRAY}', auto_detect=true) da
-  LEFT JOIN read_csv('${OUTPUT_EVENTI}', auto_detect=true) e
-    ON da.PROT_SDI = e.PROT_SDI
-) TO '${OUTPUT_ARRAY}.new' (HEADER, DELIMITER ',');
-"
-mv "${OUTPUT_ARRAY}.new" "${OUTPUT_ARRAY}"
-
-echo "Codici e nomi ISTAT aggiunti a tutti i dataset"
-echo ""
-echo "=== Arricchimento ISTAT completato ==="
