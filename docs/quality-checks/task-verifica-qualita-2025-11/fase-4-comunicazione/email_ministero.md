@@ -199,6 +199,47 @@ Le entità geografiche (province, regioni, comuni, stati) sono rappresentate sol
 - **Analisi territoriali affidabili** senza rischi di errate aggregazioni
 - **Conformità agli standard internazionali** di condivisione dati aperti
 
+#### Province mancanti e nomenclatura obsoleta (CRITICO)
+
+Analizzando i nomi delle province nel file `MI-123-U-A-SD-2025-90_5.xlsx` e confrontandoli con le fonti ufficiali (anagrafe ISTAT e shapefile amministrativi Istat), abbiamo rilevato **problemi critici di completezza e aggiornamento della nomenclatura geografica**:
+
+**Provincia Sud Sardegna completamente assente**:
+
+- Il file xlsx contiene solo 4 province sarde: CAGLIARI, NUORO, ORISTANO, SASSARI
+- Manca completamente la provincia del **Sud Sardegna** (istituita con L.R. Sardegna 2/2016)
+- Questa provincia è presente negli shapefile ufficiali Istat (ProvCM01012025_g) e nell'anagrafe comunale Istat
+- Dato che il dataset include dati fino al 2024, **8 anni dopo l'istituzione della provincia**, questa assenza rappresenta un **grave problema di completezza territoriale**
+
+**Nomenclatura obsoleta per altre province**:
+
+Confrontando con le denominazioni ufficiali Istat, abbiamo rilevato 6 province con nomi non aggiornati o abbreviati:
+
+- AOSTA → nome ufficiale: "Valle d'Aosta/Vallée d'Aoste"
+- BOLZANO → nome ufficiale: "Bolzano/Bozen"
+- FORLI' CESENA → nome ufficiale: "Forlì-Cesena" (apostrofo vs accento, spazio vs trattino)
+- MASSA CARRARA → nome ufficiale: "Massa-Carrara" (manca trattino)
+- REGGIO EMILIA → nome ufficiale: "Reggio nell'Emilia"
+- VERBANIA → nome ufficiale: "Verbano-Cusio-Ossola" (nome abbreviato vs completo)
+
+**Perché è critico**:
+
+1. **Dati territorialmente incompleti**: L'assenza del Sud Sardegna significa che tutti gli eventi verificatisi in quella provincia dal 2016 al 2024 sono:
+   - Completamente assenti dal dataset (causando sottostima statistica grave)
+   - Oppure attribuiti erroneamente ad altre province sarde (causando errori di aggregazione territoriale)
+
+2. **Impossibile georeferenziazione automatica**: La nomenclatura obsoleta o non standard impedisce il join automatico con:
+   - Shapefile amministrativi ufficiali Istat
+   - Database ISTAT di popolazione e territorio
+   - Qualsiasi altra fonte dati che usi nomenclatura ufficiale aggiornata
+
+3. **Rischio di errori di aggregazione**: Province con nomi simili (es. "Reggio Calabria" vs "Reggio Emilia") possono causare errori quando si elaborano i dati senza codici univoci
+
+**Domande**:
+
+- Gli eventi del Sud Sardegna sono presenti nel dataset ma attribuiti ad altre province? O sono completamente assenti?
+- Quando sarà possibile avere un dataset con nomenclatura provinciale aggiornata alle denominazioni ufficiali Istat?
+- È possibile includere nei prossimi rilasci i codici provincia Istat (COD_PROV) per eliminare ambiguità?
+
 #### Proposta: doppio formato XLSX + CSV
 
 Comprendiamo che il formato XLSX attuale possa essere utile per visualizzazione diretta a schermo o stampa. Per questo proponiamo una soluzione che soddisfi entrambe le esigenze:
