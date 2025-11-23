@@ -2,6 +2,12 @@
 
 File di mappatura per risolvere discrepanze tra diverse fonti ISTAT e dati SDI.
 
+## Struttura
+
+- **`comuni/`**: mapping completi comuni xlsx → Istat → shapefile → situas
+- **`province/`**: mapping province xlsx → Istat → shapefile
+- File di supporto per casi speciali (Sardegna, regioni, sigle)
+
 ## codici_province_sardegna_situas_istat.csv
 
 Mappatura tra codici provincia SITUAS e codici UTS ISTAT per province Sardegna.
