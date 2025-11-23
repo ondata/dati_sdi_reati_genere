@@ -1,5 +1,47 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2025-11-23
+
+### Refactoring etl_5.sh: mapping province centralizzato
+
+**Semplificata FASE 4** (normalizzazione province):
+- Ridotte ~87% righe codice (da 80 a 10)
+- Eliminati 6 step sequenziali: fuzzy match + 4 join + correzioni Sardegna
+- Sostituiti con **1 join diretto** usando mapping pre-calcolato
+- **Output identico**: nessuna differenza nei CSV generati (compatibilità totale)
+
+**Nuova struttura mapping in `resources/mappature/province/`**:
+- `mapping_province_xlsx_istat.csv`: mapping Goal 1 (106 province xlsx→istat)
+- `mapping_province_xlsx_istat_shp.csv`: mapping Goal 2 (106 province xlsx→istat→shp)
+- `mapping_province_completo.csv`: mapping arricchito con regione/ripartizione (usato da etl_5.sh)
+
+**Vantaggi**:
+- Single source of truth: modifiche mapping in un file solo
+- Manutenibilità: no duplicazione logica in file JSONL separati
+- Performance: 1 join invece di csvmatch+duckdb+4 join mlr
+- Affidabilità: mapping validato 100% (106/106 province)
+- Backward compatible: output identico, nessun breaking change
+
+**File modificati**:
+- `scripts/etl_5.sh`: righe 304-313 (FASE 4 semplificata)
+- Creata `resources/mappature/province/` con 3 file mapping + README
+- `resources/mappature/province/README.md`: documentazione completa mapping (cosa sono, come si generano, come si usano)
+- File JSONL obsoleti: `problemi_nomi_province.jsonl`, `province_sardegna_soppresse.jsonl` (ora integrati in mapping CSV)
+
+**Script Python refactoring** (uso mapping centralizzato):
+- `tasks/marta/outputs/mappa_eventi_sesso_vittime.py`: righe 65-79 (ridotte da 34 a 15 righe)
+  - Eliminati 3 dizionari di lookup + fallback manuale hardcoded
+  - Join diretto con `mapping_province_completo.csv`
+- `tasks/marta/outputs/grafici_panoramica_reati.py`: righe 159, 278-311
+  - Path aggiornato a `mapping_province_con_popolazione.csv`
+  - Query semplificata: eliminata CTE `pop` separata (popolazione già in mapping)
+  - Ridotto 1 join (da 3 a 2 CTE)
+
+**Mapping popolazione integrato**:
+- Creato `mapping_province_con_popolazione.csv` (14 colonne)
+- Aggiunge: popolazione_residente, anno_popolazione, area_kmq, numero_comuni
+- Elimina necessità di join separato con `dimensioni_province_situas.csv` nelle query
+
 ## 2025-11-22
 
 ### CORREZIONE CRITICA: FILE 6 contiene anche vittime maschili (14%)
