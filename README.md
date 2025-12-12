@@ -10,8 +10,8 @@ Dati sui reati collegati alla violenza di genere in Italia, rilasciati dal Dipar
 
 Il Ministero ha rilasciato due file Excel:
 
-- [MI-123-U-A-SD-2025-90_5.xlsx](data/rawdata/MI-123-U-A-SD-2025-90_5.xlsx)
-- [MI-123-U-A-SD-2025-90_6.xlsx](data/rawdata/MI-123-U-A-SD-2025-90_6.xlsx)
+- [MI-123-U-A-SD-2025-90_5.xlsx](https://raw.githubusercontent.com/ondata/dati_sdi_reati_genere/main/data/rawdata/MI-123-U-A-SD-2025-90_5.xlsx)
+- [MI-123-U-A-SD-2025-90_6.xlsx](https://raw.githubusercontent.com/ondata/dati_sdi_reati_genere/main/data/rawdata/MI-123-U-A-SD-2025-90_6.xlsx)
 
 ### Statistiche provinciali sui reati (MI-123-U-A-SD-2025-90_5.xlsx)
 
