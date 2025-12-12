@@ -161,40 +161,6 @@ erDiagram
 
 *Richiede `count(DISTINCT campo)` per conteggi accurati
 
-## Media per evento
-
-- **Vittime:** 1.06 per evento
-- **Denunciati:** 1.05 per evento
-- **Colpiti da provvedimento:** 1.04 per evento
-
-## Come usare i dati
-
-### Per analisi aggregate (consigliato)
-```sql
--- Eventi per regione
-SELECT REGIONE, count(*) as n_eventi
-FROM read_csv('dataset_array.csv')
-GROUP BY REGIONE
-ORDER BY n_eventi DESC;
-```
-
-### Per analisi relazionali
-```sql
--- Eventi con multipli reati
-SELECT e.PROT_SDI, count(*) as n_reati
-FROM read_csv('relazionale_eventi.csv') e
-JOIN read_csv('relazionale_reati.csv') r ON e.PROT_SDI = r.PROT_SDI
-GROUP BY e.PROT_SDI
-HAVING count(*) > 1;
-```
-
-### Per ricerca soggetti specifici
-```sql
--- Trova vittima per codice
-SELECT * FROM read_csv('dataset_cartesiano.csv')
-WHERE COD_VITTIMA = '20220728121231234989';
-```
-
 ## Note tecniche
 
 **Pulizia dati:**
@@ -203,7 +169,6 @@ WHERE COD_VITTIMA = '20220728121231234989';
 - Valori NULL rappresentati con celle vuote (non `(null)`)
 - Array vuoti rimossi dai file aggregati
 - I dati temporali mantengono il formato originale
-- I codici fiscali/persona sono stati normalizzati
 
 **Codici geografici:**
 
