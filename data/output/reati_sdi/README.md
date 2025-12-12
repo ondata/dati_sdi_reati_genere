@@ -175,4 +175,4 @@ erDiagram
 - Campo `STATO_ISO`: codici ISO 3166-1 alpha-3 (ITA, FRA, ESP, CHE, etc.)
 - Eventi senza STATO esplicito: mappati automaticamente a ITALIA → ITA
 - Codici speciali: UNK (ignoto), INT (acque internazionali)
-- Mapping completo in [`resources/codici_stati.csv`](../../resources/codici_stati.csv)
+- Mapping completo in [`resources/codici_stati.csv`](../../../resources/codici_stati.csv)
