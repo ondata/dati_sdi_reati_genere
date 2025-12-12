@@ -30,7 +30,7 @@ I dati con disaggregazione a livello provinciale, in relazione ai reati commessi
 - diffusione illecita di immagini o video sessualmente espliciti
 - violazione dei provvedimenti di allontanamento dalla casa familiare e del divieto di avvicinamento ai luoghi frequentati dalla persona offesa
 
-Quelli commessi in Italia, per il periodo compreso tra il 2019 ed il 2024 (non consolidati per l’anno 2024, quindi suscettibili di variazioni).
+Si tratta di quelli commessi in Italia, per il periodo compreso tra il 2019 ed il 2024 (non consolidati per l’anno 2024, quindi suscettibili di variazioni).
 
 **Fonte:** SDI (Sistema Di. Indagine) ed SSD (Sistema di Supporto alle Decisioni)
 
