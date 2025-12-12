@@ -17,11 +17,12 @@ Il file Excel originale presentava due criticità principali che lo rendevano in
 Il file Excel di input conteneva due problemi distinti:
 
 **Duplicati (errore tecnico):**
+
 - Righe completamente identiche in tutti i campi
 - Esempio: evento `BSCS352024000004` con 30 righe identiche
-- Causa: errore nell'estrazione dati dal sistema SDI
 
 **Prodotto cartesiano (struttura non documentata):**
+
 - Quando un evento ha più denunciati E più persone colpite da provvedimento
 - Ogni denunciato viene abbinato a OGNI persona colpita da provvedimento
 - Esempio: evento `PGPQ102023002369` con 6 denunciati × 6 colpiti_provv = 36 righe
@@ -33,35 +34,41 @@ Sono stati generati 3 tipi di output per soddisfare diverse esigenze analitiche:
 
 ### Prodotto cartesiano (dedupplicato non aggregato)
 
-**File:** `dataset_cartesiano.csv`
+**File:** [`dataset_cartesiano.csv`](dataset_cartesiano.csv)
+
 **Righe:** 3.329
 
 **Struttura:** 1 riga per ogni combinazione denunciato × vittima × reato × colpito_provv
 
 **Quando usarlo:**
+
 - Analisi che richiedono vedere tutte le combinazioni possibili
 - Ricerca di soggetti specifici in formato "flat"
 - Esportazione diretta in Excel per utenti non tecnici
 
 **Limitazioni:**
+
 - Contiene prodotto cartesiano artificiale (es. PGPQ102023002369: 36 righe per 1 evento)
 - Richiede documentazione esplicita: "1 riga = 1 combinazione"
 - Conteggi eventi richiedono `count(DISTINCT PROT_SDI)`
 
 ### Tabella unica con array (soluzione consigliata)
 
-**File:** `dataset_array.csv`
+**File:** [`dataset_array.csv`](dataset_array.csv)
+
 **Righe:** 2.644 (1 per evento)
 
 **Struttura:** 1 riga = 1 evento, soggetti multipli in array
 
 **Quando usarlo:**
+
 - Statistiche aggregate (conteggi eventi, trend temporali)
 - Analisi geografiche per regione/provincia
 - Dashboard e visualizzazioni dati
 - Query efficienti su dataset completo
 
 **Vantaggi:**
+
 - Granularità chiara: 1 riga = 1 evento
 - Conteggi diretti: `count(*)` = eventi totali
 - Nessun prodotto cartesiano artificiale
@@ -70,13 +77,17 @@ Sono stati generati 3 tipi di output per soddisfare diverse esigenze analitiche:
 ### Modello relazionale (database)
 
 **File:** 5 tabelle separate
-- `relazionale_eventi.csv` (2.644 righe)
-- `relazionale_reati.csv` (2.908 righe)
-- `relazionale_vittime.csv` (2.821 righe)
-- `relazionale_denunciati.csv` (2.856 righe)
-- `relazionale_colpiti_provv.csv` (2.762 righe)
+
+- [`relazionale_eventi.csv`](relazionale_eventi.csv) (2.644 righe)
+- [`relazionale_reati.csv`](relazionale_reati.csv) (2.908 righe)
+- [`relazionale_vittime.csv`](relazionale_vittime.csv) (2.821 righe)
+- [`relazionale_denunciati.csv`](relazionale_denunciati.csv) (2.856 righe)
+- [`relazionale_colpiti_provv.csv`](relazionale_colpiti_provv.csv) (2.762 righe)
+
+**Database:** [`reati_sdi_relazionale.duckdb`](reati_sdi_relazionale.duckdb)
 
 **Quando usarlo:**
+
 - Database persistenti e applicazioni
 - Analisi complesse con query SQL
 - JOIN tra tabelle per analisi multidimensionali
@@ -187,6 +198,7 @@ WHERE COD_VITTIMA = '20220728121231234989';
 ## Note tecniche
 
 **Pulizia dati:**
+
 - Tutti i campi testuali sono stati trimmati per rimuovere spazi extra
 - Valori NULL rappresentati con celle vuote (non `(null)`)
 - Array vuoti rimossi dai file aggregati
@@ -194,16 +206,8 @@ WHERE COD_VITTIMA = '20220728121231234989';
 - I codici fiscali/persona sono stati normalizzati
 
 **Codici geografici:**
+
 - Campo `STATO_ISO`: codici ISO 3166-1 alpha-3 (ITA, FRA, ESP, CHE, etc.)
 - Eventi senza STATO esplicito: mappati automaticamente a ITALIA → ITA
 - Codici speciali: UNK (ignoto), INT (acque internazionali)
-- Mapping completo in `resources/codici_stati.csv`
-
-**Distribuzione stati:**
-- 96.1% Italia (ITA)
-- 3.7% Ignoto (UNK)
-- 0.2% Altri paesi (FRA, ESP, CHE, LKA, INT)
-
-## Contatti
-
-Per domande sui dati o sull'elaborazione: contattare il team di data analysis.
+- Mapping completo in [`resources/codici_stati.csv`](../../resources/codici_stati.csv)
