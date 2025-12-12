@@ -1,59 +1,125 @@
-# Violenza di genere: dati che servono a chi studia e contrasta il fenomeno
+# Violenza di genere: dati SDI 2019-2024
 
-Grazie a una richiesta di accesso civico generalizzato (FOIA) presentata da Giulia Sudano in rappresentanza di **Period Think Tank**, il Dipartimento della Pubblica Sicurezza del Ministero dell'Interno ha rilasciato dei dati relativi ai reati collegati alla violenza di genere, commessi in Italia nel periodo 2019-2024.
+Dati sui reati collegati alla violenza di genere in Italia, rilasciati dal Dipartimento della Pubblica Sicurezza del Ministero dell'Interno a seguito di richiesta FOIA.
 
-È un'iniziativa che nasce con il sostegno e il contributo di **datiBeneComune**, un progetto che promuove la trasparenza e il riutilizzo dei dati pubblici.
+**Periodo:** 2019-2024 (dati 2024 non consolidati)
+**Richiesta:** 18 aprile 2025 (Period Think Tank)
+**Risposta:** 9 maggio 2025
 
-La richiesta, inviata il 18 aprile 2025 e riscontrata il 9 maggio 2025, mirava ad acquisire informazioni statistiche su diverse tipologie di reato, sull'incidenza delle vittime di genere femminile, sulle denunce/arresti e sulle relazioni vittima-autore.
+## Contenuti
 
-Il Dipartimento ha risposto trasmettendo due file Excel:
+Il Ministero ha rilasciato due file Excel
 
-1. **Dati sui reati** (fonte *SDI - Sistema di Indagine / SSD - Sistema di Sorveglianza Dati*, non consolidati per il 2024) disaggregati a livello provinciale, con informazioni su:
+### Statistiche provinciali sui reati (MI-123-U-A-SD-2025-90_5.xlsx)
 
-    - Omicidi, tentati omicidi, lesioni dolose, percosse, minacce
-    - Violenze sessuali, atti persecutori, maltrattamenti in famiglia
-    - Reati specifici del Codice Rosso (es. costrizione al matrimonio, diffusione illecita di imagini, deformazione del viso, violazioni di allontanamento)
-    - Incidenza delle vittime di sesso femminile
-    - Denunce e arresti
+**Fonte:** SDI (Sistema Di. Indagine) ed SSD (Sistema di Supporto alle Decisioni)
 
-    Una sezione specifica riguarda gli **omicidi con vittime donne**, distinti in:
+**Aggregazione:** Provinciale
 
-    - Omicidi totali
-    - Omicidi in ambito familiare/affettivo
-    - Omicidi commessi da partner o ex partner
+**Contenuto:**
 
-    Il Dipartimento chiarisce che non viene fornita una classificazione dei "femminicidi", in quanto il termine non corrisponde a una fattispecie giuridica codificata.
+- Omicidi volontari consumati (con vittime donne, ambito familiare/affettivo, partner/ex partner)
+- Delitti: lesioni dolose, minacce, percosse, tentati omicidi, violenze sessuali
+- Reati spia: atti persecutori, maltrattamenti contro familiari e conviventi
+- Codice Rosso: costrizione o induzione al matrimonio, deformazione dell'aspetto della persona mediante lesioni permanenti al viso, diffusione illecita di immagini o video sessualmente espliciti, violazione dei provvedimenti di allontanamento dalla casa familiare e del divieto di avvicinamento ai luoghi frequentati dalla persona offesa
 
-2. **Comunicazioni SDI con indicazione della relazione vittima-autore**, disaggregate fino al livello comunale, nei casi in cui tale relazione risulti compilata nel sistema.
+**Disaggregazione:**
 
-I dati ottenuti sono resi disponibili pubblicamente e liberamente riutilizzabili da parte dell'iniziativa **datiBeneComune**, con l'obiettivo di favorire trasparenza, ricerca e consapevolezza sul fenomeno della violenza di genere in Italia.
+- 3 prospettive: reati commessi, vittime femminili, segnalazioni (autori per sesso ed età)
+- 10 fogli Excel con dati aggregati per provincia e anno
 
-## Dataset Processati
+### Comunicazioni SDI con relazione vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx)
 
-I dati grezzi sono stati processati e arricchiti con:
+**Fonte:** SDI (Sistema Di. Indagine) ed SSD (Sistema di Supporto alle Decisioni)
 
-- **Codici ISTAT** per regioni, province e comuni (con fuzzy matching per normalizzare i nomi)
-- **Codici ISO 3166-1 alpha-3** per gli stati delle nazioni di nascita
-- **Normalizzazione nomi comuni** (es. `SALO'` → `Salò`)
-- **Formato relazionale** ottimizzato per analisi
+**Aggregazione:** Comunale (quando disponibile)
 
-> 📋 **Documentazione problemi geografici**: Vedi [docs/problemi_nomi_geografici.md](docs/problemi_nomi_geografici.md) per un'analisi dettagliata dei 51 problemi identificati e risolti nei nomi di regioni, province e comuni.
+**Contenuto:**
 
-### Output Disponibili
+- Comunicazioni con relazione vittima-autore compilata
+- Dati per evento: reato, vittime, denunciati, colpiti da provvedimento
+- Informazioni: età, genere, nazionalità, relazione autore-vittima, luogo del fatto, date
+- **Righe originali:** 5.124 → **Eventi unici:** 2.644
 
-1. **Dataset Cartesiano** (`data/processed/dataset_cartesiano.csv`): prodotto cartesiano dedupplicato non aggregato
-2. **Dataset Array** (`data/processed/dataset_array.csv`): un evento per riga con array per vittime/denunciati/colpiti
-3. **Modello Relazionale** (`data/processed/relazionale_*.csv`): tabelle normalizzate
-   - `relazionale_eventi.csv`: informazioni sull'evento
-   - `relazionale_reati.csv`: reati associati agli eventi
-   - `relazionale_vittime.csv`: vittime (con nazione nascita ISO)
-   - `relazionale_denunciati.csv`: denunciati (con nazione nascita ISO)
-   - `relazionale_colpiti_provv.csv`: colpiti da provvedimento (con nazione nascita ISO)
-4. **Database DuckDB** (`data/processed/reati_sdi_relazionale.duckdb`): database relazionale pronto per query SQL
+## Struttura Repository
 
-### Statistiche
+```
+data/
+├── rawdata/                    # Dati grezzi ricevuti
+│   ├── MI-123-U-A-SD-2025-90_5.xlsx
+│   ├── MI-123-U-A-SD-2025-90_6.xlsx
+│   ├── richiesta.md
+│   └── README.md
+│
+└── output/                     # Dati processati
+    ├── comunicazioni_sdi/      # Output da file _5 (10 CSV + README)
+    │   ├── delitti_*.csv       # commessi, vittime, segnalazioni
+    │   ├── reati_spia_*.csv    # commessi, vittime, segnalazioni
+    │   ├── codice_rosso_*.csv  # commessi, vittime, segnalazioni
+    │   ├── omicidi_dcpc.csv
+    │   └── README.md           # Schema dati e descrizione
+    │
+    └── reati_sdi/              # Output da file _6 (7 CSV + 1 DB + README)
+        ├── dataset_cartesiano.csv          # Prodotto cartesiano dedupplicato
+        ├── dataset_array.csv               # Aggregato con array
+        ├── relazionale_eventi.csv          # Modello relazionale
+        ├── relazionale_reati.csv           #   ↓
+        ├── relazionale_vittime.csv         #   ↓
+        ├── relazionale_denunciati.csv      #   ↓
+        ├── relazionale_colpiti_provv.csv   #   ↓
+        ├── reati_sdi_relazionale.duckdb    # Database DuckDB
+        └── README.md                       # Guida uso e schema ER
+```
 
-- **2.644 eventi unici** (da 5.124 righe originali)
-- **19 comuni corretti** tramite fuzzy matching (≥95% similarità)
-- **105 stati mappati** con codici ISO alpha-3
-- **100% dei record con nazione specificata** hanno codice ISO
+## Output Disponibili
+
+### Comunicazioni SDI (data/output/comunicazioni_sdi/)
+
+**10 file CSV** con dati normalizzati e arricchiti:
+
+- Colonne anno convertite in righe
+- Codici ISTAT per regioni e province
+- Nomi geografici standardizzati
+- 3 categorie × 3 prospettive + omicidi DCPC
+
+📋 [Vedi schema dati completo](data/output/comunicazioni_sdi/README.md)
+
+### Reati SDI (data/output/reati_sdi/)
+
+**3 formati dati** per diverse esigenze analitiche:
+
+1. **Cartesiano** (`dataset_cartesiano.csv`): 3.329 righe
+   1 riga = 1 combinazione denunciato × vittima × reato × colpito_provv
+
+2. **Array** (`dataset_array.csv`): 2.644 righe ✅
+   1 riga = 1 evento, soggetti multipli in array
+
+3. **Relazionale** (5 tabelle CSV + database DuckDB):
+   Schema normalizzato con foreign keys e indici
+
+**Arricchimenti:**
+
+- Codici ISTAT per regioni, province, comuni (fuzzy matching)
+- Codici ISO 3166-1 alpha-3 per nazioni di nascita
+- Nomi comuni normalizzati (es. `SALO'` → `Salò`)
+- Gestione duplicati (49.4% righe duplicate rimosse)
+
+📊 [Vedi statistiche e guida uso](data/output/reati_sdi/README.md)
+
+## Limitazioni
+
+- **Dati 2024 non consolidati** (suscettibili di variazioni)
+- **No disaggregazione comunale per statistiche reati** (file _5: solo province per privacy - Delibera Garante n. 515/2018)
+- **No classificazione "femminicidi"** (non previsti come fattispecie giuridica autonoma)
+
+## Crediti
+
+**Richiesta FOIA:** Period Think Tank
+**Pubblicazione:** datiBeneComune
+**Elaborazione dati:** datiBeneComune
+
+Progetto nato con il sostegno di **datiBeneComune** per promuovere trasparenza e riutilizzo dei dati pubblici.
+
+## Licenza
+
+I dati sono rilasciati come **open data** e liberamente riutilizzabili per ricerca, con [licenza CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
