@@ -15,6 +15,23 @@ Il Ministero ha rilasciato due file Excel:
 
 ### Statistiche provinciali sui reati (MI-123-U-A-SD-2025-90_5.xlsx)
 
+I dati con disaggregazione a livello provinciale, in relazione ai reati commessi, all'incidenza delle vittime di genere femminile, nonché alle, segnalazioni riferite a persone denunciate/arrestate per:
+
+- omicidi
+- tentati omicidi
+- lesioni dolose
+- percosse
+- minacce
+- violenze sessuali
+- atti persecutori
+- maltrattamenti contro familiari e conviventi
+- costrizione o induzione al matrimonio
+- deformazione dell’aspetto della persona mediante lesioni permanenti al viso
+- diffusione illecita di immagini o video sessualmente espliciti
+- violazione dei provvedimenti di allontanamento dalla casa familiare e del divieto di avvicinamento ai luoghi frequentati dalla persona offesa
+
+Quelli commessi in Italia, per il periodo compreso tra il 2019 ed il 2024 (non consolidati per l’anno 2024, quindi suscettibili di variazioni).
+
 **Fonte:** SDI (Sistema Di. Indagine) ed SSD (Sistema di Supporto alle Decisioni)
 
 **Aggregazione:** Provinciale
@@ -32,6 +49,8 @@ Il Ministero ha rilasciato due file Excel:
 - 10 fogli Excel con dati aggregati per provincia e anno
 
 ### Comunicazioni SDI con relazione vittima-autore (MI-123-U-A-SD-2025-90_6.xlsx)
+
+I casi di violenza di genere, ove sia stata indicata una "relazione vittima autore", disaggregati fino a livello "Comune" (luogo del fatto).
 
 **Fonte:** SDI (Sistema Di. Indagine) ed SSD (Sistema di Supporto alle Decisioni)
 
