@@ -1,0 +1,108 @@
+cod_rip,cod_reg,cod_prov_storico,cod_uts,den_uts,den_rip,den_reg,tipo_uts,desc_tipo_uts,sigla_automobilistica,cod_prov_fiscale,cod_nuts3_2024
+1,01,002,002,Vercelli,Nord-ovest,Piemonte,1,Provincia,VC,80005210028,ITC12
+1,01,003,003,Novara,Nord-ovest,Piemonte,1,Provincia,NO,80026850034,ITC15
+1,01,004,004,Cuneo,Nord-ovest,Piemonte,1,Provincia,CN,00447820044,ITC16
+1,01,005,005,Asti,Nord-ovest,Piemonte,1,Provincia,AT,80001630054,ITC17
+1,01,006,006,Alessandria,Nord-ovest,Piemonte,1,Provincia,AL,80003870062,ITC18
+1,01,096,096,Biella,Nord-ovest,Piemonte,1,Provincia,BI,90027160028,ITC13
+1,01,103,103,Verbano-Cusio-Ossola,Nord-ovest,Piemonte,1,Provincia,VB,93009110037,ITC14
+1,01,001,201,Torino,Nord-ovest,Piemonte,3,Città metropolitana,TO,01907990012,ITC11
+1,02,007,007,Valle d'Aosta/Vallée d'Aoste,Nord-ovest,Valle d'Aosta/Vallée d'Aoste,1,Provincia,AO,80002270074,ITC20
+1,03,012,012,Varese,Nord-ovest,Lombardia,1,Provincia,VA,80000710121,ITC41
+1,03,013,013,Como,Nord-ovest,Lombardia,1,Provincia,CO,80004650133,ITC42
+1,03,014,014,Sondrio,Nord-ovest,Lombardia,1,Provincia,SO,80002950147,ITC44
+1,03,016,016,Bergamo,Nord-ovest,Lombardia,1,Provincia,BG,80004870160,ITC46
+1,03,017,017,Brescia,Nord-ovest,Lombardia,1,Provincia,BS,80008750178,ITC47
+1,03,018,018,Pavia,Nord-ovest,Lombardia,1,Provincia,PV,80000030181,ITC48
+1,03,019,019,Cremona,Nord-ovest,Lombardia,1,Provincia,CR,80002130195,ITC4A
+1,03,020,020,Mantova,Nord-ovest,Lombardia,1,Provincia,MN,80001070202,ITC4B
+1,03,097,097,Lecco,Nord-ovest,Lombardia,1,Provincia,LC,92013170136,ITC43
+1,03,098,098,Lodi,Nord-ovest,Lombardia,1,Provincia,LO,92514470159,ITC49
+1,03,108,108,Monza e della Brianza,Nord-ovest,Lombardia,1,Provincia,MB,94616010156,ITC4D
+1,03,015,215,Milano,Nord-ovest,Lombardia,3,Città metropolitana,MI,08911820960,ITC4C
+2,04,021,021,Bolzano/Bozen,Nord-est,Trentino-Alto Adige/Südtirol,2,Provincia autonoma,BZ,00390090215,ITH10
+2,04,022,022,Trento,Nord-est,Trentino-Alto Adige/Südtirol,2,Provincia autonoma,TN,00337460224,ITH20
+2,05,023,023,Verona,Nord-est,Veneto,1,Provincia,VR,00654810233,ITH31
+2,05,024,024,Vicenza,Nord-est,Veneto,1,Provincia,VI,00496080243,ITH32
+2,05,025,025,Belluno,Nord-est,Veneto,1,Provincia,BL,93005430256,ITH33
+2,05,026,026,Treviso,Nord-est,Veneto,1,Provincia,TV,80008870265,ITH34
+2,05,028,028,Padova,Nord-est,Veneto,1,Provincia,PD,80006510285,ITH36
+2,05,029,029,Rovigo,Nord-est,Veneto,1,Provincia,RO,93006330299,ITH37
+2,05,027,227,Venezia,Nord-est,Veneto,3,Città metropolitana,VE,80008840276,ITH35
+2,06,030,030,Udine,Nord-est,Friuli-Venezia Giulia,5,Unità non amministrativa,UD,00400130308,ITH42
+2,06,031,031,Gorizia,Nord-est,Friuli-Venezia Giulia,5,Unità non amministrativa,GO,00123060311,ITH43
+2,06,032,032,Trieste,Nord-est,Friuli-Venezia Giulia,5,Unità non amministrativa,TS,80011310325,ITH44
+2,06,093,093,Pordenone,Nord-est,Friuli-Venezia Giulia,5,Unità non amministrativa,PN,00137050936,ITH41
+1,07,008,008,Imperia,Nord-ovest,Liguria,1,Provincia,IM,00247260086,ITC31
+1,07,009,009,Savona,Nord-ovest,Liguria,1,Provincia,SV,00311260095,ITC32
+1,07,011,011,La Spezia,Nord-ovest,Liguria,1,Provincia,SP,00218930113,ITC34
+1,07,010,210,Genova,Nord-ovest,Liguria,3,Città metropolitana,GE,80007350103,ITC33
+2,08,033,033,Piacenza,Nord-est,Emilia-Romagna,1,Provincia,PC,00233540335,ITH51
+2,08,034,034,Parma,Nord-est,Emilia-Romagna,1,Provincia,PR,80015230347,ITH52
+2,08,035,035,Reggio nell'Emilia,Nord-est,Emilia-Romagna,1,Provincia,RE,00209290352,ITH53
+2,08,036,036,Modena,Nord-est,Emilia-Romagna,1,Provincia,MO,01375710363,ITH54
+2,08,038,038,Ferrara,Nord-est,Emilia-Romagna,1,Provincia,FE,00334500386,ITH56
+2,08,039,039,Ravenna,Nord-est,Emilia-Romagna,1,Provincia,RA,00356680397,ITH57
+2,08,040,040,Forlì-Cesena,Nord-est,Emilia-Romagna,1,Provincia,FC,80001550401,ITH58
+2,08,099,099,Rimini,Nord-est,Emilia-Romagna,1,Provincia,RN,91023860405,ITH59
+2,08,037,237,Bologna,Nord-est,Emilia-Romagna,3,Città metropolitana,BO,03428581205,ITH55
+3,09,045,045,Massa-Carrara,Centro,Toscana,1,Provincia,MS,80000150450,ITI11
+3,09,046,046,Lucca,Centro,Toscana,1,Provincia,LU,80001210469,ITI12
+3,09,047,047,Pistoia,Centro,Toscana,1,Provincia,PT,00236340477,ITI13
+3,09,049,049,Livorno,Centro,Toscana,1,Provincia,LI,80011010495,ITI16
+3,09,050,050,Pisa,Centro,Toscana,1,Provincia,PI,80000410508,ITI17
+3,09,051,051,Arezzo,Centro,Toscana,1,Provincia,AR,80000610511,ITI18
+3,09,052,052,Siena,Centro,Toscana,1,Provincia,SI,80001130527,ITI19
+3,09,053,053,Grosseto,Centro,Toscana,1,Provincia,GR,80000030538,ITI1A
+3,09,100,100,Prato,Centro,Toscana,1,Provincia,PO,92035800488,ITI15
+3,09,048,248,Firenze,Centro,Toscana,3,Città metropolitana,FI,80016450480,ITI14
+3,10,054,054,Perugia,Centro,Umbria,1,Provincia,PG,00443770540,ITI21
+3,10,055,055,Terni,Centro,Umbria,1,Provincia,TR,00179350558,ITI22
+3,11,041,041,Pesaro e Urbino,Centro,Marche,1,Provincia,PU,00212000418,ITI31
+3,11,042,042,Ancona,Centro,Marche,1,Provincia,AN,00369930425,ITI32
+3,11,043,043,Macerata,Centro,Marche,1,Provincia,MC,80001250432,ITI33
+3,11,044,044,Ascoli Piceno,Centro,Marche,1,Provincia,AP,01116550441,ITI34
+3,11,109,109,Fermo,Centro,Marche,1,Provincia,FM,90038780442,ITI35
+3,12,056,056,Viterbo,Centro,Lazio,1,Provincia,VT,80005570561,ITI41
+3,12,057,057,Rieti,Centro,Lazio,1,Provincia,RI,00114510571,ITI42
+3,12,059,059,Latina,Centro,Lazio,1,Provincia,LT,80003530591,ITI44
+3,12,060,060,Frosinone,Centro,Lazio,1,Provincia,FR,01633570609,ITI45
+3,12,058,258,Roma,Centro,Lazio,3,Città metropolitana,RM,80034390585,ITI43
+4,13,066,066,L'Aquila,Sud,Abruzzo,1,Provincia,AQ,80002370668,ITF11
+4,13,067,067,Teramo,Sud,Abruzzo,1,Provincia,TE,80001070673,ITF12
+4,13,068,068,Pescara,Sud,Abruzzo,1,Provincia,PE,00212850689,ITF13
+4,13,069,069,Chieti,Sud,Abruzzo,1,Provincia,CH,80000130692,ITF14
+4,14,070,070,Campobasso,Sud,Molise,1,Provincia,CB,00139600704,ITF22
+4,14,094,094,Isernia,Sud,Molise,1,Provincia,IS,80051970947,ITF21
+4,15,061,061,Caserta,Sud,Campania,1,Provincia,CE,80004770618,ITF31
+4,15,062,062,Benevento,Sud,Campania,1,Provincia,BN,92002770623,ITF32
+4,15,064,064,Avellino,Sud,Campania,1,Provincia,AV,80000190647,ITF34
+4,15,065,065,Salerno,Sud,Campania,1,Provincia,SA,80000390650,ITF35
+4,15,063,263,Napoli,Sud,Campania,3,Città metropolitana,NA,01263370635,ITF33
+4,16,071,071,Foggia,Sud,Puglia,1,Provincia,FG,00374200715,ITF46
+4,16,073,073,Taranto,Sud,Puglia,1,Provincia,TA,80004930733,ITF43
+4,16,074,074,Brindisi,Sud,Puglia,1,Provincia,BR,80001390741,ITF44
+4,16,075,075,Lecce,Sud,Puglia,1,Provincia,LE,80000840753,ITF45
+4,16,110,110,Barletta-Andria-Trani,Sud,Puglia,1,Provincia,BT,6931240722,ITF48
+4,16,072,272,Bari,Sud,Puglia,3,Città metropolitana,BA,80000110728,ITF47
+4,17,076,076,Potenza,Sud,Basilicata,1,Provincia,PZ,80002710764,ITF51
+4,17,077,077,Matera,Sud,Basilicata,1,Provincia,MT,80000970774,ITF52
+4,18,078,078,Cosenza,Sud,Calabria,1,Provincia,CS,80003710789,ITF61
+4,18,079,079,Catanzaro,Sud,Calabria,1,Provincia,CZ,80003090794,ITF63
+4,18,101,101,Crotone,Sud,Calabria,1,Provincia,KR,91006950793,ITF62
+4,18,102,102,Vibo Valentia,Sud,Calabria,1,Provincia,VV,96004570790,ITF64
+4,18,080,280,Reggio Calabria,Sud,Calabria,3,Città metropolitana,RC,80000100802,ITF65
+5,19,081,081,Trapani,Isole,Sicilia,4,Libero consorzio di comuni,TP,93004780818,ITG11
+5,19,084,084,Agrigento,Isole,Sicilia,4,Libero consorzio di comuni,AG,80002590844,ITG14
+5,19,085,085,Caltanissetta,Isole,Sicilia,4,Libero consorzio di comuni,CL,00115070856,ITG15
+5,19,086,086,Enna,Isole,Sicilia,4,Libero consorzio di comuni,EN,80000810863,ITG16
+5,19,088,088,Ragusa,Isole,Sicilia,4,Libero consorzio di comuni,RG,80000010886,ITG18
+5,19,089,089,Siracusa,Isole,Sicilia,4,Libero consorzio di comuni,SR,80001670894,ITG19
+5,19,082,282,Palermo,Isole,Sicilia,3,Città metropolitana,PA,80021470820,ITG12
+5,19,083,283,Messina,Isole,Sicilia,3,Città metropolitana,ME,80002760835,ITG13
+5,19,087,287,Catania,Isole,Sicilia,3,Città metropolitana,CT,00397470873,ITG17
+5,20,090,090,Sassari,Isole,Sardegna,1,Provincia,SS,00230190902,ITG2D
+5,20,091,091,Nuoro,Isole,Sardegna,1,Provincia,NU,00166520916,ITG2E
+5,20,095,095,Oristano,Isole,Sardegna,1,Provincia,OR,80004010957,ITG2G
+5,20,111,111,Sud Sardegna,Isole,Sardegna,1,Provincia,SU,90038150927,ITG2H
+5,20,092,292,Cagliari,Isole,Sardegna,3,Città metropolitana,CA,00510810922,ITG2F

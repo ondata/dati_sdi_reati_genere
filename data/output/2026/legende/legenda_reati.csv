@@ -1,0 +1,26 @@
+codice,descrizione,codici_sdi,incerto,note
+A,"Omicidio (575 c.p.), omicidio aggravato (576-577 c.p.), femminicidio (577-bis c.p.)","575, P576A, R577A, S577B",false,"Comprende anche i tentati omicidi (575 tentato)"
+B,Percosse (581 c.p.),581,false,
+C,"Lesioni personali (582, 583, 585 c.p.)","582, 583, 585",false,
+D,Violenza sessuale (609-bis c.p. e aggravate),"609B, 609S, 609H, P609B, P609H, P609S, P609E",false,
+E,Violenza sessuale - altre fattispecie (atti con minorenne o di gruppo),"609F, 609D, P609D, P609F",true,Corrispondenza tra codici SDI e articoli da confermare
+F,Maltrattamenti contro familiari e conviventi (572 c.p.),572,false,
+G,Atti persecutori (612-bis c.p.),"612B1, 612B2, 612B3, 612B4",false,
+H,Diffusione illecita di immagini o video sessualmente espliciti (612-ter c.p.),"P612T, G612Q",true,Corrispondenza tra codici SDI e articolo da confermare
+I,Violazione dei provvedimenti di allontanamento e del divieto di avvicinamento (387-bis c.p.),P387B,false,
+L,Costrizione o induzione al matrimonio (558-bis c.p.),P558B,false,
+M,Pratiche di mutilazione degli organi genitali femminili (583-bis c.p.),P583B,false,Codice non presente nei dati 2025
+N,Deformazione dell'aspetto mediante lesioni permanenti al viso (583-quinquies c.p.),P583Q,false,
+O,Art. 593-ter c.p.,P593C,true,Significato del codice SDI da confermare; presente solo nel 2° semestre
+P,Sequestro di persona (605 c.p.),"P605A, P605B, P605C, P605D, P605E, P605F, P605G, P605H",false,
+Q,Violenza privata (610 c.p.),610,false,
+R,Violazione di domicilio (614 c.p.),614,false,
+S,Violazione degli obblighi di assistenza familiare (570 e 570-bis c.p.),"570, P570B",false,
+T,Riduzione o mantenimento in schiavitù (600 c.p.),600A,false,
+U,Abbandono di persone minori o incapaci (591 c.p.),591,false,
+V,Danneggiamento (635 c.p.),"635, S635B, S635A",false,Presente solo nel 2° semestre
+Z,Estorsione (629 c.p.),629,false,
+AA,Minaccia (612 c.p.),612,false,
+BB,Lesioni colpose (590 c.p.),A5901,true,Significato del codice SDI da confermare
+CC,Circonvenzione di persone incapaci (643 c.p.),643,false,
+DD,Tratta di persone (601 c.p.),"601A, 601A2, 601BB, 601CC",false,Presente solo nel 2° semestre

@@ -1,0 +1,20 @@
+campo,codice,descrizione,note
+SESSO_AUTORE,1,Maschio,
+SESSO_AUTORE,2,Femmina,
+SESSO_AUTORE,0,Non valorizzato,"Coincide con l'assenza della scheda della relazione autore-vittima: non significa autore sconosciuto"
+SEX_VITTIMA,1,Maschio,
+SEX_VITTIMA,2,Femmina,
+SEX_VITTIMA,0,Non valorizzato,Valore non presente nei dati 2025
+ESISTENZA_FIGLI_MINORI,2,Figli minori dichiarati e minori presenti al fatto,"Calcolo identico a PRESENZA_FIGLI_MINORI: mescola esistenza dei figli e presenza di minori al fatto"
+ESISTENZA_FIGLI_MINORI,1,Nessun figlio minore dichiarato,
+ESISTENZA_FIGLI_MINORI,0,Altro o non noto,"Comprende figli esistenti ma non presenti al fatto, informazioni mancanti o discordanti"
+PRESENZA_FIGLI_MINORI,2,Figli minori dichiarati e minori presenti al fatto,"Calcolo identico a ESISTENZA_FIGLI_MINORI: mescola esistenza dei figli e presenza di minori al fatto"
+PRESENZA_FIGLI_MINORI,1,Nessun figlio minore dichiarato,
+PRESENZA_FIGLI_MINORI,0,Altro o non noto,"Comprende figli esistenti ma non presenti al fatto, informazioni mancanti o discordanti"
+LUOGO_DEL_FATTO,1,Abitazione,
+LUOGO_DEL_FATTO,6,"Altro luogo privato o chiuso (abitazione isolata, albergo, esercizio commerciale, ufficio, ospedale, ecc.)",
+LUOGO_DEL_FATTO,7,"Luogo aperto o pubblico (campagna, bosco, area di servizio, pubblica via, area archeologica)",
+LUOGO_DEL_FATTO,0,"Non previsto, altro o non classificato",Comprende ogni luogo non elencato nella query
+TIPOLOGIA_ARMA,1,Nessuna arma o arma non indicata,"Comprende i valori vuoti, 'NO' e mancanti"
+TIPOLOGIA_ARMA,3,Arma da taglio o strumento atto ad offendere,
+TIPOLOGIA_ARMA,0,Altro tipo di arma,"Comprende qualsiasi altra descrizione, incluse le armi da fuoco, che non hanno un codice dedicato"
