@@ -1,5 +1,21 @@
 # Log Attività Progetto Dati SDI Reati Genere
 
+## 2026-09-16
+
+### Pubblicato il secondo rilascio FOIA (dati 2024-2025)
+
+Change OpenSpec `add-rilascio-foia-2026`. Riscontro del Ministero dell'Interno del 15/05/2026 (prot. MI-123-U-C-3-2-2026-88), elaborato nel repository di lavoro di onData e portato qui accanto al primo rilascio, senza modificare nessun file esistente.
+
+- `data/output/2026/microdati_2025/2025.csv`: 29.676 righe per coppia vittima-autore, 24.363 vittime, codice vittima sostituito, descrizioni dei codici
+- `data/output/2026/aggregati_2024_2025/`: conteggi provinciali in formato lungo (31.750 righe) e omicidi nazionali
+- `data/output/2026/serie_2019_2025/`: serie provinciale 2019-2025 dei due rilasci (127.780 righe), revisioni del 2024, serie degli omicidi
+- Colonne territoriali allineate al primo rilascio (`codice_provincia_storico`, `codice_regione`, `regione`, `ripartizione_geografica`); differiscono solo i codici storici delle quattro province sarde (fine 2025 contro riordino 2026)
+- Intestazioni in minuscolo in tutti i CSV del rilascio 2026
+- Non pubblicati gli xlsx dei semestri né la tabella dei codici vittima: il codice SDI della vittima coincide con `COD_VITTIMA` del file `_6` già pubblico
+- `scripts/2026/verifica_identificativi.sh`: fallisce se nei percorsi 2026 compare un codice persona SDI; chiamato al termine di ogni pipeline
+- Verifiche: output identici a quelli del repository di lavoro, due esecuzioni danno file identici, nessun codice persona nei percorsi 2026
+- Documentazione dei problemi dei dati in `docs/2026/note.md`
+
 ## 2025-11-23
 
 ### Semplificazione script pulisci_dataset.sh con mapping comuni
